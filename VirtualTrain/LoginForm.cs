@@ -25,7 +25,7 @@ namespace VirtualTrain
         {
             if (!checkInput())
             {
-                return;     //检查输入
+                return;     //检查输入检查输入
             }
             bool loginResult = false;
             DBHelper db = new DBHelper();
