@@ -39,6 +39,9 @@ namespace VirtualTrain
 
             tmisDialogDialog = new TMISDialogDialog();
             tmisDialogDialog.Owner = this;
+
+            //解决窗体闪烁
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
         }
 
         private void picMajor_Click(object sender, EventArgs e)

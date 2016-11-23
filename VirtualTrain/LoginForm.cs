@@ -83,7 +83,7 @@ namespace VirtualTrain
              //记住密码
         private void rememberPwd()
         {
-           
+
             if (chkPwd.Checked)
             {
                 string str = "";

@@ -59,6 +59,9 @@ namespace VirtualTrain
             //    default:
             //        break;
             //}
+
+            //解决窗体闪烁
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
         }
 
         private void cboMajorsInit()
