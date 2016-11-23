@@ -166,6 +166,8 @@ namespace VirtualTrain
             float newy = this.Height / ViewHelper.Y;
             ViewHelper.setControls(newx, newy, this);
             this.Opacity = 100D;
+            //解决窗体闪烁
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
         }
 
         string txtFileName = Application.StartupPath + @"\MajorPractice\data\pwd.txt";
