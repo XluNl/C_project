@@ -67,7 +67,6 @@
     <Compile Include="AnswerQuestionForm.Designer.cs">
       <DependentUpon>AnswerQuestionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AutoSetQuestionHelper.cs" />
     <Compile Include="BatchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,18 +79,35 @@
     <Compile Include="CheWuForm.Designer.cs">
       <DependentUpon>CheWuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="common\AutoSetQuestionHelper.cs" />
+    <Compile Include="common\DBHelper.cs" />
+    <Compile Include="common\ExamHelper.cs" />
+    <Compile Include="common\TestHelper.cs" />
+    <Compile Include="common\URLHelper.cs" />
+    <Compile Include="common\UserHelper.cs" />
+    <Compile Include="common\ViewHelper.cs" />
+    <Compile Include="common\VRHelper.cs" />
     <Compile Include="DataGridViewDisableButtonCell.cs" />
-    <Compile Include="ExamHelper.cs" />
     <Compile Include="LabelEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Major.cs" />
-    <Compile Include="Mission.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="model\Major.cs" />
+    <Compile Include="model\Mission.cs" />
+    <Compile Include="model\Paper.cs" />
+    <Compile Include="model\Question.cs" />
+    <Compile Include="model\Role.cs" />
+    <Compile Include="model\Type.cs" />
+    <Compile Include="model\User.cs" />
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="P2P.cs" />
-    <Compile Include="Paper.cs" />
     <Compile Include="PaperDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,7 +120,6 @@
     <Compile Include="PaperNameDialog.Designer.cs">
       <DependentUpon>PaperNameDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Question.cs" />
     <Compile Include="QuestionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +132,6 @@
     <Compile Include="QuestionInfoForm.Designer.cs">
       <DependentUpon>QuestionInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Role.cs" />
     <Compile Include="StudentFunctionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,33 +156,23 @@
     <Compile Include="TeacherWelcomeForm.Designer.cs">
       <DependentUpon>TeacherWelcomeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TestHelper.cs" />
     <Compile Include="TestResultForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TestResultForm.Designer.cs">
       <DependentUpon>TestResultForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Type.cs" />
-    <Compile Include="URLHelper.cs" />
     <Compile Include="UserInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserInfoForm.Designer.cs">
       <DependentUpon>UserInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DBHelper.cs" />
     <Compile Include="ProgressBarForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ProgressBarForm.Designer.cs">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,28 +188,24 @@
     <Compile Include="TeacherForm.Designer.cs">
       <DependentUpon>TeacherForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
     <Compile Include="UserDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserDialog.Designer.cs">
       <DependentUpon>UserDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserHelper.cs" />
     <Compile Include="StudentWelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StudentWelcomeForm.Designer.cs">
       <DependentUpon>StudentWelcomeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewHelper.cs" />
     <Compile Include="VRForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VRForm.Designer.cs">
       <DependentUpon>VRForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VRHelper.cs" />
     <Compile Include="BasicForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheWuForm.resx">
       <DependentUpon>CheWuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaperDialog.resx">
       <DependentUpon>PaperDialog.cs</DependentUpon>
@@ -272,9 +275,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressBarForm.resx">
       <DependentUpon>ProgressBarForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

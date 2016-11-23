@@ -25,7 +25,7 @@ namespace VirtualTrain
         {
             if (!checkInput())
             {
-                return;     //检查输入检查输入
+                return;     //检查输入
             }
             bool loginResult = false;
             DBHelper db = new DBHelper();
@@ -83,7 +83,7 @@ namespace VirtualTrain
              //记住密码
         private void rememberPwd()
         {
-
+           
             if (chkPwd.Checked)
             {
                 string str = "";
@@ -166,10 +166,6 @@ namespace VirtualTrain
             float newy = this.Height / ViewHelper.Y;
             ViewHelper.setControls(newx, newy, this);
             this.Opacity = 100D;
-
-
-            //解决窗体闪烁
-            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
         }
 
         string txtFileName = Application.StartupPath + @"\MajorPractice\data\pwd.txt";
