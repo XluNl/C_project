@@ -43,6 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRoleFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRoleFrom.Designer.cs">
+      <DependentUpon>AddRoleFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddScript.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddScript.Designer.cs">
+      <DependentUpon>AddScript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddScriptContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddScriptContent.Designer.cs">
+      <DependentUpon>AddScriptContent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddSelectFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSelectFrom.Designer.cs">
+      <DependentUpon>AddSelectFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +112,18 @@
     <Compile Include="common\ViewHelper.cs" />
     <Compile Include="common\VRHelper.cs" />
     <Compile Include="DataGridViewDisableButtonCell.cs" />
+    <Compile Include="EditScriptFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditScriptFrom.Designer.cs">
+      <DependentUpon>EditScriptFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageSelectFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageSelectFrom.Designer.cs">
+      <DependentUpon>ImageSelectFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabelEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -200,6 +236,12 @@
     <Compile Include="StudentWelcomeForm.Designer.cs">
       <DependentUpon>StudentWelcomeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VideoEditedFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VideoEditedFrom.Designer.cs">
+      <DependentUpon>VideoEditedFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="VRForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,6 +260,18 @@
     <Compile Include="TMISDialog.Designer.cs">
       <DependentUpon>TMISDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddRoleFrom.resx">
+      <DependentUpon>AddRoleFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddScript.resx">
+      <DependentUpon>AddScript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddScriptContent.resx">
+      <DependentUpon>AddScriptContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSelectFrom.resx">
+      <DependentUpon>AddSelectFrom.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -236,6 +290,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheWuForm.resx">
       <DependentUpon>CheWuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditScriptFrom.resx">
+      <DependentUpon>EditScriptFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageSelectFrom.resx">
+      <DependentUpon>ImageSelectFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -294,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentWelcomeForm.resx">
       <DependentUpon>StudentWelcomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoEditedFrom.resx">
+      <DependentUpon>VideoEditedFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VRForm.resx">
       <DependentUpon>VRForm.cs</DependentUpon>
