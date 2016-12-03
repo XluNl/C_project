@@ -171,7 +171,7 @@ namespace VirtualTrain
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
         }
 
-        string txtFileName = Application.StartupPath + @"\MajorPractice\data\pwd.txt";
+        string txtFileName = Application.StartupPath + @"\data\pwd.txt";
         private void txtLoginPwd_Enter(object sender, EventArgs e)
         {
             string line;    //文件内容的一行

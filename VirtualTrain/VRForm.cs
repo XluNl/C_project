@@ -63,13 +63,14 @@ namespace VirtualTrain
                         break;
                     //这里写U3D的路径
                     case 4:
-                        if (this.cboMajors.Text == null || this.cboMajors.Text == "")
-                        {
-                            this.cboMajors.DroppedDown = true;
-                            return;
-                        }
-                        saveInfo(this.cboMajors.Text + "|" + UserHelper.user.name);
-                        process.StartInfo.FileName = Application.StartupPath + @"\MajorPractice\交通轨道4.0.exe";
+                        //if (this.cboMajors.Text == null || this.cboMajors.Text == "")
+                        //{
+                        //    this.cboMajors.DroppedDown = true;
+                        //    return;
+                        //}
+                        //saveInfo(this.cboMajors.Text + "|" + UserHelper.user.name);
+                        //process.StartInfo.FileName = Application.StartupPath + @"\MajorPractice\交通轨道4.0.exe";
+                        new GameForm().ShowDialog();
                         break;
                     //这里写仓库的路径
                     case 5: process.StartInfo.FileName = Application.StartupPath + @"\MajorPractice\ck.exe";
