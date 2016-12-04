@@ -61,12 +61,6 @@
     <Compile Include="AddScriptContent.Designer.cs">
       <DependentUpon>AddScriptContent.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddSelectFrom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddSelectFrom.Designer.cs">
-      <DependentUpon>AddSelectFrom.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,11 +119,11 @@
     <Compile Include="GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageSelectFrom.cs">
+    <Compile Include="ImageQuestionFrom.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageSelectFrom.Designer.cs">
-      <DependentUpon>ImageSelectFrom.cs</DependentUpon>
+    <Compile Include="ImageQuestionFrom.Designer.cs">
+      <DependentUpon>ImageQuestionFrom.cs</DependentUpon>
     </Compile>
     <Compile Include="LabelEx.cs">
       <SubType>Component</SubType>
@@ -267,6 +261,12 @@
     <Compile Include="TMISDialog.Designer.cs">
       <DependentUpon>TMISDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="TextQuestionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextQuestionDialog.Designer.cs">
+      <DependentUpon>TextQuestionDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddRoleFrom.resx">
       <DependentUpon>AddRoleFrom.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,9 +275,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddScriptContent.resx">
       <DependentUpon>AddScriptContent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddSelectFrom.resx">
-      <DependentUpon>AddSelectFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
@@ -304,8 +301,8 @@
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageSelectFrom.resx">
-      <DependentUpon>ImageSelectFrom.cs</DependentUpon>
+    <EmbeddedResource Include="ImageQuestionFrom.resx">
+      <DependentUpon>ImageQuestionFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -376,6 +373,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TMISDialog.resx">
       <DependentUpon>TMISDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextQuestionDialog.resx">
+      <DependentUpon>TextQuestionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
@@ -621,6 +621,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\退出2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\png-1768.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

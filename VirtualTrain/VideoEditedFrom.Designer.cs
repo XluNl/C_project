@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoEditedFrom));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -38,7 +39,10 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.axwmp = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axwmp)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -80,6 +84,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.axwmp);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 17);
             this.panel1.Name = "panel1";
@@ -127,6 +132,16 @@
             this.button2.Text = "保存";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // axwmp
+            // 
+            this.axwmp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axwmp.Enabled = true;
+            this.axwmp.Location = new System.Drawing.Point(0, 0);
+            this.axwmp.Name = "axwmp";
+            this.axwmp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axwmp.OcxState")));
+            this.axwmp.Size = new System.Drawing.Size(643, 264);
+            this.axwmp.TabIndex = 0;
+            // 
             // VideoEditedFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -146,6 +161,8 @@
             this.Text = "VideoEditedFrom";
             this.Load += new System.EventHandler(this.VideoEditedFrom_Load);
             this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axwmp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +180,6 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
+        private AxWMPLib.AxWindowsMediaPlayer axwmp;
     }
 }

@@ -76,6 +76,13 @@ namespace VirtualTrain
             get { return _optionD; }
             set { _optionD = value; }
         }
+        //图像选择题多选项
+        private string _multiOption;
+        public string multiOption
+        {
+            get { return _multiOption; }
+            set { _multiOption = value; }
+        }
         //题目分数
         private int _mark;
         public int mark

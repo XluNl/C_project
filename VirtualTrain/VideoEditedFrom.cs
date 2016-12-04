@@ -26,8 +26,13 @@ namespace VirtualTrain
             file.Title = "请选择要打开的文件";
             //file.InitialDirectory = "c";
             file.Multiselect = false;
-            file.Filter = "文本文件|*.txt|图片文件|*.jpg|视屏文件|*.MP4";
-            file.ShowDialog();
+            file.Filter = "视屏文件|*.MP4";
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+
+                axwmp.URL = file.FileName;
+                axwmp.Ctlcontrols.play();
+            }
         }
     }
 }

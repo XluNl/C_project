@@ -121,14 +121,14 @@
   <data name="ADX教学2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ADX教学2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="虚拟演练1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\虚拟演练1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="返回1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\返回1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="底边" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\底边.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="退出11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\退出11.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TMIS1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TMIS1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,6 +154,9 @@
   <data name="返回2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\返回2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="VR虚拟演练1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VR虚拟演练1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="电子沙盘2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\电子沙盘2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -166,8 +169,8 @@
   <data name="仓库1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\仓库1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="退出11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\退出11.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="退出2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\退出2.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="供电电子书1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\供电电子书1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,6 +181,9 @@
   <data name="picche" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\picche.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="轨道电路演练1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\轨道电路演练1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="调教" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\调教.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -187,8 +193,8 @@
   <data name="在线学习2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\在线学习2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="VR虚拟演练1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VR虚拟演练1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="picgong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\picgong.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="调学" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\调学.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -205,8 +211,8 @@
   <data name="02" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\02.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="picgong" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\picgong.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="退出1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\退出1.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="供教" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\供教.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -216,6 +222,9 @@
   </data>
   <data name="供学" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\供学.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="轨道电路演练2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\轨道电路演练2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="调度电子书1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\调度电子书1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,11 +238,11 @@
   <data name="转辙机拆装2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\转辙机拆装2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="工教" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\工教.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="虚拟演练1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\虚拟演练1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="轨道电路演练1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\轨道电路演练1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="picdiao" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\picdiao.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="picchewu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\picchewu.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -247,8 +256,8 @@
   <data name="视频资料2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\视频资料2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="轨道电路演练2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\轨道电路演练2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TMIS2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TMIS2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="车务电子书2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\车务电子书2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -265,8 +274,8 @@
   <data name="调度电子书2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\调度电子书2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="picdiao" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\picdiao.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="登录1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\登录1.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="供电电子书2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\供电电子书2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -277,8 +286,8 @@
   <data name="仓库2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\仓库2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TMIS2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TMIS2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="登录2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\登录2.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="转辙机拆装1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\转辙机拆装1.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,8 +295,8 @@
   <data name="工学" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\工学.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="电学" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\电学.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="工教" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\工教.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="背景" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\背景.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -298,17 +307,10 @@
   <data name="电务电子书2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\电务电子书2.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="登录1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\登录1.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="电学" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\电学.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="登录2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\登录2.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="退出1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\退出1.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="退出2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\退出2.PNG;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\png-1768.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
