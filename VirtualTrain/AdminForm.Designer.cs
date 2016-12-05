@@ -63,8 +63,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.dgvvideo = new System.Windows.Forms.DataGridView();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -84,6 +82,8 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -440,28 +440,23 @@
             // 
             // dgvvideo
             // 
-            this.dgvvideo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvvideo.AllowUserToAddRows = false;
+            this.dgvvideo.AllowUserToDeleteRows = false;
+            this.dgvvideo.AllowUserToResizeColumns = false;
+            this.dgvvideo.AllowUserToResizeRows = false;
+            this.dgvvideo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvvideo.BackgroundColor = System.Drawing.Color.White;
             this.dgvvideo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvvideo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
             this.Column8});
             this.dgvvideo.Location = new System.Drawing.Point(3, 10);
             this.dgvvideo.Name = "dgvvideo";
+            this.dgvvideo.ReadOnly = true;
             this.dgvvideo.RowTemplate.Height = 23;
+            this.dgvvideo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvvideo.Size = new System.Drawing.Size(399, 137);
             this.dgvvideo.TabIndex = 4;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "名称";
-            this.Column7.Name = "Column7";
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "专业";
-            this.Column8.Name = "Column8";
             // 
             // tabPage6
             // 
@@ -662,6 +657,19 @@
             // 
             this.toolTip1.ToolTipTitle = "点击";
             // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "名称";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "name1";
+            this.Column8.HeaderText = "专业";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -739,8 +747,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
@@ -757,5 +763,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
     }
 }
