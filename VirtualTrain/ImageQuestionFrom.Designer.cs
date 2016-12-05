@@ -40,6 +40,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.cboMajors = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -48,7 +49,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(165, 404);
+            this.button1.Location = new System.Drawing.Point(520, 425);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 5;
@@ -58,7 +59,7 @@
             // 
             // txtQuestion
             // 
-            this.txtQuestion.Location = new System.Drawing.Point(92, 31);
+            this.txtQuestion.Location = new System.Drawing.Point(74, 31);
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
             this.txtQuestion.Size = new System.Drawing.Size(478, 46);
@@ -67,11 +68,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 34);
+            this.label1.Location = new System.Drawing.Point(39, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "问题";
+            this.label1.Text = "问题：";
             // 
             // gb
             // 
@@ -81,7 +82,7 @@
             this.gb.Controls.Add(this.checkBox3);
             this.gb.Controls.Add(this.pictureBox2);
             this.gb.Controls.Add(this.checkBox2);
-            this.gb.Location = new System.Drawing.Point(38, 83);
+            this.gb.Location = new System.Drawing.Point(41, 130);
             this.gb.Name = "gb";
             this.gb.Size = new System.Drawing.Size(675, 282);
             this.gb.TabIndex = 6;
@@ -147,7 +148,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(618, 404);
+            this.button2.Location = new System.Drawing.Point(641, 425);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 7;
@@ -159,10 +160,20 @@
             // 
             this.cboMajors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMajors.FormattingEnabled = true;
-            this.cboMajors.Location = new System.Drawing.Point(618, 57);
+            this.cboMajors.Location = new System.Drawing.Point(74, 91);
             this.cboMajors.Name = "cboMajors";
             this.cboMajors.Size = new System.Drawing.Size(121, 20);
-            this.cboMajors.TabIndex = 7;
+            this.cboMajors.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(41, 94);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "专业：";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // ImageQuestionFrom
             // 
@@ -175,6 +186,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtQuestion);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Name = "ImageQuestionFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ImageSelectFrom";
@@ -203,5 +215,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox cboMajors;
+        private System.Windows.Forms.Label label2;
     }
 }

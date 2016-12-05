@@ -106,6 +106,12 @@
     <Compile Include="common\UserHelper.cs" />
     <Compile Include="common\ViewHelper.cs" />
     <Compile Include="common\VRHelper.cs" />
+    <Compile Include="Home\CreateRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\CreateRoomForm.Designer.cs">
+      <DependentUpon>CreateRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataGridViewDisableButtonCell.cs" />
     <Compile Include="EditScriptFrom.cs">
       <SubType>Form</SubType>
@@ -125,8 +131,26 @@
     <Compile Include="ImageQuestionFrom.Designer.cs">
       <DependentUpon>ImageQuestionFrom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\IndexLoadePag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\IndexLoadePag.Designer.cs">
+      <DependentUpon>IndexLoadePag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\JoinTeamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\JoinTeamForm.Designer.cs">
+      <DependentUpon>JoinTeamForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LabelEx.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Home\loadSceneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\loadSceneForm.Designer.cs">
+      <DependentUpon>loadSceneForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -141,6 +165,12 @@
     <Compile Include="model\Role.cs" />
     <Compile Include="model\Type.cs" />
     <Compile Include="model\User.cs" />
+    <Compile Include="Home\ModeSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\ModeSelectForm.Designer.cs">
+      <DependentUpon>ModeSelectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -174,6 +204,12 @@
     </Compile>
     <Compile Include="StudentFunctionForm.Designer.cs">
       <DependentUpon>StudentFunctionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\TapCreateRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\TapCreateRoom.Designer.cs">
+      <DependentUpon>TapCreateRoom.cs</DependentUpon>
     </Compile>
     <Compile Include="TeacherFunctionForm.cs">
       <SubType>Form</SubType>
@@ -295,6 +331,9 @@
     <EmbeddedResource Include="CheWuForm.resx">
       <DependentUpon>CheWuForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home\CreateRoomForm.resx">
+      <DependentUpon>CreateRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditScriptFrom.resx">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,8 +343,20 @@
     <EmbeddedResource Include="ImageQuestionFrom.resx">
       <DependentUpon>ImageQuestionFrom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Home\IndexLoadePag.resx">
+      <DependentUpon>IndexLoadePag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\loadSceneForm.resx">
+      <DependentUpon>loadSceneForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\JoinTeamForm.resx">
+      <DependentUpon>JoinTeamForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\ModeSelectForm.resx">
+      <DependentUpon>ModeSelectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PaperDialog.resx">
       <DependentUpon>PaperDialog.cs</DependentUpon>
@@ -321,6 +372,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StudentFunctionForm.resx">
       <DependentUpon>StudentFunctionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\TapCreateRoom.resx">
+      <DependentUpon>TapCreateRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TeacherFunctionForm.resx">
       <DependentUpon>TeacherFunctionForm.cs</DependentUpon>
