@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
 using System.IO;
-using VirtualTrain.model;
+using VirtualTrain;
 
 namespace VirtualTrain
 {
@@ -509,176 +509,177 @@ namespace VirtualTrain
 
         #endregion
 
-        #region 视屏编辑面板
-        private void btn_v_update_Click(object sender, EventArgs e)
-        {
-            //没有在DataGridView中选中项目
-            if (dgvvideo.SelectedRows.Count <= 0)
-            {
-                MessageBox.Show("当前没有选择项目，请选择一个项目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            //在DataGridView中选中两个或两个以上题目
-            if (dgvvideo.SelectedRows.Count > 1)
-            {
-                MessageBox.Show("无法同时对多个项目进行更新操作，请选择一个项目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            //根据DataGridView选中项，生成一个Video类的实例
-            Video video = new Video();
-            DataGridViewRow currentRow = dgvvideo.Rows[dgvvideo.SelectedRows[0].Index];
-            video.id = Convert.ToInt32(currentRow.Cells[0].Value);
-            video.name= currentRow.Cells[1].Value.ToString();
-            video.major = currentRow.Cells[2].Value.ToString();
-            DBHelper db = new DBHelper();
-            string sql = "select startTime,endTime from game_videos where id=" + video.id;
-            try
-            {
-                DbCommand cmd = db.GetSqlStringCommand(sql);
-                using (DbDataReader reader = db.ExecuteReader(cmd))
-                {
-                    if (reader.Read())
-                    {
-                        video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
-                        video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            //设置对话框的题目数据
-            v_dialog.video = video;
-            //显示对话框
-            if (i_dialog.ShowDialog() == DialogResult.OK)
-            {
-                //更新题目信息
-                if (update_i_Question(i_dialog.question) <= 0)
-                {
-                    return;
-                }
-                show_text_Questions();
-            }
-        }
+        //#region 视屏编辑面板
+        //private void btn_v_update_Click(object sender, EventArgs e)
+        //{
+        //    //没有在DataGridView中选中项目
+        //    if (dgvvideo.SelectedRows.Count <= 0)
+        //    {
+        //        MessageBox.Show("当前没有选择项目，请选择一个项目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+        //    //在DataGridView中选中两个或两个以上题目
+        //    if (dgvvideo.SelectedRows.Count > 1)
+        //    {
+        //        MessageBox.Show("无法同时对多个项目进行更新操作，请选择一个项目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //        return;
+        //    }
+        //    //根据DataGridView选中项，生成一个Video类的实例
+        //    Video video = new Video();
+        //    DataGridViewRow currentRow = dgvvideo.Rows[dgvvideo.SelectedRows[0].Index];
+        //    video.id = Convert.ToInt32(currentRow.Cells[0].Value);
+        //    video.name= currentRow.Cells[1].Value.ToString();
+        //    video.major = currentRow.Cells[2].Value.ToString();
+        //    DBHelper db = new DBHelper();
+        //    string sql = "select startTime,endTime from game_videos where id=" + video.id;
+        //    try
+        //    {
+        //        DbCommand cmd = db.GetSqlStringCommand(sql);
+        //        using (DbDataReader reader = db.ExecuteReader(cmd))
+        //        {
+        //            if (reader.Read())
+        //            {
+        //                video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
+        //                video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    //设置对话框的题目数据
+        //    v_dialog.video = video;
+        //    //显示对话框
+        //    if (v_dialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        //更新题目信息
+        //        if (update_video(v_dialog.video) <= 0)
+        //        {
+        //            return;
+        //        }
+        //        show_video();
+        //    }
+        //}
 
-        //更新题目
-        public int update_i_Question(Question question)
-        {
-            int result = 0;
-            if (checkQuestion(question.question, question.id))
-            {
-                MessageBox.Show("存在相同题目，请更改题目！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                DBHelper db = new DBHelper();
-                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type='true',multiOption=" + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + " where id=" + question.id;
-                try
-                {
-                    DbCommand cmd = db.GetSqlStringCommand(sql);
-                    result = db.ExecuteNonQuery(cmd);
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-            }
-            return result;
-        }
+        ////更新题目
+        //public int update_video(Video video)
+        //{
+        //    int result = 0;
+        //    if (checkQuestion(video.name, video.id))
+        //    {
+        //        MessageBox.Show("存在相同项目，请更改！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //    else
+        //    {
+        //        DBHelper db = new DBHelper();
+        //        string sql = "update game_videos set name='" + video.name+ "',startTime='" + video.startIime+ "',endTime='"+video.endTime+"',majorId=" + UserInfoForm.getMajorIdByMajor(video.major) + " where id=" + video.id;
+        //        //待改
+        //        try
+        //        {
+        //            DbCommand cmd = db.GetSqlStringCommand(sql);
+        //            result = db.ExecuteNonQuery(cmd);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            throw e;
+        //        }
+        //    }
+        //    return result;
+        //}
 
-        private void btn_i_delete_Click(object sender, EventArgs e)
-        {
-            //判断用户是否选择一行数据，true为没选择，false为选择
-            if (dgvimg.Rows[dgvimg.CurrentRow.Index].Cells[0].Value.ToString() == "")
-            {
-                MessageBox.Show("请选择一项进行删除");
-            }
-            else
-            {
-                //判断用户是否点击确定按钮，true为点击，false为没有点击
-                if (MessageBox.Show("确认删除？", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    int count = dgvimg.SelectedRows.Count;
-                    //定义数组，用循环赋值
-                    String[] array = new String[count];
-                    for (int i = 0; i < count; i++)
-                    {
-                        int id = Convert.ToInt32(dgvimg.Rows[dgvimg.SelectedRows[i].Index].Cells[0].Value);
-                        String strDelete = "delete from game_questions where id=" + id;
-                        array[i] = strDelete;
-                    }
-                    //遍历数组
-                    foreach (String str in array)
-                    {
-                        if (str != null)
-                        {
-                            execute(str);
-                        }
-                    }
-                    show_img_Questions();
-                }
-            }
-        }
+        //private void btn_i_delete_Click(object sender, EventArgs e)
+        //{
+        //    //判断用户是否选择一行数据，true为没选择，false为选择
+        //    if (dgvimg.Rows[dgvimg.CurrentRow.Index].Cells[0].Value.ToString() == "")
+        //    {
+        //        MessageBox.Show("请选择一项进行删除");
+        //    }
+        //    else
+        //    {
+        //        //判断用户是否点击确定按钮，true为点击，false为没有点击
+        //        if (MessageBox.Show("确认删除？", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        //        {
+        //            int count = dgvimg.SelectedRows.Count;
+        //            //定义数组，用循环赋值
+        //            String[] array = new String[count];
+        //            for (int i = 0; i < count; i++)
+        //            {
+        //                int id = Convert.ToInt32(dgvimg.Rows[dgvimg.SelectedRows[i].Index].Cells[0].Value);
+        //                String strDelete = "delete from game_questions where id=" + id;
+        //                array[i] = strDelete;
+        //            }
+        //            //遍历数组
+        //            foreach (String str in array)
+        //            {
+        //                if (str != null)
+        //                {
+        //                    execute(str);
+        //                }
+        //            }
+        //            show_img_Questions();
+        //        }
+        //    }
+        //}
 
 
 
-        private void btn_i_Add_Click(object sender, EventArgs e)
-        {
-            //清空题目信息对话框的数据
-            i_dialog.question = null;
-            //如果在对话框中选择了“确定”，则根据输入信息添加题目
-            if (i_dialog.ShowDialog() == DialogResult.OK)
-            {
-                if (add_i_Question(i_dialog.question) <= 0)
-                {
-                    return;
-                }
-                copyFile(i_dialog.source_target, i_dialog.question.id);
-                show_img_Questions();
-            }
-        }
+        //private void btn_i_Add_Click(object sender, EventArgs e)
+        //{
+        //    //清空题目信息对话框的数据
+        //    i_dialog.question = null;
+        //    //如果在对话框中选择了“确定”，则根据输入信息添加题目
+        //    if (i_dialog.ShowDialog() == DialogResult.OK)
+        //    {
+        //        if (add_i_Question(i_dialog.question) <= 0)
+        //        {
+        //            return;
+        //        }
+        //        copyFile(i_dialog.source_target, i_dialog.question.id);
+        //        show_img_Questions();
+        //    }
+        //}
 
-        //添加题目
-        public int add_i_Question(Question question)
-        {
-            int result = 0;
-            if (checkQuestion(question.question))
-            {
-                MessageBox.Show("此题目已存在！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                DBHelper db = new DBHelper();
-                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",'true',null,null,null,null," + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + ")";
-                try
-                {
-                    DbCommand cmd = db.GetSqlStringCommand(sql);
-                    result = db.ExecuteNonQuery(cmd);
-                }
-                catch (Exception e)
-                {
-                    throw e;
-                }
-            }
-            return result;
-        }
+        ////添加题目
+        //public int add_i_Question(Question question)
+        //{
+        //    int result = 0;
+        //    if (checkQuestion(question.question))
+        //    {
+        //        MessageBox.Show("此题目已存在！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //    else
+        //    {
+        //        DBHelper db = new DBHelper();
+        //        string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",'true',null,null,null,null," + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + ")";
+        //        try
+        //        {
+        //            DbCommand cmd = db.GetSqlStringCommand(sql);
+        //            result = db.ExecuteNonQuery(cmd);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            throw e;
+        //        }
+        //    }
+        //    return result;
+        //}
 
-        //复制图片到服务器指定目录
-        private void copyFile(Dictionary<string, string> source_target, int id)
-        {
-            string path = @"C:\Image\";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            foreach (KeyValuePair<string, string> pair in source_target)
-            {
-                File.Copy(pair.Key, path + id + pair.Value + ".jpg", true);
-            }
-        }
+        ////复制图片到服务器指定目录
+        //private void copyFile(Dictionary<string, string> source_target, int id)
+        //{
+        //    string path = @"C:\Image\";
+        //    if (!Directory.Exists(path))
+        //    {
+        //        Directory.CreateDirectory(path);
+        //    }
+        //    foreach (KeyValuePair<string, string> pair in source_target)
+        //    {
+        //        File.Copy(pair.Key, path + id + pair.Value + ".jpg", true);
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         public static bool checkQuestion(string question)
         {

@@ -416,7 +416,6 @@
             this.button9.TabIndex = 7;
             this.button9.Text = "修改";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button10
             // 
@@ -437,7 +436,6 @@
             this.button11.TabIndex = 5;
             this.button11.Text = "添加";
             this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // dgvvideo
             // 
