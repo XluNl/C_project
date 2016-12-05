@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
 using System.IO;
+using VirtualTrain.model;
 
 namespace VirtualTrain
 {
@@ -121,9 +122,9 @@ namespace VirtualTrain
             string sql = "select a.id,a.name,b.name from game_videos a,majors b where a.majorId=b.id ";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
-            dgvimg.DataSource = dt;
-            dgvimg.Columns[1].FillWeight = 40;
-            dgvimg.Columns[2].FillWeight = 30;
+            dgvvideo.DataSource = dt;
+            dgvvideo.Columns[1].FillWeight = 40;
+            dgvvideo.Columns[2].FillWeight = 30;
             dgvimg.Columns[3].FillWeight = 10;
         }
 
@@ -156,24 +157,6 @@ namespace VirtualTrain
 
         }
 
-        /// <summary>
-        /// 视屏编辑面板调用
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button11_Click(object sender, EventArgs e)
-        {
-            loadVideoEditedFrom();
-        }
-        private void button9_Click(object sender, EventArgs e)
-        {
-            loadVideoEditedFrom();
-        }
-        private void loadVideoEditedFrom()
-        {
-            VideoEditedFrom video = new VideoEditedFrom();
-            video.ShowDialog();
-        }
 
 
         /// <summary>
@@ -526,30 +509,29 @@ namespace VirtualTrain
 
         #endregion
 
-        #region 图像选择面板
-        private void btn_i_update_Click(object sender, EventArgs e)
+        #region 视屏编辑面板
+        private void btn_v_update_Click(object sender, EventArgs e)
         {
-            //没有在DataGridView中选中题目
-            if (dgvimg.SelectedRows.Count <= 0)
+            //没有在DataGridView中选中项目
+            if (dgvvideo.SelectedRows.Count <= 0)
             {
-                MessageBox.Show("当前没有选择题目，请选择一个题目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("当前没有选择项目，请选择一个项目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             //在DataGridView中选中两个或两个以上题目
-            if (dgvimg.SelectedRows.Count > 1)
+            if (dgvvideo.SelectedRows.Count > 1)
             {
-                MessageBox.Show("无法同时对多个题目进行更新操作，请选择一个题目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("无法同时对多个项目进行更新操作，请选择一个项目进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //根据DataGridView选中项，生成一个Question类的实例
-            Question question = new Question();
-            DataGridViewRow currentRow = dgvimg.Rows[dgvimg.SelectedRows[0].Index];
-            question.id = Convert.ToInt32(currentRow.Cells[0].Value);
-            question.question = currentRow.Cells[1].Value.ToString();
-            question.answer = currentRow.Cells[2].Value.ToString();
-            question.major = currentRow.Cells[3].Value.ToString();
+            //根据DataGridView选中项，生成一个Video类的实例
+            Video video = new Video();
+            DataGridViewRow currentRow = dgvvideo.Rows[dgvvideo.SelectedRows[0].Index];
+            video.id = Convert.ToInt32(currentRow.Cells[0].Value);
+            video.name= currentRow.Cells[1].Value.ToString();
+            video.major = currentRow.Cells[2].Value.ToString();
             DBHelper db = new DBHelper();
-            string sql = "select multiOption from game_questions where id=" + question.id;
+            string sql = "select startTime,endTime from game_videos where id=" + video.id;
             try
             {
                 DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -557,7 +539,8 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        question.multiOption = (reader["multiOption"] == null ? "" : reader["multiOption"].ToString());
+                        video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
+                        video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
                     }
                 }
             }
@@ -566,7 +549,7 @@ namespace VirtualTrain
                 throw ex;
             }
             //设置对话框的题目数据
-            i_dialog.question = question;
+            v_dialog.video = video;
             //显示对话框
             if (i_dialog.ShowDialog() == DialogResult.OK)
             {

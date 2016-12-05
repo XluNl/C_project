@@ -82,6 +82,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
@@ -448,6 +449,7 @@
             this.dgvvideo.BackgroundColor = System.Drawing.Color.White;
             this.dgvvideo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvvideo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.v_id,
             this.Column7,
             this.Column8});
             this.dgvvideo.Location = new System.Drawing.Point(3, 10);
@@ -657,8 +659,17 @@
             // 
             this.toolTip1.ToolTipTitle = "点击";
             // 
+            // v_id
+            // 
+            this.v_id.DataPropertyName = "id";
+            this.v_id.HeaderText = "id";
+            this.v_id.Name = "v_id";
+            this.v_id.ReadOnly = true;
+            this.v_id.Visible = false;
+            // 
             // Column7
             // 
+            this.Column7.DataPropertyName = "name";
             this.Column7.HeaderText = "名称";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
@@ -763,6 +774,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn v_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
     }
