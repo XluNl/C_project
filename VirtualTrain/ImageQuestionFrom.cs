@@ -45,7 +45,7 @@ namespace VirtualTrain
 
         private static int questionId;
         private static List<string> optionList = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-        private static int currentOption;
+        private static int currentOption=0;
 
         private static int space = 30;
         private static int vspace = 30;
@@ -85,8 +85,11 @@ namespace VirtualTrain
                     if (con is PictureBox)
                     {
                         PictureBox pic = con as PictureBox;
-                        //File.Copy(file.FileName, @"C:\Image\" + id + ".jpg", true);
-                        question.multiOption += pic.Tag.ToString().Trim() + ",";
+                        if (pic.Tag!=null)
+                        {
+                            question.multiOption += pic.Tag.ToString().Trim() + ",";
+                        }
+                     
                     }
                 }
                 question.answer = question.answer.Substring(0, question.answer.Length - 1);
@@ -97,6 +100,7 @@ namespace VirtualTrain
             }
             set
             {
+                currentOption = 0;
                 //根据Question对象的值，设置相应控件
                 if (value == null)
                 {
@@ -114,7 +118,7 @@ namespace VirtualTrain
                     cboMajors.Text = value.major;
                     foreach (string str in value.multiOption.Split(','))
                     {
-                        generatePicBox(questionId+ str);
+                        generatePicBox( str);
                     }
                     string[] answers = value.answer.Split(',');
                     List<string> answerList = new List<string>(answers);
@@ -137,35 +141,41 @@ namespace VirtualTrain
 
         private void generateAddBox(int X, int Y)
         {
+            if (currentOption>10)
+            {
+                return;
+            }
             PictureBox pic = new PictureBox();
             pic.Image = VirtualTrain.Properties.Resources.add;
             pic.Width = 100;
             pic.Height = 100;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
-            pic.Tag = optionList[currentOption];
             pic.Click += new EventHandler(addPic);
             gb.Controls.Add(pic);
             pic.Location = new Point(X, Y);
-            currentOption++;
+          
         }
 
         private void addPic(object sender, EventArgs e)
         {
             PictureBox pic = (PictureBox)sender;
             pic.Image = VirtualTrain.Properties.Resources.picgongdian;
+            pic.Tag = optionList[currentOption];
+            currentOption++;
+            pic.Click -= new EventHandler(addPic);
             pic.Click += new EventHandler(pic_Click);
             generateCheckBox(pic.Tag.ToString(),pic.Location);
             generateAddBox((currentOption % 5) * (pic.Width + space)+initX, (currentOption > 4 ? 1 : 0) * (pic.Height + vspace)+initY);
+         
         }
 
-        private void generatePicBox(string info)
+        private void generatePicBox(string tag)
         {
             PictureBox pic = new PictureBox();
-            pic.Image = Image.FromFile(@"C:\Image\" + info + ".jpg");
+            pic.Image = Image.FromFile(@"C:\Image\" + questionId+tag + ".jpg");
             pic.Width = 100;
             pic.Height = 100;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
-            string tag = info.Substring(info.Length - 1, 1);
             int index = optionList.IndexOf(tag);
             pic.Tag = tag;
             pic.Click += new EventHandler(pic_Click);

@@ -182,6 +182,29 @@ namespace VirtualTrain
             return question;
         }
 
+        public static int getIdByQuestion(string question)
+        {
+            int id = 0;
+            DBHelper db = new DBHelper();
+            string sql = "select id from game_questions where question='" + question + "'";
+            try
+            {
+                DbCommand cmd = db.GetSqlStringCommand(sql);
+                using (DbDataReader reader = db.ExecuteReader(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        id = (int)reader["id"];
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return id;
+        }
+
         //private void showDataTableSchema()
         //{
         //DBHelper db = new DBHelper();
