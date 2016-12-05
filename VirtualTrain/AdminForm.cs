@@ -553,5 +553,10 @@ namespace VirtualTrain
                 throw ex;
             }
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

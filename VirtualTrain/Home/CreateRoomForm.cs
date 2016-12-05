@@ -35,5 +35,10 @@ namespace VirtualTrain
         {
             new JoinTeamForm().ShowDialog();
         }
+
+        private void CreateRoomForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

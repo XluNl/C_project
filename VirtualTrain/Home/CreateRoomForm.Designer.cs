@@ -86,6 +86,7 @@
             this.Name = "CreateRoomForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateRoomForm";
+            this.Load += new System.EventHandler(this.CreateRoomForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

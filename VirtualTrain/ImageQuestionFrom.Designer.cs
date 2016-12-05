@@ -173,19 +173,20 @@
             this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 8;
             this.label2.Text = "专业：";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // ImageQuestionFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(751, 461);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.cboMajors);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.gb);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtQuestion);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Name = "ImageQuestionFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ImageSelectFrom";
