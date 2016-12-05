@@ -26,7 +26,7 @@ namespace VirtualTrain
             file.Title = "请选择要打开的文件";
             //file.InitialDirectory = "c";
             file.Multiselect = false;
-            file.Filter = "视屏文件|*.MP4";
+            //file.Filter = "视屏文件|*.MP4";
             if (file.ShowDialog() == DialogResult.OK)
             {
 

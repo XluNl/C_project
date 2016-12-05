@@ -70,7 +70,8 @@ namespace VirtualTrain
                         //}
                         //saveInfo(this.cboMajors.Text + "|" + UserHelper.user.name);
                         //process.StartInfo.FileName = Application.StartupPath + @"\MajorPractice\交通轨道4.0.exe";
-                        new GameForm().ShowDialog();
+                        new IndexLoadePag().ShowDialog();
+                        //new GameForm().ShowDialog();
                         break;
                     //这里写仓库的路径
                     case 5: process.StartInfo.FileName = Application.StartupPath + @"\MajorPractice\ck.exe";
