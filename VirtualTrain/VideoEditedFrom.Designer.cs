@@ -30,16 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoEditedFrom));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.axwmp = new AxWMPLib.AxWindowsMediaPlayer();
+            this.txtStart = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtEnd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.axwmp = new AxWMPLib.AxWindowsMediaPlayer();
+            this.cboMajors = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnEnd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axwmp)).BeginInit();
@@ -48,26 +52,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(44, 40);
+            this.label1.Location = new System.Drawing.Point(397, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "选择视频文件：";
+            this.label1.Text = "视频名称";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 21);
-            this.textBox1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(456, 37);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(222, 21);
+            this.txtName.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(351, 36);
+            this.button1.Location = new System.Drawing.Point(49, 21);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(97, 51);
             this.button1.TabIndex = 2;
-            this.button1.Text = "打开";
+            this.button1.Text = "选择视频文件";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -91,12 +95,23 @@
             this.panel1.Size = new System.Drawing.Size(643, 264);
             this.panel1.TabIndex = 0;
             // 
-            // textBox2
+            // axwmp
             // 
-            this.textBox2.Location = new System.Drawing.Point(181, 401);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(73, 21);
-            this.textBox2.TabIndex = 5;
+            this.axwmp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axwmp.Enabled = true;
+            this.axwmp.Location = new System.Drawing.Point(0, 0);
+            this.axwmp.Name = "axwmp";
+            this.axwmp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axwmp.OcxState")));
+            this.axwmp.Size = new System.Drawing.Size(643, 264);
+            this.axwmp.TabIndex = 0;
+            // 
+            // txtStart
+            // 
+            this.txtStart.Location = new System.Drawing.Point(181, 401);
+            this.txtStart.Name = "txtStart";
+            this.txtStart.ReadOnly = true;
+            this.txtStart.Size = new System.Drawing.Size(73, 21);
+            this.txtStart.TabIndex = 5;
             // 
             // label2
             // 
@@ -107,12 +122,13 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "视屏开始位置：";
             // 
-            // textBox3
+            // txtEnd
             // 
-            this.textBox3.Location = new System.Drawing.Point(409, 401);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(73, 21);
-            this.textBox3.TabIndex = 7;
+            this.txtEnd.Location = new System.Drawing.Point(409, 401);
+            this.txtEnd.Name = "txtEnd";
+            this.txtEnd.ReadOnly = true;
+            this.txtEnd.Size = new System.Drawing.Size(73, 21);
+            this.txtEnd.TabIndex = 7;
             // 
             // label3
             // 
@@ -131,34 +147,68 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "保存";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // axwmp
+            // cboMajors
             // 
-            this.axwmp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axwmp.Enabled = true;
-            this.axwmp.Location = new System.Drawing.Point(0, 0);
-            this.axwmp.Name = "axwmp";
-            this.axwmp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axwmp.OcxState")));
-            this.axwmp.Size = new System.Drawing.Size(643, 264);
-            this.axwmp.TabIndex = 0;
+            this.cboMajors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMajors.FormattingEnabled = true;
+            this.cboMajors.Location = new System.Drawing.Point(239, 37);
+            this.cboMajors.Name = "cboMajors";
+            this.cboMajors.Size = new System.Drawing.Size(121, 20);
+            this.cboMajors.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(204, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 12);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "专业";
+            // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(136, 428);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(97, 23);
+            this.btnStart.TabIndex = 10;
+            this.btnStart.Text = "选定开始位置";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
+            // btnEnd
+            // 
+            this.btnEnd.Location = new System.Drawing.Point(343, 428);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(107, 23);
+            this.btnEnd.TabIndex = 10;
+            this.btnEnd.Text = "选定结束位置";
+            this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
             // VideoEditedFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 455);
+            this.Controls.Add(this.btnEnd);
+            this.Controls.Add(this.btnStart);
+            this.Controls.Add(this.cboMajors);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtEnd);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtStart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Name = "VideoEditedFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "VideoEditedFrom";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VideoEditedFrom_FormClosed);
             this.Load += new System.EventHandler(this.VideoEditedFrom_Load);
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -171,15 +221,19 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtStart;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtEnd;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private AxWMPLib.AxWindowsMediaPlayer axwmp;
+        private System.Windows.Forms.ComboBox cboMajors;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnEnd;
     }
 }

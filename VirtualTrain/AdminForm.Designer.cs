@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.UserInfoManage = new System.Windows.Forms.ToolStripButton();
             this.QuestionInfoManage = new System.Windows.Forms.ToolStripButton();
@@ -63,6 +66,9 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.dgvvideo = new System.Windows.Forms.DataGridView();
+            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -82,9 +88,6 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -416,6 +419,7 @@
             this.button9.TabIndex = 7;
             this.button9.Text = "修改";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.btn_v_update_Click);
             // 
             // button10
             // 
@@ -426,6 +430,7 @@
             this.button10.TabIndex = 6;
             this.button10.Text = "删除";
             this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.btn_v_delete_Click);
             // 
             // button11
             // 
@@ -436,6 +441,7 @@
             this.button11.TabIndex = 5;
             this.button11.Text = "添加";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.btn_v_Add_Click);
             // 
             // dgvvideo
             // 
@@ -445,18 +451,65 @@
             this.dgvvideo.AllowUserToResizeRows = false;
             this.dgvvideo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvvideo.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvvideo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvvideo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvvideo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.v_id,
             this.Column7,
             this.Column8});
-            this.dgvvideo.Location = new System.Drawing.Point(3, 10);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvvideo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvvideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvvideo.Location = new System.Drawing.Point(3, 3);
             this.dgvvideo.Name = "dgvvideo";
             this.dgvvideo.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvvideo.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvvideo.RowTemplate.Height = 23;
             this.dgvvideo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvvideo.Size = new System.Drawing.Size(399, 137);
+            this.dgvvideo.Size = new System.Drawing.Size(399, 198);
             this.dgvvideo.TabIndex = 4;
+            // 
+            // v_id
+            // 
+            this.v_id.DataPropertyName = "id";
+            this.v_id.HeaderText = "id";
+            this.v_id.Name = "v_id";
+            this.v_id.ReadOnly = true;
+            this.v_id.Visible = false;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "name";
+            this.Column7.HeaderText = "名称";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "name1";
+            this.Column8.HeaderText = "专业";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // tabPage6
             // 
@@ -656,28 +709,6 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipTitle = "点击";
-            // 
-            // v_id
-            // 
-            this.v_id.DataPropertyName = "id";
-            this.v_id.HeaderText = "id";
-            this.v_id.Name = "v_id";
-            this.v_id.ReadOnly = true;
-            this.v_id.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "name";
-            this.Column7.HeaderText = "名称";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "name1";
-            this.Column8.HeaderText = "专业";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
             // 
             // AdminForm
             // 

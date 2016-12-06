@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VirtualTrain
 {
-    class Video
+    public class Video
     {
         //id
         private int _id;
@@ -42,6 +42,14 @@ namespace VirtualTrain
         {
             get { return _major; }
             set { _major = value; }
+        }
+
+        //视频所属专业
+        private string _url;
+        public string url
+        {
+            get { return _url; }
+            set { _url = value; }
         }
     }
 }

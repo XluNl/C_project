@@ -38,5 +38,28 @@ namespace VirtualTrain
             }
             return question;
         }
+
+        public static int getIdByVideo(string name)
+        {
+            int id = 0;
+            DBHelper db = new DBHelper();
+            string sql = "select id from game_videos where name='" + name + "'";
+            try
+            {
+                DbCommand cmd = db.GetSqlStringCommand(sql);
+                using (DbDataReader reader = db.ExecuteReader(cmd))
+                {
+                    while (reader.Read())
+                    {
+                        id = (int)reader["id"];
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return id;
+        }
     }
 }

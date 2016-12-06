@@ -171,6 +171,7 @@
     <Compile Include="Home\ModeSelectForm.Designer.cs">
       <DependentUpon>ModeSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\Video.cs" />
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
