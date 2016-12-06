@@ -27,20 +27,6 @@ namespace VirtualTrain
             get { return _code; }
             set { _code = value; }
         }
-        //是否完成
-        private bool _isCompleted;
-        public bool isCompleted
-        {
-            get { return _isCompleted; }
-            set { _isCompleted = value; }
-        }
-        //是否解锁
-        private bool _isOpened;
-        public bool isOpened
-        {
-            get { return _isOpened; }
-            set { _isOpened = value; }
-        }
         //场景号
         private int _sceneId;
         public int sceneId
@@ -48,12 +34,12 @@ namespace VirtualTrain
             get { return _sceneId; }
             set { _sceneId = value; }
         }
-        //角色号
-        private int _roleId;
-        public int roleId
+        //角色
+        private string _role;
+        public string role
         {
-            get { return _roleId; }
-            set { _roleId = value; }
+            get { return _role; }
+            set { _role = value; }
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Data.Common;
 using System.IO;
 using VirtualTrain;
+using System.Configuration;
 
 namespace VirtualTrain
 {
@@ -17,6 +18,9 @@ namespace VirtualTrain
         {
             InitializeComponent();
         }
+
+        private static string img_path = ConfigurationManager.AppSettings["img_path"];
+        private static string video_path = ConfigurationManager.AppSettings["video_path"];
 
         UserInfoForm userInfoForm = new UserInfoForm();
         private void UserInfoManage_Click(object sender, EventArgs e)
@@ -62,6 +66,7 @@ namespace VirtualTrain
         TextQuestionDialog t_dialog;
         ImageQuestionFrom i_dialog;
         VideoEditedFrom v_dialog;
+        AddRoleFrom r_dialog;
         private void AdminForm_Load(object sender, EventArgs e)
         {
             //解决窗体闪烁
@@ -90,6 +95,10 @@ namespace VirtualTrain
             v_dialog = new VideoEditedFrom();
             v_dialog.Owner = this;
             show_video();
+            //角色列表初始化
+            r_dialog = new AddRoleFrom();
+            r_dialog.Owner = this;
+            show_role();
         }
 
         private void show_text_Questions()
@@ -125,7 +134,17 @@ namespace VirtualTrain
             dgvvideo.DataSource = dt;
             dgvvideo.Columns[1].FillWeight = 40;
             dgvvideo.Columns[2].FillWeight = 30;
-            dgvimg.Columns[3].FillWeight = 10;
+        }
+
+        private void show_role()
+        {
+            DBHelper db = new DBHelper();
+            string sql = "select a.id,a.name,b.name from vr_roleid a,majors b where a.majorid=b.id";
+            DbCommand cmd = db.GetSqlStringCommand(sql);
+            DataTable dt = db.ExecuteDataTable(cmd);
+            dgvRole.DataSource = dt;
+            dgvRole.Columns[1].FillWeight = 40;
+            dgvRole.Columns[2].FillWeight = 30;
         }
 
         private void 脚本配置_Click(object sender, EventArgs e)
@@ -158,26 +177,142 @@ namespace VirtualTrain
         }
 
 
-
-        /// <summary>
-        /// 角色编辑面板
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button15_Click(object sender, EventArgs e)
+        #region 角色编辑面板
+        private void btn_r_update_Click(object sender, EventArgs e)
         {
-            loadAddRoleFrom();
+            //没有在DataGridView中选中
+            if (dgvRole.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("当前没有选择，请选择一个进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //在DataGridView中选中两个或两个以上
+            if (dgvRole.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("无法同时对多个进行更新操作，请选择一个进行更新！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //根据DataGridView选中项，生成一个Mission类的实例
+            Role role = new Role();
+            DataGridViewRow currentRow = dgvRole.Rows[dgvRole.SelectedRows[0].Index];
+            role.id = Convert.ToInt32(currentRow.Cells[0].Value);
+            role.name = currentRow.Cells[1].Value.ToString();
+            role.major = currentRow.Cells[2].Value.ToString();
+            //设置对话框的题目数据
+            r_dialog.role = role;
+            //显示对话框
+            if (r_dialog.ShowDialog() == DialogResult.OK)
+            {
+                //更新信息
+                if (update_role(r_dialog.role) <= 0)
+                {
+                    return;
+                }
+                show_role();
+            }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        //更新
+        public int update_role(Role role)
         {
-            loadAddRoleFrom();
+            int result = 0;
+            if (checkTable(role.name, role.id, "vr_roleid", "name"))
+            {
+                MessageBox.Show("存在相同名称，请更改名称！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                DBHelper db = new DBHelper();
+                string sql = "update vr_roleid set name='" + role.name + "',majorId=" + UserInfoForm.getMajorIdByMajor(role.major) + " where id=" + role.id;
+                try
+                {
+                    DbCommand cmd = db.GetSqlStringCommand(sql);
+                    result = db.ExecuteNonQuery(cmd);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            return result;
         }
-        private void loadAddRoleFrom()
+
+        private void btn_r_delete_Click(object sender, EventArgs e)
         {
-            AddRoleFrom addRole = new AddRoleFrom();
-            addRole.ShowDialog();
+            //判断用户是否选择一行数据，true为没选择，false为选择
+            if (dgvRole.Rows[dgvRole.CurrentRow.Index].Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("请选择一项进行删除");
+            }
+            else
+            {
+                //判断用户是否点击确定按钮，true为点击，false为没有点击
+                if (MessageBox.Show("确认删除？", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    int count = dgvRole.SelectedRows.Count;
+                    //定义数组，用循环赋值
+                    String[] array = new String[count];
+                    for (int i = 0; i < count; i++)
+                    {
+                        int id = Convert.ToInt32(dgvRole.Rows[dgvRole.SelectedRows[i].Index].Cells[0].Value);
+                        String strDelete = "delete from vr_roleid where id=" + id;
+                        array[i] = strDelete;
+                    }
+                    //遍历数组
+                    foreach (String str in array)
+                    {
+                        if (str != null)
+                        {
+                            execute(str);
+                        }
+                    }
+                    show_role();
+                }
+            }
         }
+
+
+
+        private void btn_r_Add_Click(object sender, EventArgs e)
+        {
+            //清空信息对话框的数据
+            r_dialog.role = null;
+            //如果在对话框中选择了“确定”，则根据输入信息添加题目
+            if (r_dialog.ShowDialog() == DialogResult.OK)
+            {
+                if (add_role(r_dialog.role) <= 0)
+                {
+                    return;
+                }
+                show_role();
+            }
+        }
+
+        //添加
+        public int add_role(Role role)
+        {
+            int result = 0;
+            if (checkTable(role.name, "vr_roleid", "name"))
+            {
+                MessageBox.Show("此名称已存在！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                DBHelper db = new DBHelper();
+                string sql = "insert into vr_roleid values('" + role.name + "'," + UserInfoForm.getMajorIdByMajor(role.major) + ")";
+                try
+                {
+                    DbCommand cmd = db.GetSqlStringCommand(sql);
+                    result = db.ExecuteNonQuery(cmd);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            return result;
+        }
+        #endregion
 
         #region 文本选择面板
         private void btn_t_update_Click(object sender, EventArgs e)
@@ -387,8 +522,8 @@ namespace VirtualTrain
 
             //设置对话框的题目数据
             i_dialog.question = question;
-         
-            
+
+
             //显示对话框
             if (i_dialog.ShowDialog() == DialogResult.OK)
             {
@@ -397,14 +532,18 @@ namespace VirtualTrain
                 {
                     return;
                 }
-                //判断视频是否更改
-                //if (tempUrl != v_dialog.video.url)
+                //判断图片是否更改
+                // Dictionary<string, string> updateDict = new Dictionary<string, string>();
+                //foreach (string item in i_dialog.dictionary.Keys)
                 //{
-                //    copyImg(i_dialog.dictionary, QuestionInfoForm.getIdByQuestion(i_dialog.question.question));
-                //    copyVideo(v_dialog.video, -1);
+                //    if (!target_source.ContainsKey(item)||target_source[item]!=i_dialog.dictionary[item])
+                //    {
+                //        updateDict.Add(item,i_dialog.dictionary[item]);
+                //    }
                 //}
-                show_video();
-                show_text_Questions();
+
+                copyImg(i_dialog.dictionary, question.id);
+                show_img_Questions();
             }
         }
 
@@ -510,7 +649,8 @@ namespace VirtualTrain
             return result;
         }
 
-        private static string i_path = @"C:\VR\Image\";
+
+        private static string i_path = Application.StartupPath + img_path;
         //复制图片到服务器指定目录
         private void copyImg(Dictionary<string, string> target_source, int id)
         {
@@ -688,7 +828,7 @@ namespace VirtualTrain
             }
             return result;
         }
-        private static string v_path = @"C:\VR\Video\";
+        private static string v_path = Application.StartupPath + video_path;
         //复制视频到服务器指定目录
         private void copyVideo(Video video, int id)
         {

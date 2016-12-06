@@ -37,7 +37,7 @@ namespace VirtualTrain
             file.Filter = "图片文件|*.jpg";
             if (file.ShowDialog() == DialogResult.OK)
             {
-                pic.Image = Image.FromFile(file.FileName);
+                pic.Image = getBmpFromFilepath(file.FileName);
                 if (target_source.ContainsKey(pic.Tag.ToString()))
                 {
                     target_source[pic.Tag.ToString()] = file.FileName;
@@ -188,7 +188,7 @@ namespace VirtualTrain
         {
             PictureBox pic = new PictureBox();
             pic.Tag = tag;
-            pic.Image = Image.FromFile(target_source[tag]);
+            pic.Image = getBmpFromFilepath(target_source[tag]);
             pic.Width = 100;
             pic.Height = 100;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -210,7 +210,14 @@ namespace VirtualTrain
             chk.Location = new Point(point.X - 20, point.Y + 50);
         }
 
-
+        //解决picturebox占用图片无法复制问题
+        private Image getBmpFromFilepath(string filepath) 
+        {
+            System.Drawing.Image img = System.Drawing.Image.FromFile(filepath);
+            System.Drawing.Image bmp = new System.Drawing.Bitmap(img);
+            img.Dispose();
+            return bmp;
+        }
 
         public static void cboMajorsInit(ComboBox cboMajors)
         {

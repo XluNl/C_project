@@ -34,12 +34,5 @@ namespace VirtualTrain
             get { return _sceneId; }
             set { _sceneId = value; }
         }
-        //是否为机器人
-        private bool _isRobot;
-        public bool isRobot
-        {
-            get { return _isRobot; }
-            set { _isRobot = value; }
-        }
     }
 }

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboMajors = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -44,12 +44,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "请输入角色名称：";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(220, 63);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 21);
-            this.textBox1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(220, 63);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(189, 21);
+            this.txtName.TabIndex = 1;
             // 
             // button1
             // 
@@ -57,8 +57,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(189, 27);
             this.button1.TabIndex = 2;
-            this.button1.Text = "添加";
+            this.button1.Text = "确认";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // label2
             // 
@@ -70,32 +71,29 @@
             this.label2.Text = "所属专业：";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // comboBox1
+            // cboMajors
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "工务",
-            "电务",
-            "车务",
-            "调度"});
-            this.comboBox1.Location = new System.Drawing.Point(220, 109);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(189, 20);
-            this.comboBox1.TabIndex = 4;
+            this.cboMajors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMajors.FormattingEnabled = true;
+            this.cboMajors.Location = new System.Drawing.Point(220, 109);
+            this.cboMajors.Name = "cboMajors";
+            this.cboMajors.Size = new System.Drawing.Size(121, 20);
+            this.cboMajors.TabIndex = 10;
             // 
             // AddRoleFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(533, 241);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboMajors);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
             this.Name = "AddRoleFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "添加角色";
+            this.Load += new System.EventHandler(this.AddRoleFrom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,9 +102,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboMajors;
     }
 }

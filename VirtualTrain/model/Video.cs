@@ -44,7 +44,7 @@ namespace VirtualTrain
             set { _major = value; }
         }
 
-        //视频所属专业
+        //视频路径
         private string _url;
         public string url
         {

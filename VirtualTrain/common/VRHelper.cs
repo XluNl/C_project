@@ -93,7 +93,6 @@ namespace VirtualTrain
             role.name = reader["name"].ToString();
             role.major = UserInfoForm.getMajorByMajorId((int)reader["majorId"]);
             role.sceneId = (int)reader["VR_scene_id"];
-            role.isRobot = (bool)reader["isRobot"];
             return role;
         }
 
