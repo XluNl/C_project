@@ -51,6 +51,7 @@ namespace VirtualTrain
                 video.startTime = txtStart.Text;
                 video.endTime = txtEnd.Text;
 
+
                 video.major = cboMajors.Text.Trim();
                 return video;
             }

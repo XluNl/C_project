@@ -157,6 +157,8 @@ namespace VirtualTrain
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             AddScript addScript = new AddScript();
+
+            // 创建脚本面板
             addScript.ShowDialog();
         }
 

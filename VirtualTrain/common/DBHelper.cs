@@ -207,6 +207,11 @@ namespace VirtualTrain
         }
 
         #endregion
+
+        internal DataTable ExecuteDataTable()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class Trans : IDisposable

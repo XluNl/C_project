@@ -100,6 +100,7 @@
     <Compile Include="common\AutoSetQuestionHelper.cs" />
     <Compile Include="common\DBHelper.cs" />
     <Compile Include="common\ExamHelper.cs" />
+    <Compile Include="common\ScriptDAL.cs" />
     <Compile Include="common\TestHelper.cs" />
     <Compile Include="common\GameHelper.cs" />
     <Compile Include="common\URLHelper.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="model\Paper.cs" />
     <Compile Include="model\Question.cs" />
     <Compile Include="model\Role.cs" />
+    <Compile Include="model\script.cs" />
     <Compile Include="model\Type.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Home\ModeSelectForm.cs">
@@ -172,6 +174,7 @@
       <DependentUpon>ModeSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Video.cs" />
+    <Compile Include="model\VR_Role.cs" />
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
