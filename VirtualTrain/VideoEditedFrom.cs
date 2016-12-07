@@ -30,11 +30,13 @@ namespace VirtualTrain
             //file.Filter = "视屏文件|*.MP4";
             if (file.ShowDialog() == DialogResult.OK)
             {
-                axwmp.URL = file.FileName;
+                url = file.FileName;
+                axwmp.URL = url;
             }
         }
 
         private static int vid;
+        private static string url;
 
         //video属性
         public Video video
@@ -44,7 +46,7 @@ namespace VirtualTrain
                 //根据各控件的值，生成一个video类的实例并返回
                 Video video= new Video();
                 video.id = vid;
-                video.url = axwmp.URL;
+                video.url = url;
                 video.name = txtName.Text;
                 video.startTime = txtStart.Text;
                 video.endTime = txtEnd.Text;
@@ -62,12 +64,13 @@ namespace VirtualTrain
                     txtStart.Text = "";
                     txtEnd.Text = "";
                     cboMajors.Text = "";
-                    axwmp.URL = "";
+                    //axwmp.URL = "";
                 }
                 else
                 {
                     vid = value.id;
-                    axwmp.URL = value.url;
+                    url= value.url;
+                    axwmp.URL = url;
                     //根据Video对象的值，设置相应控件
                     txtName.Text = value.name;
                     txtStart.Text = value.startTime;
@@ -103,22 +106,7 @@ namespace VirtualTrain
         }
 
 
-        //获得专业的id
-        public static int getMajorId(ComboBox comboBox)
-        {
-            object item = comboBox.SelectedItem;
-            if (item != null)
-            {
-                Major major = item as Major;
-                return major.id;
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
-
+        private static bool isDispose = false;
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (!checkInput())
@@ -126,6 +114,8 @@ namespace VirtualTrain
                 return;
             }
             axwmp.Ctlcontrols.stop();
+            axwmp.Dispose();
+            isDispose = true;
             this.DialogResult = DialogResult.OK;
         }
 
@@ -161,7 +151,12 @@ namespace VirtualTrain
 
         private void VideoEditedFrom_FormClosed(object sender, FormClosedEventArgs e)
         {
-            axwmp.Ctlcontrols.stop();
+            if (!isDispose)
+            {
+                axwmp.Ctlcontrols.stop();
+                axwmp.Dispose();
+            }
+           
         }
 
         private void btnStart_Click(object sender, EventArgs e)

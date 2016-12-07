@@ -158,7 +158,6 @@
             // 
             // cboMajors
             // 
-            this.cboMajors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMajors.FormattingEnabled = true;
             this.cboMajors.Location = new System.Drawing.Point(74, 91);
             this.cboMajors.Name = "cboMajors";

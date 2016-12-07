@@ -34,7 +34,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.axwmp = new AxWMPLib.AxWindowsMediaPlayer();
             this.txtStart = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtEnd = new System.Windows.Forms.TextBox();
@@ -44,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnEnd = new System.Windows.Forms.Button();
+            this.axwmp = new AxWMPLib.AxWindowsMediaPlayer();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axwmp)).BeginInit();
@@ -95,16 +95,6 @@
             this.panel1.Size = new System.Drawing.Size(643, 264);
             this.panel1.TabIndex = 0;
             // 
-            // axwmp
-            // 
-            this.axwmp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axwmp.Enabled = true;
-            this.axwmp.Location = new System.Drawing.Point(0, 0);
-            this.axwmp.Name = "axwmp";
-            this.axwmp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axwmp.OcxState")));
-            this.axwmp.Size = new System.Drawing.Size(643, 264);
-            this.axwmp.TabIndex = 0;
-            // 
             // txtStart
             // 
             this.txtStart.Location = new System.Drawing.Point(181, 401);
@@ -151,7 +141,6 @@
             // 
             // cboMajors
             // 
-            this.cboMajors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMajors.FormattingEnabled = true;
             this.cboMajors.Location = new System.Drawing.Point(239, 37);
             this.cboMajors.Name = "cboMajors";
@@ -186,6 +175,16 @@
             this.btnEnd.Text = "选定结束位置";
             this.btnEnd.UseVisualStyleBackColor = true;
             this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            // 
+            // axwmp
+            // 
+            this.axwmp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axwmp.Enabled = true;
+            this.axwmp.Location = new System.Drawing.Point(0, 0);
+            this.axwmp.Name = "axwmp";
+            this.axwmp.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axwmp.OcxState")));
+            this.axwmp.Size = new System.Drawing.Size(643, 264);
+            this.axwmp.TabIndex = 0;
             // 
             // VideoEditedFrom
             // 

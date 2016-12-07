@@ -518,7 +518,8 @@ namespace VirtualTrain
             {
                 target_source.Add(str, i_path + question.id + str + ".jpg");
             }
-            i_dialog.target_source = target_source;
+
+            i_dialog.dictionary = new Dictionary<string, string>(target_source);
 
             //设置对话框的题目数据
             i_dialog.question = question;
@@ -533,16 +534,16 @@ namespace VirtualTrain
                     return;
                 }
                 //判断图片是否更改
-                // Dictionary<string, string> updateDict = new Dictionary<string, string>();
-                //foreach (string item in i_dialog.dictionary.Keys)
-                //{
-                //    if (!target_source.ContainsKey(item)||target_source[item]!=i_dialog.dictionary[item])
-                //    {
-                //        updateDict.Add(item,i_dialog.dictionary[item]);
-                //    }
-                //}
+                Dictionary<string, string> updateDict = new Dictionary<string, string>();
+                foreach (string item in i_dialog.dictionary.Keys)
+                {
+                    if (!target_source.ContainsKey(item) || target_source[item] != i_dialog.dictionary[item])
+                    {
+                        updateDict.Add(item, i_dialog.dictionary[item]);
+                    }
+                }
 
-                copyImg(i_dialog.dictionary, question.id);
+                copyImg(updateDict, question.id);
                 show_img_Questions();
             }
         }

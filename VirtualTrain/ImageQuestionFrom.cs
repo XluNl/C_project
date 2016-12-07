@@ -171,6 +171,7 @@ namespace VirtualTrain
 
         }
 
+        
         private void addPic(object sender, EventArgs e)
         {
             PictureBox pic = (PictureBox)sender;
@@ -179,6 +180,8 @@ namespace VirtualTrain
             currentOption++;
             pic.Click -= new EventHandler(addPic);
             pic.Click += new EventHandler(pic_Click);
+
+            pic_Click(pic,null);
             generateCheckBox(pic.Tag.ToString(), pic.Location);
             generateAddBox((currentOption % 5) * (pic.Width + space) + initX, (currentOption > 4 ? 1 : 0) * (pic.Height + vspace) + initY);
 
@@ -196,7 +199,7 @@ namespace VirtualTrain
 
             pic.Click += new EventHandler(pic_Click);
             gb.Controls.Add(pic);
-            pic.Location = new Point((index % 5) * (pic.Width + space) + initX, (index > 4 ? 1 : 0) * pic.Height + vspace + initY);
+            pic.Location = new Point((index % 5) * (pic.Width + space) + initX, (index > 4 ? 1 : 0) * (pic.Height + vspace )+ initY);
             generateCheckBox(tag, pic.Location);
         }
 
