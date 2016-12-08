@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
+using System.IO;
+using System.Configuration;
 
 namespace VirtualTrain
 {
@@ -23,18 +25,27 @@ namespace VirtualTrain
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = v_path;
             file.Title = "请选择要打开的文件";
             //file.InitialDirectory = "c";
             file.Multiselect = false;
             //file.Filter = "视屏文件|*.MP4";
             if (file.ShowDialog() == DialogResult.OK)
             {
-                url = file.FileName;
-                axwmp.URL = url;
+                if (!Path.GetDirectoryName(file.FileName).Equals(v_path))
+                {
+
+                    MessageBox.Show("请选择" + v_path + "下的视频文件！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                url = Path.GetFileName(file.FileName);
+                axwmp.URL = file.FileName;
             }
         }
 
+        private static string v_path = ConfigurationManager.AppSettings["video_path"];
         private static int vid;
         private static string url;
 
@@ -44,12 +55,12 @@ namespace VirtualTrain
             get
             {
                 //根据各控件的值，生成一个video类的实例并返回
-                Video video= new Video();
+                Video video = new Video();
                 video.id = vid;
                 video.url = url;
                 video.name = txtName.Text;
-                video.startTime = txtStart.Text;
-                video.endTime = txtEnd.Text;
+                video.startTime = float.Parse(txtStart.Tag.ToString());
+                video.endTime = float.Parse( txtEnd.Tag.ToString());
 
                 video.major = cboMajors.Text.Trim();
                 return video;
@@ -62,19 +73,22 @@ namespace VirtualTrain
                     //如果Video对象为空，则清空各控件
                     txtName.Text = "";
                     txtStart.Text = "";
+                    txtStart.Tag = null;
                     txtEnd.Text = "";
+                    txtEnd.Tag = null;
                     cboMajors.Text = "";
-                    //axwmp.URL = "";
+                    axwmp.URL = "";
                 }
                 else
                 {
                     vid = value.id;
-                    url= value.url;
-                    axwmp.URL = url;
+                    axwmp.URL = v_path + @"\" + value.url;
                     //根据Video对象的值，设置相应控件
                     txtName.Text = value.name;
-                    txtStart.Text = value.startTime;
-                    txtEnd.Text = value.endTime;
+                    txtStart.Text = secondsToStr(value.startTime*1000);
+                    txtStart.Tag = value.startTime;
+                    txtEnd.Text = secondsToStr(value.endTime*1000);
+                    txtEnd.Tag = value.endTime;
                     cboMajors.Text = value.major;
                 }
             }
@@ -106,7 +120,6 @@ namespace VirtualTrain
         }
 
 
-        private static bool isDispose = false;
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (!checkInput())
@@ -114,8 +127,6 @@ namespace VirtualTrain
                 return;
             }
             axwmp.Ctlcontrols.stop();
-            axwmp.Dispose();
-            isDispose = true;
             this.DialogResult = DialogResult.OK;
         }
 
@@ -151,24 +162,61 @@ namespace VirtualTrain
 
         private void VideoEditedFrom_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!isDispose)
-            {
-                axwmp.Ctlcontrols.stop();
-                axwmp.Dispose();
-            }
-           
+            axwmp.Ctlcontrols.stop();
+
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
             txtStart.Text = axwmp.Ctlcontrols.currentPositionString;
-            
+            txtStart.Tag = axwmp.Ctlcontrols.currentPosition;
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
             txtEnd.Text = axwmp.Ctlcontrols.currentPositionString;
-            //axwmp.Ctlcontrols.currentPosition= 05 ;
+            txtEnd.Tag = axwmp.Ctlcontrols.currentPosition;
+        }
+
+        //秒的时间格式显示
+        public static String secondsToStr(double time)
+        {
+            String result = "";
+            int seconds = (int)(time / 1000);
+            //System.out.println("毫秒数:-->"+time+" 秒-->"+seconds);
+            int hour = 0;
+            int minute = 0;
+            int second = 0;
+            if (seconds > 60)
+            {
+                if (seconds > 3600)
+                {
+                    hour = seconds / 3600;
+                    minute = seconds % 3600 / 60;
+                    second = seconds % 3600 % 60 % 60;
+                }
+                else
+                {
+                    second = seconds % 60;
+                    minute = seconds / 60;
+                }
+            }
+            else
+            {
+                second = seconds;
+            }
+            result = parseStr(hour) + ":" + parseStr(minute) + ":"
+            + parseStr(second);
+            return result;
+        }
+
+        private static String parseStr(int time)
+        {
+            if (time >= 10)
+            {
+                return time + "";
+            }
+            return "0" + time;
         }
 
         //private void axwmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)

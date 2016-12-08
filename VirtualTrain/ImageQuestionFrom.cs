@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.Common;
+using System.Configuration;
 
 namespace VirtualTrain
 {
@@ -15,11 +16,6 @@ namespace VirtualTrain
         public ImageQuestionFrom()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void ImageQuestionFrom_Load(object sender, EventArgs e)
@@ -31,26 +27,27 @@ namespace VirtualTrain
         {
             PictureBox pic = (PictureBox)sender;
             OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = i_path;
             file.Title = "请选择图片";
             //file.InitialDirectory = "c";
             file.Multiselect = false;
             file.Filter = "图片文件|*.jpg";
             if (file.ShowDialog() == DialogResult.OK)
             {
-                pic.Image = getBmpFromFilepath(file.FileName);
-                if (target_source.ContainsKey(pic.Tag.ToString()))
+                if (!Path.GetDirectoryName(file.FileName).Equals(i_path))
                 {
-                    target_source[pic.Tag.ToString()] = file.FileName;
+
+                    MessageBox.Show("请选择" + i_path + "下的图片文件！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                else
-                {
-                    target_source.Add(pic.Tag.ToString(), file.FileName);
-                }
+                pic.Load(file.FileName);
+
 
             }
         }
 
 
+        private static string i_path = ConfigurationManager.AppSettings["img_path"];
         private static int questionId;
         private static List<string> optionList = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
         private static int currentOption = 0;
@@ -60,20 +57,7 @@ namespace VirtualTrain
         private static int initX = 20;
         private static int initY = 20;
 
-        public Dictionary<string, string> target_source = new Dictionary<string, string>();
 
-        //图片复制字典
-        public Dictionary<string, string> dictionary
-        {
-            get
-            {
-                return target_source;
-            }
-            set
-            {
-                target_source = value;
-            }
-        }
         //问题信息
         public Question question
         {
@@ -99,13 +83,12 @@ namespace VirtualTrain
                         PictureBox pic = con as PictureBox;
                         if (pic.Tag != null)
                         {
-                            question.multiOption += pic.Tag.ToString().Trim() + ",";
+                            question.multiOption.Add(Path.GetFileName(pic.ImageLocation));
                         }
 
                     }
                 }
                 question.answer = question.answer.Substring(0, question.answer.Length - 1);
-                question.multiOption = question.multiOption.Substring(0, question.multiOption.Length - 1);
 
                 question.major = cboMajors.Text.Trim();
                 return question;
@@ -117,7 +100,6 @@ namespace VirtualTrain
                 //根据Question对象的值，设置相应控件
                 if (value == null)
                 {
-                    target_source.Clear();
                     //如果Question对象为空，则清空各控件
                     txtQuestion.Text = "";
                     cboMajors.Text = "";
@@ -131,9 +113,9 @@ namespace VirtualTrain
                     //根据Question对象的值，设置相应控件
                     txtQuestion.Text = value.question;
                     cboMajors.Text = value.major;
-                    foreach (string str in value.multiOption.Split(','))
+                    foreach (string fileName in value.multiOption)
                     {
-                        generatePicBox(str);
+                        generatePicBox(fileName);
                     }
                     string[] answers = value.answer.Split(',');
                     List<string> answerList = new List<string>(answers);
@@ -171,7 +153,7 @@ namespace VirtualTrain
 
         }
 
-        
+
         private void addPic(object sender, EventArgs e)
         {
             PictureBox pic = (PictureBox)sender;
@@ -181,26 +163,26 @@ namespace VirtualTrain
             pic.Click -= new EventHandler(addPic);
             pic.Click += new EventHandler(pic_Click);
 
-            pic_Click(pic,null);
+            pic_Click(pic, null);
             generateCheckBox(pic.Tag.ToString(), pic.Location);
             generateAddBox((currentOption % 5) * (pic.Width + space) + initX, (currentOption > 4 ? 1 : 0) * (pic.Height + vspace) + initY);
 
         }
 
-        private void generatePicBox(string tag)
+        private void generatePicBox(string fileName)
         {
             PictureBox pic = new PictureBox();
-            pic.Tag = tag;
-            pic.Image = getBmpFromFilepath(target_source[tag]);
+            pic.Tag = optionList[currentOption];
+            currentOption++;
+            pic.Load(i_path + @"\" + fileName);
             pic.Width = 100;
             pic.Height = 100;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
-            int index = optionList.IndexOf(tag);
 
             pic.Click += new EventHandler(pic_Click);
             gb.Controls.Add(pic);
-            pic.Location = new Point((index % 5) * (pic.Width + space) + initX, (index > 4 ? 1 : 0) * (pic.Height + vspace )+ initY);
-            generateCheckBox(tag, pic.Location);
+            pic.Location = new Point((currentOption % 5) * (pic.Width + space) + initX, (currentOption > 4 ? 1 : 0) * (pic.Height + vspace) + initY);
+            generateCheckBox(pic.Tag.ToString(), pic.Location);
         }
 
         private void generateCheckBox(string tag, Point point)
@@ -213,14 +195,6 @@ namespace VirtualTrain
             chk.Location = new Point(point.X - 20, point.Y + 50);
         }
 
-        //解决picturebox占用图片无法复制问题
-        private Image getBmpFromFilepath(string filepath) 
-        {
-            System.Drawing.Image img = System.Drawing.Image.FromFile(filepath);
-            System.Drawing.Image bmp = new System.Drawing.Bitmap(img);
-            img.Dispose();
-            return bmp;
-        }
 
         public static void cboMajorsInit(ComboBox cboMajors)
         {
@@ -244,22 +218,6 @@ namespace VirtualTrain
             catch (Exception e)
             {
                 throw e;
-            }
-        }
-
-
-        //获得专业的id
-        public static int getMajorId(ComboBox comboBox)
-        {
-            object item = comboBox.SelectedItem;
-            if (item != null)
-            {
-                Major major = item as Major;
-                return major.id;
-            }
-            else
-            {
-                return -1;
             }
         }
 
@@ -288,7 +246,6 @@ namespace VirtualTrain
             //判断gb中控件是否为空
             bool isNull = true;
             bool isPicNull = false;
-            bool isPicOk = false;
             foreach (Control con in gb.Controls)
             {
                 if (con is CheckBox)
@@ -307,18 +264,11 @@ namespace VirtualTrain
                     {
                         continue;
                     }
-                    foreach (string item in target_source.Keys)
+                    if (pic.ImageLocation == null)
                     {
-                        if (item == pic.Tag.ToString())
-                        {
-                            isPicOk = true;
-                        }
+                        isPicNull = true;
+                        break;
                     }
-                }
-                if (!isPicOk)
-                {
-                    isPicNull = true;
-                    break;
                 }
             }
             if (isPicNull)
