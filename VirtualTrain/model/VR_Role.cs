@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VirtualTrain.model
 {
-    class VR_Role
+   public class VR_Role
     {
         //场景id
         private int _id;

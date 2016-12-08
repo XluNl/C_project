@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VirtualTrain.model
 {
-    class script
+   public class script
     {
         //场景id
         private int _id;
@@ -17,9 +17,9 @@ namespace VirtualTrain.model
 
 
         //是否联机
-        private bool _isonline;
+        private int _isonline;
 
-        public bool Isonline
+        public int Isonline
         {
             get { return _isonline; }
             set { _isonline = value; }
@@ -33,6 +33,22 @@ namespace VirtualTrain.model
         {
             get { return _scencname; }
             set { _scencname = value; }
+        }
+
+        // 
+        private int _screncscriptid;
+
+        public int Screncscriptid
+        {
+            get { return _screncscriptid; }
+            set { _screncscriptid = value; }
+        }
+        private string _screncscriptname;
+
+        public string Screncscriptname
+        {
+            get { return _screncscriptname; }
+            set { _screncscriptname = value; }
         }
     }
 }

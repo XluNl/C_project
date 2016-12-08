@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
+using VirtualTrain.model;
+using VirtualTrain.common;
 using System.IO;
 using VirtualTrain;
 using System.Configuration;
@@ -81,7 +83,7 @@ namespace VirtualTrain
             userInfoForm.Show();
 
 
-            toolTip1.SetToolTip(button1, "配置脚本内容");
+            //toolTip1.SetToolTip(button1, "配置脚本内容");
             toolTip1.SetToolTip(pictureBox1, "创建一个新的脚本");
             //文本选择题初始化
             t_dialog = new TextQuestionDialog();
@@ -99,6 +101,9 @@ namespace VirtualTrain
             r_dialog = new AddRoleFrom();
             r_dialog.Owner = this;
             show_role();
+
+            // 初始化加载全部场景
+            this.getAllSence();
         }
 
         private void show_text_Questions()
@@ -157,7 +162,7 @@ namespace VirtualTrain
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             AddScript addScript = new AddScript();
-
+            addScript.Call = creatScript; ;
             // 创建脚本面板
             addScript.ShowDialog();
         }
@@ -167,16 +172,19 @@ namespace VirtualTrain
 
         }
 
+        /// <summary>
+        /// 编辑场景
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EditScriptFrom edit = new EditScriptFrom();
             edit.ShowDialog();
         }
 
-        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
+
 
 
         #region 角色编辑面板
@@ -920,5 +928,89 @@ namespace VirtualTrain
                 throw ex;
             }
         }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 初始化记载全部场景
+        /// </summary>
+        public void getAllSence() {
+
+            ScriptDAL scrDAL = new ScriptDAL();
+            List<script> scp = scrDAL.getAllSence();
+
+            foreach(script scr in scp){
+
+                this.creatScript(scr,scr.Id);
+            }
+        }
+
+        /// <summary>
+        /// 创建脚本UI展示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void creatScript(script scp, int senceid)
+        {
+
+            int btn_H = 30;
+            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.5);
+            int org = 10;
+            int org_Y = org;
+            int org_X = Convert.ToInt32(btn_W * 0.48);
+
+            int count = this.panel2.Controls.Count;
+            if(count>0){
+                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
+            }
+                Button btn = new Button();
+                btn.MouseDown += MouseDown;
+                btn.Width = btn_W;
+                btn.Height = btn_H;
+                btn.Location = new Point(org_X, org_Y);
+                btn.Tag = senceid;
+                btn.Text ="scencID="+btn.Tag+"    "+scp.Scencname;
+                this.contextMenuStrip1.Tag = btn.Tag;
+                //this.contextMenuStrip1.ShowItemToolTips = true;
+                btn.ContextMenuStrip = this.contextMenuStrip1;
+                this.panel2.Controls.Add(btn);
+                this.panel2.AutoScroll = true;
+        }
+
+        /// <summary>
+        /// 删除一个场景
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+            int id = (int)btn.GetCurrentParent().Tag;
+            //object tt = too.Tag;
+            //string ss = too.Name;
+            //string str = btn.Name;
+            ScriptDAL scrDAL = new ScriptDAL();
+            if (scrDAL.delectSenceWithID(id)){
+                // 刷新
+                this.panel2.Controls.Clear();
+                this.getAllSence();
+            }
+
+        }
+
+        private void MouseDown(object sender, MouseEventArgs e)
+        {
+            //按鼠标右键，弹出菜单   
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                //string ss = "right";
+                Button btn = (Button)sender;
+                int tt = (int)btn.Tag;
+                btn.ContextMenuStrip.Tag = btn.Tag;
+
+            }
+
+        }
+
     }
 }
