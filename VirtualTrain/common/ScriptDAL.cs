@@ -118,11 +118,8 @@ namespace VirtualTrain.common
             bool isnot = SQLHelper.ExecuteNonQuery(sql) > 0;
             if (isnot)
             {
-          
-
                 //第2步删除场景对应角色
-                //第3步删除场景对应的任务
-
+                //第3步删除场景对应的任
             }
             return isnot;
         }

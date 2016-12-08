@@ -172,16 +172,7 @@ namespace VirtualTrain
 
         }
 
-        /// <summary>
-        /// 编辑场景
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditScriptFrom edit = new EditScriptFrom();
-            edit.ShowDialog();
-        }
+
 
 
 
@@ -971,7 +962,6 @@ namespace VirtualTrain
                 btn.Tag = senceid;
                 btn.Text ="scencID="+btn.Tag+"    "+scp.Scencname;
                 this.contextMenuStrip1.Tag = btn.Tag;
-                //this.contextMenuStrip1.ShowItemToolTips = true;
                 btn.ContextMenuStrip = this.contextMenuStrip1;
                 this.panel2.Controls.Add(btn);
                 this.panel2.AutoScroll = true;
@@ -986,30 +976,35 @@ namespace VirtualTrain
         {
             ToolStripMenuItem btn = (ToolStripMenuItem)sender;
             int id = (int)btn.GetCurrentParent().Tag;
-            //object tt = too.Tag;
-            //string ss = too.Name;
-            //string str = btn.Name;
             ScriptDAL scrDAL = new ScriptDAL();
             if (scrDAL.delectSenceWithID(id)){
                 // 刷新
                 this.panel2.Controls.Clear();
                 this.getAllSence();
             }
-
         }
 
         private void MouseDown(object sender, MouseEventArgs e)
-        {
-            //按鼠标右键，弹出菜单   
+        { 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
-                //string ss = "right";
                 Button btn = (Button)sender;
                 int tt = (int)btn.Tag;
                 btn.ContextMenuStrip.Tag = btn.Tag;
-
             }
 
+        }
+
+
+        /// <summary>
+        /// 编辑场景
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditScriptFrom edit = new EditScriptFrom();
+            edit.ShowDialog();
         }
 
     }
