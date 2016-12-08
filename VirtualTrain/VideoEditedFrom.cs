@@ -62,6 +62,7 @@ namespace VirtualTrain
                 video.startTime = float.Parse(txtStart.Tag.ToString());
                 video.endTime = float.Parse( txtEnd.Tag.ToString());
 
+
                 video.major = cboMajors.Text.Trim();
                 return video;
             }

@@ -100,6 +100,8 @@
     <Compile Include="common\AutoSetQuestionHelper.cs" />
     <Compile Include="common\DBHelper.cs" />
     <Compile Include="common\ExamHelper.cs" />
+    <Compile Include="common\ScriptDAL.cs" />
+    <Compile Include="common\SQLHelper.cs" />
     <Compile Include="common\TestHelper.cs" />
     <Compile Include="common\GameHelper.cs" />
     <Compile Include="common\URLHelper.cs" />
@@ -163,6 +165,7 @@
     <Compile Include="model\Paper.cs" />
     <Compile Include="model\Question.cs" />
     <Compile Include="model\Role.cs" />
+    <Compile Include="model\script.cs" />
     <Compile Include="model\Type.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Home\ModeSelectForm.cs">
@@ -172,6 +175,7 @@
       <DependentUpon>ModeSelectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="model\Video.cs" />
+    <Compile Include="model\VR_Role.cs" />
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -679,6 +683,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\png-1768.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\add_rw_JT.jpg" />
+    <Content Include="Resources\add_rw.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

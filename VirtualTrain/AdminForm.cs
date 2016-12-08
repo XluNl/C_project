@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
+using VirtualTrain.model;
+using VirtualTrain.common;
 using System.IO;
 using VirtualTrain;
 using System.Configuration;
@@ -81,7 +83,7 @@ namespace VirtualTrain
             userInfoForm.Show();
 
 
-            toolTip1.SetToolTip(button1, "配置脚本内容");
+            //toolTip1.SetToolTip(button1, "配置脚本内容");
             toolTip1.SetToolTip(pictureBox1, "创建一个新的脚本");
             //文本选择题初始化
             t_dialog = new TextQuestionDialog();
@@ -99,6 +101,9 @@ namespace VirtualTrain
             r_dialog = new AddRoleFrom();
             r_dialog.Owner = this;
             show_role();
+
+            // 初始化加载全部场景
+            this.getAllSence();
         }
 
         private void show_text_Questions()
@@ -157,6 +162,8 @@ namespace VirtualTrain
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             AddScript addScript = new AddScript();
+            addScript.Call = creatScript; ;
+            // 创建脚本面板
             addScript.ShowDialog();
         }
 
@@ -165,16 +172,10 @@ namespace VirtualTrain
 
         }
 
-        private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EditScriptFrom edit = new EditScriptFrom();
-            edit.ShowDialog();
-        }
 
-        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
+
+
 
 
         #region 角色编辑面板
@@ -504,7 +505,7 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        question.multiOption = string2list((reader["multiOption"] == null ? "" : reader["multiOption"].ToString()));
+                        question.multiOption = (reader["multiOption"] == null ? "" : reader["multiOption"].ToString());
                     }
                 }
             }
@@ -512,6 +513,14 @@ namespace VirtualTrain
             {
                 throw ex;
             }
+            //设置图片字典数据
+            Dictionary<string, string> target_source = new Dictionary<string, string>();
+            foreach (string str in question.multiOption.Split(','))
+            {
+                target_source.Add(str, i_path + question.id + str + ".jpg");
+            }
+
+            i_dialog.dictionary = new Dictionary<string, string>(target_source);
 
             //设置对话框的题目数据
             i_dialog.question = question;
@@ -525,6 +534,17 @@ namespace VirtualTrain
                 {
                     return;
                 }
+                //判断图片是否更改
+                Dictionary<string, string> updateDict = new Dictionary<string, string>();
+                foreach (string item in i_dialog.dictionary.Keys)
+                {
+                    if (!target_source.ContainsKey(item) || target_source[item] != i_dialog.dictionary[item])
+                    {
+                        updateDict.Add(item, i_dialog.dictionary[item]);
+                    }
+                }
+
+                copyImg(updateDict, question.id);
                 show_img_Questions();
             }
         }
@@ -540,7 +560,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type='true',multiOption=" + (question.multiOption == null ? "null" : "'" + list2string(question.multiOption) + "'") + " where id=" + question.id;
+                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type='true',multiOption=" + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + " where id=" + question.id;
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -601,6 +621,7 @@ namespace VirtualTrain
                 {
                     return;
                 }
+                copyImg(i_dialog.dictionary, QuestionInfoForm.getIdByQuestion(i_dialog.question.question));
                 show_img_Questions();
             }
         }
@@ -616,7 +637,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",'true',null,null,null,null," + (question.multiOption == null ? "null" : "'" + list2string(question.multiOption) + "'") + ")";
+                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",'true',null,null,null,null," + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + ")";
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -628,6 +649,21 @@ namespace VirtualTrain
                 }
             }
             return result;
+        }
+
+
+        private static string i_path = Application.StartupPath + img_path;
+        //复制图片到服务器指定目录
+        private void copyImg(Dictionary<string, string> target_source, int id)
+        {
+            if (!Directory.Exists(i_path))
+            {
+                Directory.CreateDirectory(i_path);
+            }
+            foreach (KeyValuePair<string, string> pair in target_source)
+            {
+                File.Copy(pair.Value, i_path + id + pair.Key + ".jpg", true);
+            }
         }
 
         #endregion
@@ -653,8 +689,9 @@ namespace VirtualTrain
             video.id = Convert.ToInt32(currentRow.Cells[0].Value);
             video.name = currentRow.Cells[1].Value.ToString();
             video.major = currentRow.Cells[2].Value.ToString();
+            video.url = v_path + video.id + ".wmv";
             DBHelper db = new DBHelper();
-            string sql = "select startTime,endTime,fileName from game_videos where id=" + video.id;
+            string sql = "select startTime,endTime from game_videos where id=" + video.id;
             try
             {
                 DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -662,9 +699,8 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        video.startTime = float.Parse(reader["startTime"].ToString());
-                        video.endTime = float.Parse(reader["endTime"].ToString());
-                        video.url = reader["fileName"].ToString();
+                        video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
+                        video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
                     }
                 }
             }
@@ -674,6 +710,7 @@ namespace VirtualTrain
             }
             //设置对话框的题目数据
             v_dialog.video = video;
+            string tempUrl = video.url;
 
             //显示对话框
             if (v_dialog.ShowDialog() == DialogResult.OK)
@@ -682,6 +719,11 @@ namespace VirtualTrain
                 if (update_video(v_dialog.video) <= 0)
                 {
                     return;
+                }
+                //判断视频是否更改
+                if (tempUrl != v_dialog.video.url)
+                {
+                    copyVideo(v_dialog.video, -1);
                 }
                 show_video();
             }
@@ -698,7 +740,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "update game_videos set name='" + video.name + "',startTime='" + video.startTime + "',endTime='" + video.endTime + "',majorId=" + UserInfoForm.getMajorIdByMajor(video.major) + ",fileName='" + video.url + "' where id=" + video.id;
+                string sql = "update game_videos set name='" + video.name + "',startTime='" + video.startTime + "',endTime='" + video.endTime + "',majorId=" + UserInfoForm.getMajorIdByMajor(video.major) + " where id=" + video.id;
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -759,6 +801,7 @@ namespace VirtualTrain
                 {
                     return;
                 }
+                copyVideo(v_dialog.video, GameHelper.getIdByVideo(v_dialog.video.name));
                 show_video();
             }
         }
@@ -774,7 +817,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "insert into game_videos values('" + video.name + "','" + video.startTime + "','" + video.endTime + "'," + UserInfoForm.getMajorIdByMajor(video.major) + ",'" + video.url + "')";
+                string sql = "insert into game_videos values('" + video.name + "','" + video.startTime + "','" + video.endTime + "'," + UserInfoForm.getMajorIdByMajor(video.major) + ")";
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -786,6 +829,33 @@ namespace VirtualTrain
                 }
             }
             return result;
+        }
+        private static string v_path = Application.StartupPath + video_path;
+        //复制视频到服务器指定目录
+        private void copyVideo(Video video, int id)
+        {
+
+            if (!Directory.Exists(v_path))
+            {
+                Directory.CreateDirectory(v_path);
+            }
+            try
+            {
+                if (id == -1)
+                {
+                    File.Copy(video.url, v_path + video.id + ".wmv", true);
+                }
+                else
+                {
+                    File.Copy(video.url, v_path + id + ".wmv", true);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         #endregion
@@ -850,25 +920,92 @@ namespace VirtualTrain
             }
         }
 
-        private string list2string(List<string> list)
-        {
-            string result = "";
-            foreach (string str in list)
-            {
-                result += (str + ",");
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// 初始化记载全部场景
+        /// </summary>
+        public void getAllSence() {
+
+            ScriptDAL scrDAL = new ScriptDAL();
+            List<script> scp = scrDAL.getAllSence();
+
+            foreach(script scr in scp){
+
+                this.creatScript(scr,scr.Id);
             }
-            result.Substring(0, result.Length - 1);
-            return result;
         }
 
-        private List<string> string2list(string strs)
+        /// <summary>
+        /// 创建脚本UI展示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void creatScript(script scp, int senceid)
         {
-            List<string> list = new List<string>();
-            foreach (string str in strs.Split(','))
-            {
-                list.Add(str);
+
+            int btn_H = 30;
+            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.5);
+            int org = 10;
+            int org_Y = org;
+            int org_X = Convert.ToInt32(btn_W * 0.48);
+
+            int count = this.panel2.Controls.Count;
+            if(count>0){
+                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
             }
-            return list;
+                Button btn = new Button();
+                btn.MouseDown += MouseDown;
+                btn.Width = btn_W;
+                btn.Height = btn_H;
+                btn.Location = new Point(org_X, org_Y);
+                btn.Tag = senceid;
+                btn.Text ="scencID="+btn.Tag+"    "+scp.Scencname;
+                this.contextMenuStrip1.Tag = btn.Tag;
+                btn.ContextMenuStrip = this.contextMenuStrip1;
+                this.panel2.Controls.Add(btn);
+                this.panel2.AutoScroll = true;
         }
+
+        /// <summary>
+        /// 删除一个场景
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+            int id = (int)btn.GetCurrentParent().Tag;
+            ScriptDAL scrDAL = new ScriptDAL();
+            if (scrDAL.delectSenceWithID(id)){
+                // 刷新
+                this.panel2.Controls.Clear();
+                this.getAllSence();
+            }
+        }
+
+        private void MouseDown(object sender, MouseEventArgs e)
+        { 
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                Button btn = (Button)sender;
+                int tt = (int)btn.Tag;
+                btn.ContextMenuStrip.Tag = btn.Tag;
+            }
+
+        }
+
+
+        /// <summary>
+        /// 编辑场景
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditScriptFrom edit = new EditScriptFrom();
+            edit.ShowDialog();
+        }
+
     }
 }
