@@ -102,6 +102,7 @@
     <Compile Include="common\ExamHelper.cs" />
     <Compile Include="common\ScriptDAL.cs" />
     <Compile Include="common\SQLHelper.cs" />
+    <Compile Include="common\TaskDAL.cs" />
     <Compile Include="common\TestHelper.cs" />
     <Compile Include="common\GameHelper.cs" />
     <Compile Include="common\URLHelper.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="model\Question.cs" />
     <Compile Include="model\Role.cs" />
     <Compile Include="model\script.cs" />
+    <Compile Include="model\TaskModel.cs" />
     <Compile Include="model\Type.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Home\ModeSelectForm.cs">

@@ -159,13 +159,7 @@ namespace VirtualTrain
             tabControl1.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            AddScript addScript = new AddScript();
-            addScript.Call = creatScript; ;
-            // 创建脚本面板
-            addScript.ShowDialog();
-        }
+
 
         private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -505,7 +499,7 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        question.multiOption = (reader["multiOption"] == null ? "" : reader["multiOption"].ToString());
+                        //question.multiOption = (reader["multiOption"] == null ? "" : reader["multiOption"].ToString());
                     }
                 }
             }
@@ -514,13 +508,13 @@ namespace VirtualTrain
                 throw ex;
             }
             //设置图片字典数据
-            Dictionary<string, string> target_source = new Dictionary<string, string>();
-            foreach (string str in question.multiOption.Split(','))
-            {
-                target_source.Add(str, i_path + question.id + str + ".jpg");
-            }
+            //Dictionary<string, string> target_source = new Dictionary<string, string>();
+            //foreach (string str in question.multiOption.Split(','))
+            //{
+            //    target_source.Add(str, i_path + question.id + str + ".jpg");
+            //}
 
-            i_dialog.dictionary = new Dictionary<string, string>(target_source);
+            //i_dialog.dictionary = new Dictionary<string, string>(target_source);
 
             //设置对话框的题目数据
             i_dialog.question = question;
@@ -536,13 +530,13 @@ namespace VirtualTrain
                 }
                 //判断图片是否更改
                 Dictionary<string, string> updateDict = new Dictionary<string, string>();
-                foreach (string item in i_dialog.dictionary.Keys)
-                {
-                    if (!target_source.ContainsKey(item) || target_source[item] != i_dialog.dictionary[item])
-                    {
-                        updateDict.Add(item, i_dialog.dictionary[item]);
-                    }
-                }
+                //foreach (string item in i_dialog.dictionary.Keys)
+                //{
+                //    if (!target_source.ContainsKey(item) || target_source[item] != i_dialog.dictionary[item])
+                //    {
+                //        updateDict.Add(item, i_dialog.dictionary[item]);
+                //    }
+                //}
 
                 copyImg(updateDict, question.id);
                 show_img_Questions();
@@ -621,7 +615,7 @@ namespace VirtualTrain
                 {
                     return;
                 }
-                copyImg(i_dialog.dictionary, QuestionInfoForm.getIdByQuestion(i_dialog.question.question));
+                //copyImg(i_dialog.dictionary, QuestionInfoForm.getIdByQuestion(i_dialog.question.question));
                 show_img_Questions();
             }
         }
@@ -699,8 +693,8 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
-                        video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
+                        //video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
+                        //video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
                     }
                 }
             }
@@ -935,7 +929,18 @@ namespace VirtualTrain
                 this.creatScript(scr,scr.Id);
             }
         }
-
+        /// <summary>
+        /// 点击添加按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            AddScript addScript = new AddScript();
+            addScript.Call = creatScript; ;
+            // 创建脚本面板
+            addScript.ShowDialog();
+        }
         /// <summary>
         /// 创建脚本UI展示
         /// </summary>
@@ -945,10 +950,10 @@ namespace VirtualTrain
         {
 
             int btn_H = 30;
-            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.5);
+            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
             int org = 10;
             int org_Y = org;
-            int org_X = Convert.ToInt32(btn_W * 0.48);
+            int org_X =(this.panel2.Size.Width - btn_W)/2;
 
             int count = this.panel2.Controls.Count;
             if(count>0){
@@ -984,6 +989,11 @@ namespace VirtualTrain
             }
         }
 
+        /// <summary>
+        /// 右键的时候 将对应的id赋值给ContextMenuStrip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseDown(object sender, MouseEventArgs e)
         { 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -997,13 +1007,17 @@ namespace VirtualTrain
 
 
         /// <summary>
-        /// 编辑场景
+        /// 编辑任务 内容
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+            int id = (int)btn.GetCurrentParent().Tag;
+
             EditScriptFrom edit = new EditScriptFrom();
+            edit.Senceid = id;
             edit.ShowDialog();
         }
 
