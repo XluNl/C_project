@@ -269,11 +269,13 @@ namespace Game_Server
         {
             startServer();
             ConsoleKeyInfo keyInfo = Console.ReadKey();
-            if (keyInfo.Key==ConsoleKey.Escape)
+            if (keyInfo.Key == ConsoleKey.Escape)
             {
                 stopServer();
             }
 
         }
+
+       
     }
 }

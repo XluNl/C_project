@@ -77,8 +77,8 @@ namespace VirtualTrain
             set { _optionD = value; }
         }
         //图像选择题多选项
-        private string _multiOption;
-        public string multiOption
+        private List<string> _multiOption=new List<string>();
+        public List<string> multiOption
         {
             get { return _multiOption; }
             set { _multiOption = value; }

@@ -21,16 +21,16 @@ namespace VirtualTrain
             set { _name = value; }
         }
         //开始时刻
-        private string _startTime;
-        public string startTime
+        private float _startTime;
+        public float startTime
         {
             get { return _startTime; }
             set { _startTime = value; }
         }
 
         //结束时刻
-        private string _endTime;
-        public string endTime
+        private float _endTime;
+        public float endTime
         {
             get { return _endTime; }
             set { _endTime = value; }
