@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.BoxName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.Boxonline = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,14 +48,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "项目名称：";
             // 
-            // textBox1
+            // BoxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(97, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(223, 21);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "红光带";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.BoxName.Location = new System.Drawing.Point(97, 49);
+            this.BoxName.Name = "BoxName";
+            this.BoxName.Size = new System.Drawing.Size(223, 21);
+            this.BoxName.TabIndex = 1;
+            this.BoxName.Text = "红光带";
+            this.BoxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox1
             // 
@@ -104,27 +104,27 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "项目名称：";
             // 
-            // checkBox9
+            // Boxonline
             // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(97, 113);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(120, 16);
-            this.checkBox9.TabIndex = 7;
-            this.checkBox9.Text = "是否多人在线演练";
-            this.checkBox9.UseVisualStyleBackColor = true;
+            this.Boxonline.AutoSize = true;
+            this.Boxonline.Location = new System.Drawing.Point(97, 113);
+            this.Boxonline.Name = "Boxonline";
+            this.Boxonline.Size = new System.Drawing.Size(120, 16);
+            this.Boxonline.TabIndex = 7;
+            this.Boxonline.Text = "是否多人在线演练";
+            this.Boxonline.UseVisualStyleBackColor = true;
             // 
             // AddScript
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 443);
-            this.Controls.Add(this.checkBox9);
+            this.Controls.Add(this.Boxonline);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.BoxName);
             this.Controls.Add(this.label1);
             this.Name = "AddScript";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -140,12 +140,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox BoxName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox Boxonline;
         private System.Windows.Forms.Panel panel1;
     }
 }
