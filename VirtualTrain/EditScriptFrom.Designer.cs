@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel_pr = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.修改ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.插入一项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.panel_pr = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,35 +49,6 @@
             this.panel1.Size = new System.Drawing.Size(725, 457);
             this.panel1.TabIndex = 0;
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.删除ToolStripMenuItem,
-            this.修改ToolStripMenuItem,
-            this.插入一项ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 70);
-            // 
-            // 删除ToolStripMenuItem
-            // 
-            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.删除ToolStripMenuItem.Text = "删除";
-            // 
-            // 修改ToolStripMenuItem
-            // 
-            this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
-            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.修改ToolStripMenuItem.Text = "修改";
-            this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
-            // 
-            // 插入一项ToolStripMenuItem
-            // 
-            this.插入一项ToolStripMenuItem.Name = "插入一项ToolStripMenuItem";
-            this.插入一项ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.插入一项ToolStripMenuItem.Text = "插入一项";
-            this.插入一项ToolStripMenuItem.Click += new System.EventHandler(this.插入一项ToolStripMenuItem_Click);
-            // 
             // panel_pr
             // 
             this.panel_pr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -87,6 +58,36 @@
             this.panel_pr.Name = "panel_pr";
             this.panel_pr.Size = new System.Drawing.Size(485, 392);
             this.panel_pr.TabIndex = 5;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.删除ToolStripMenuItem,
+            this.修改ToolStripMenuItem,
+            this.插入一项ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            // 
+            // 删除ToolStripMenuItem
+            // 
+            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.删除ToolStripMenuItem.Text = "删除";
+            this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            // 
+            // 修改ToolStripMenuItem
+            // 
+            this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.修改ToolStripMenuItem.Text = "修改";
+            this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
+            // 
+            // 插入一项ToolStripMenuItem
+            // 
+            this.插入一项ToolStripMenuItem.Name = "插入一项ToolStripMenuItem";
+            this.插入一项ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.插入一项ToolStripMenuItem.Text = "插入一项";
+            this.插入一项ToolStripMenuItem.Click += new System.EventHandler(this.插入一项ToolStripMenuItem_Click);
             // 
             // EditScriptFrom
             // 

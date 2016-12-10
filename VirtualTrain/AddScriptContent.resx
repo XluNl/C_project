@@ -179,40 +179,40 @@
   <data name="&gt;&gt;comboBox1.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="comboBox2.Items" xml:space="preserve">
+  <data name="jolesBOX.Items" xml:space="preserve">
     <value>电务公长</value>
   </data>
-  <data name="comboBox2.Items1" xml:space="preserve">
+  <data name="jolesBOX.Items1" xml:space="preserve">
     <value>公务公长</value>
   </data>
-  <data name="comboBox2.Items2" xml:space="preserve">
+  <data name="jolesBOX.Items2" xml:space="preserve">
     <value>车务值班员</value>
   </data>
-  <data name="comboBox2.Items3" xml:space="preserve">
+  <data name="jolesBOX.Items3" xml:space="preserve">
     <value>电务值班员</value>
   </data>
-  <data name="comboBox2.Items4" xml:space="preserve">
+  <data name="jolesBOX.Items4" xml:space="preserve">
     <value>调度员</value>
   </data>
-  <data name="comboBox2.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="jolesBOX.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 87</value>
   </data>
-  <data name="comboBox2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="jolesBOX.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 20</value>
   </data>
-  <data name="comboBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="jolesBOX.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;comboBox2.Name" xml:space="preserve">
-    <value>comboBox2</value>
+  <data name="&gt;&gt;jolesBOX.Name" xml:space="preserve">
+    <value>jolesBOX</value>
   </data>
-  <data name="&gt;&gt;comboBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;jolesBOX.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;jolesBOX.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;comboBox2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;jolesBOX.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
