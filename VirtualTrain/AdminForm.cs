@@ -159,15 +159,6 @@ namespace VirtualTrain
             tabControl1.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            AddScript addScript = new AddScript();
-            addScript.Call = creatScript; ;
-            // 创建脚本面板
-            addScript.ShowDialog();
-        }
-
-
         #region 角色编辑面板
         private void btn_r_update_Click(object sender, EventArgs e)
         {
