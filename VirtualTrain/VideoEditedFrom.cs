@@ -92,6 +92,7 @@ namespace VirtualTrain
                 else
                 {
                     vid = value.id;
+                    url = value.url;
                     axwmp.URL = v_path + @"\" + value.url;
                     //根据Video对象的值，设置相应控件
                     txtName.Text = value.name;
