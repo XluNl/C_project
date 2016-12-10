@@ -117,6 +117,8 @@ namespace VirtualTrain
                     {
                         generatePicBox(fileName);
                     }
+                    //在当前currentOption添加addbox
+                    generateAddBox((currentOption % 5) * (100 + space) + initX, (currentOption > 4 ? 1 : 0) * (100 + vspace) + initY);
                     string[] answers = value.answer.Split(',');
                     List<string> answerList = new List<string>(answers);
                     foreach (Control con in gb.Controls)
@@ -173,7 +175,7 @@ namespace VirtualTrain
         {
             PictureBox pic = new PictureBox();
             pic.Tag = optionList[currentOption];
-            currentOption++;
+          
             pic.Load(i_path + @"\" + fileName);
             pic.Width = 100;
             pic.Height = 100;
@@ -182,6 +184,7 @@ namespace VirtualTrain
             pic.Click += new EventHandler(pic_Click);
             gb.Controls.Add(pic);
             pic.Location = new Point((currentOption % 5) * (pic.Width + space) + initX, (currentOption > 4 ? 1 : 0) * (pic.Height + vspace) + initY);
+            currentOption++;
             generateCheckBox(pic.Tag.ToString(), pic.Location);
         }
 

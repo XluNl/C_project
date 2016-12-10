@@ -41,7 +41,16 @@ namespace VirtualTrain
                     return;
                 }
                 url = Path.GetFileName(file.FileName);
-                axwmp.URL = file.FileName;
+                try
+                {
+                    axwmp.URL = file.FileName;
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
+              
             }
         }
 
