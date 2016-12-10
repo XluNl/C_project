@@ -68,9 +68,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.dgvvideo = new System.Windows.Forms.DataGridView();
-            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -94,6 +91,9 @@
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -465,28 +465,6 @@
             this.dgvvideo.Size = new System.Drawing.Size(399, 198);
             this.dgvvideo.TabIndex = 4;
             // 
-            // v_id
-            // 
-            this.v_id.DataPropertyName = "id";
-            this.v_id.HeaderText = "id";
-            this.v_id.Name = "v_id";
-            this.v_id.ReadOnly = true;
-            this.v_id.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "name";
-            this.Column7.HeaderText = "名称";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "name1";
-            this.Column8.HeaderText = "专业";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.button12);
@@ -740,32 +718,54 @@
             this.编辑ToolStripMenuItem,
             this.删除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 70);
             // 
             // 修改ToolStripMenuItem
             // 
             this.修改ToolStripMenuItem.Name = "修改ToolStripMenuItem";
-            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.修改ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.修改ToolStripMenuItem.Text = "修改";
             this.修改ToolStripMenuItem.Click += new System.EventHandler(this.修改ToolStripMenuItem_Click);
             // 
             // 编辑ToolStripMenuItem
             // 
             this.编辑ToolStripMenuItem.Name = "编辑ToolStripMenuItem";
-            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.编辑ToolStripMenuItem.Text = "添加任务";
+            this.编辑ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.编辑ToolStripMenuItem.Text = "编辑";
             this.编辑ToolStripMenuItem.Click += new System.EventHandler(this.编辑ToolStripMenuItem_Click);
             // 
             // 删除ToolStripMenuItem
             // 
             this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
-            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.删除ToolStripMenuItem.Text = "删除";
             this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
             // 
             // toolTip1
             // 
             this.toolTip1.ToolTipTitle = "点击";
+            // 
+            // v_id
+            // 
+            this.v_id.DataPropertyName = "id";
+            this.v_id.HeaderText = "id";
+            this.v_id.Name = "v_id";
+            this.v_id.ReadOnly = true;
+            this.v_id.Visible = false;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "question";
+            this.Column7.HeaderText = "名称";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "name";
+            this.Column8.HeaderText = "专业";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // AdminForm
             // 
@@ -853,11 +853,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn v_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn r_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn v_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
     }
 }

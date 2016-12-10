@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -94,8 +94,8 @@ namespace VirtualTrain
             i_dialog.Owner = this;
             show_img_Questions();
             //视频列表初始化
-            v_dialog = new VideoEditedFrom();
-            v_dialog.Owner = this;
+            //v_dialog = new VideoEditedFrom();
+            //v_dialog.Owner = this;
             show_video();
             //角色列表初始化
             r_dialog = new AddRoleFrom();
@@ -109,7 +109,7 @@ namespace VirtualTrain
         private void show_text_Questions()
         {
             DBHelper db = new DBHelper();
-            string sql = "select a.id,a.question,a.answer,b.name from game_questions a,majors b where a.majorId=b.id and a.type='false'";
+            string sql = "select a.id,a.question,a.answer,b.name from game_questions a,majors b where a.majorId=b.id and a.type=0";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
             dgvText.DataSource = dt;
@@ -121,7 +121,7 @@ namespace VirtualTrain
         private void show_img_Questions()
         {
             DBHelper db = new DBHelper();
-            string sql = "select a.id,a.question,a.answer,b.name from game_questions a,majors b where a.majorId=b.id and a.type='true'";
+            string sql = "select a.id,a.question,a.answer,b.name from game_questions a,majors b where a.majorId=b.id and a.type=1";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
             dgvimg.DataSource = dt;
@@ -133,7 +133,7 @@ namespace VirtualTrain
         private void show_video()
         {
             DBHelper db = new DBHelper();
-            string sql = "select a.id,a.name,b.name from game_videos a,majors b where a.majorId=b.id ";
+            string sql = "select a.id,a.question,b.name from game_questions a,majors b where a.majorId=b.id and a.type=2";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
             dgvvideo.DataSource = dt;
@@ -159,6 +159,13 @@ namespace VirtualTrain
             tabControl1.Show();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            AddScript addScript = new AddScript();
+            addScript.Call = creatScript; ;
+            // 创建脚本面板
+            addScript.ShowDialog();
+        }
 
 
         #region 角色编辑面板
@@ -365,7 +372,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type='false',OptionA=" + (question.optionA == null ? "null" : "'" + question.optionA + "'") + ",OptionB=" + (question.optionB == null ? "null" : "'" + question.optionB + "'") + ",OptionC=" + (question.optionC == null ? "null" : "'" + question.optionC + "'") + ",OptionD=" + (question.optionD == null ? "null" : "'" + question.optionD + "'") + " where id=" + question.id;
+                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type=0,OptionA=" + (question.optionA == null ? "null" : "'" + question.optionA + "'") + ",OptionB=" + (question.optionB == null ? "null" : "'" + question.optionB + "'") + ",OptionC=" + (question.optionC == null ? "null" : "'" + question.optionC + "'") + ",OptionD=" + (question.optionD == null ? "null" : "'" + question.optionD + "'") + " where id=" + question.id;
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -442,7 +449,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",'false'," + (question.optionA == null ? "null" : "'" + question.optionA + "'") + "," + (question.optionB == null ? "null" : "'" + question.optionB + "'") + "," + (question.optionC == null ? "null" : "'" + question.optionC + "'") + "," + (question.optionD == null ? "null" : "'" + question.optionD + "'") + ",null)";
+                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",0," + (question.optionA == null ? "null" : "'" + question.optionA + "'") + "," + (question.optionB == null ? "null" : "'" + question.optionB + "'") + "," + (question.optionC == null ? "null" : "'" + question.optionC + "'") + "," + (question.optionD == null ? "null" : "'" + question.optionD + "'") + ",null,null,null)";
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -480,7 +487,7 @@ namespace VirtualTrain
             question.answer = currentRow.Cells[2].Value.ToString();
             question.major = currentRow.Cells[3].Value.ToString();
             DBHelper db = new DBHelper();
-            string sql = "select multiOption from game_questions where id=" + question.id;
+            string sql = "select fileName from game_questions where id=" + question.id;
             try
             {
                 DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -488,7 +495,7 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        //question.multiOption = (reader["multiOption"] == null ? "" : reader["multiOption"].ToString());
+                        question.multiOption = string2list((reader["fileName"] == null ? "" : reader["fileName"].ToString()));
                     }
                 }
             }
@@ -496,14 +503,6 @@ namespace VirtualTrain
             {
                 throw ex;
             }
-            //设置图片字典数据
-            //Dictionary<string, string> target_source = new Dictionary<string, string>();
-            //foreach (string str in question.multiOption.Split(','))
-            //{
-            //    target_source.Add(str, i_path + question.id + str + ".jpg");
-            //}
-
-            //i_dialog.dictionary = new Dictionary<string, string>(target_source);
 
             //设置对话框的题目数据
             i_dialog.question = question;
@@ -517,17 +516,6 @@ namespace VirtualTrain
                 {
                     return;
                 }
-                //判断图片是否更改
-                Dictionary<string, string> updateDict = new Dictionary<string, string>();
-                //foreach (string item in i_dialog.dictionary.Keys)
-                //{
-                //    if (!target_source.ContainsKey(item) || target_source[item] != i_dialog.dictionary[item])
-                //    {
-                //        updateDict.Add(item, i_dialog.dictionary[item]);
-                //    }
-                //}
-
-                copyImg(updateDict, question.id);
                 show_img_Questions();
             }
         }
@@ -543,7 +531,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type='true',multiOption=" + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + " where id=" + question.id;
+                string sql = "update game_questions set question='" + question.question + "',answer='" + question.answer + "',majorId=" + UserInfoForm.getMajorIdByMajor(question.major) + ",type=1,fileName=" + (question.multiOption == null ? "null" : "'" + list2string(question.multiOption) + "'") + " where id=" + question.id;
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -604,7 +592,6 @@ namespace VirtualTrain
                 {
                     return;
                 }
-                //copyImg(i_dialog.dictionary, QuestionInfoForm.getIdByQuestion(i_dialog.question.question));
                 show_img_Questions();
             }
         }
@@ -620,7 +607,7 @@ namespace VirtualTrain
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",'true',null,null,null,null," + (question.multiOption == null ? "null" : "'" + question.multiOption + "'") + ")";
+                string sql = "insert into game_questions values('" + question.question + "','" + question.answer + "'," + UserInfoForm.getMajorIdByMajor(question.major) + ",1,null,null,null,null," + (question.multiOption == null ? "null" : "'" + list2string(question.multiOption) + "'") + ",null,null)";
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -635,19 +622,6 @@ namespace VirtualTrain
         }
 
 
-        private static string i_path = Application.StartupPath + img_path;
-        //复制图片到服务器指定目录
-        private void copyImg(Dictionary<string, string> target_source, int id)
-        {
-            if (!Directory.Exists(i_path))
-            {
-                Directory.CreateDirectory(i_path);
-            }
-            foreach (KeyValuePair<string, string> pair in target_source)
-            {
-                File.Copy(pair.Value, i_path + id + pair.Key + ".jpg", true);
-            }
-        }
 
         #endregion
 
@@ -672,9 +646,8 @@ namespace VirtualTrain
             video.id = Convert.ToInt32(currentRow.Cells[0].Value);
             video.name = currentRow.Cells[1].Value.ToString();
             video.major = currentRow.Cells[2].Value.ToString();
-            video.url = v_path + video.id + ".wmv";
             DBHelper db = new DBHelper();
-            string sql = "select startTime,endTime from game_videos where id=" + video.id;
+            string sql = "select startTime,endTime,fileName from game_questions where id=" + video.id;
             try
             {
                 DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -682,8 +655,9 @@ namespace VirtualTrain
                 {
                     if (reader.Read())
                     {
-                        //video.startTime = (reader["startTime"] == null ? "" : reader["startTime"].ToString());
-                        //video.endTime = (reader["endTime"] == null ? "" : reader["endTime"].ToString());
+                        video.startTime = float.Parse(reader["startTime"].ToString());
+                        video.endTime = float.Parse(reader["endTime"].ToString());
+                        video.url = reader["fileName"].ToString();
                     }
                 }
             }
@@ -691,9 +665,9 @@ namespace VirtualTrain
             {
                 throw ex;
             }
+            v_dialog = new VideoEditedFrom();
             //设置对话框的题目数据
             v_dialog.video = video;
-            string tempUrl = video.url;
 
             //显示对话框
             if (v_dialog.ShowDialog() == DialogResult.OK)
@@ -703,11 +677,6 @@ namespace VirtualTrain
                 {
                     return;
                 }
-                //判断视频是否更改
-                if (tempUrl != v_dialog.video.url)
-                {
-                    copyVideo(v_dialog.video, -1);
-                }
                 show_video();
             }
         }
@@ -716,14 +685,14 @@ namespace VirtualTrain
         public int update_video(Video video)
         {
             int result = 0;
-            if (checkTable(video.name, video.id, "game_videos", "name"))
+            if (checkTable(video.name, video.id, "game_questions", "question"))
             {
                 MessageBox.Show("存在相同项目，请更改！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "update game_videos set name='" + video.name + "',startTime='" + video.startTime + "',endTime='" + video.endTime + "',majorId=" + UserInfoForm.getMajorIdByMajor(video.major) + " where id=" + video.id;
+                string sql = "update game_questions set question='" + video.name + "',startTime='" + video.startTime + "',endTime='" + video.endTime + "',majorId=" + UserInfoForm.getMajorIdByMajor(video.major) + ",fileName='" + video.url + "' where id=" + video.id;
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -755,7 +724,7 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvvideo.Rows[dgvvideo.SelectedRows[i].Index].Cells[0].Value);
-                        String strDelete = "delete from game_videos where id=" + id;
+                        String strDelete = "delete from game_questions where id=" + id;
                         array[i] = strDelete;
                     }
                     //遍历数组
@@ -775,6 +744,7 @@ namespace VirtualTrain
 
         private void btn_v_Add_Click(object sender, EventArgs e)
         {
+            v_dialog = new VideoEditedFrom();
             //清空题目信息对话框的数据
             v_dialog.video = null;
             //如果在对话框中选择了“确定”，则根据输入信息添加
@@ -784,7 +754,6 @@ namespace VirtualTrain
                 {
                     return;
                 }
-                copyVideo(v_dialog.video, GameHelper.getIdByVideo(v_dialog.video.name));
                 show_video();
             }
         }
@@ -793,14 +762,14 @@ namespace VirtualTrain
         public int add_video(Video video)
         {
             int result = 0;
-            if (checkTable(video.name, "game_videos", "name"))
+            if (checkTable(video.name, "game_questions", "question"))
             {
                 MessageBox.Show("此项目已存在！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
                 DBHelper db = new DBHelper();
-                string sql = "insert into game_videos values('" + video.name + "','" + video.startTime + "','" + video.endTime + "'," + UserInfoForm.getMajorIdByMajor(video.major) + ")";
+                string sql = "insert into game_questions values('" + video.name + "',null," + UserInfoForm.getMajorIdByMajor(video.major) + ",2,null,null,null,null,'" + video.url + "'," + video.startTime + "," + video.endTime + ")";
                 try
                 {
                     DbCommand cmd = db.GetSqlStringCommand(sql);
@@ -812,33 +781,6 @@ namespace VirtualTrain
                 }
             }
             return result;
-        }
-        private static string v_path = Application.StartupPath + video_path;
-        //复制视频到服务器指定目录
-        private void copyVideo(Video video, int id)
-        {
-
-            if (!Directory.Exists(v_path))
-            {
-                Directory.CreateDirectory(v_path);
-            }
-            try
-            {
-                if (id == -1)
-                {
-                    File.Copy(video.url, v_path + video.id + ".wmv", true);
-                }
-                else
-                {
-                    File.Copy(video.url, v_path + id + ".wmv", true);
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
         }
 
         #endregion
@@ -901,6 +843,29 @@ namespace VirtualTrain
             {
                 throw ex;
             }
+        }
+
+        private string list2string(List<string> list)
+        {
+            string result = "";
+            foreach (string str in list)
+            {
+                result += (str + ",");
+            }
+            result = result.Substring(0, result.Length - 1);
+            return result;
+
+        }
+
+        private List<string> string2list(string strs)
+        {
+            List<string> list = new List<string>();
+            foreach (string str in strs.Split(','))
+            {
+                list.Add(str);
+            }
+            return list;
+
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
