@@ -110,16 +110,18 @@ namespace VirtualTrain.common
        /// 删除场景（分两步1、删除场景。2、删除场景对应的角色、3、删除场景对应的任务流）
        /// </summary>
        /// <param name="id"></param>
-        public bool delectSenceWithID(int id) {
+        public bool delectSenceWithID(int scencid) {
 
-            string sql = "delete from dbo.VR_scenc where id="+id;
+            string sql = "delete from dbo.VR_scenc where id=" + scencid;
 
-            // 场景删除成功
+            // 3、场景删除成功
             bool isnot = SQLHelper.ExecuteNonQuery(sql) > 0;
             if (isnot)
             {
-                //第2步删除场景对应角色
-                //第3步删除场景对应的任
+                //2、删除场景对应角色
+                string sql_role = "delete from VR_scenc_roleId where scenc_Id ="+scencid;
+                //1、步删除场景对应的任务
+                string sql_task = "delete from task where Senceid ="+scencid;
             }
             return isnot;
         }
