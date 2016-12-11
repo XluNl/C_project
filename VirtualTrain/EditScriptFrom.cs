@@ -76,18 +76,11 @@ namespace VirtualTrain
                 foreach (TaskModel str in this.ListTask_pub)
                 {
                     i++;
+                    // 获取每条任务
+                    str.Taskname = DAL.getOneResourcesWithId(str.Taskid).Question;
                     this.creatRW(str,i);
                 }
             }
-        }
-        /// <summary>
-        /// 点击添加按钮 添加一条任务
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void addRW(object sender, EventArgs e)
-        {
-            loadAddScriptContent(0);
         }
 
         /// <summary>
@@ -197,7 +190,15 @@ namespace VirtualTrain
             }
 
         }
-
+        /// <summary>
+        /// 点击添加按钮 添加一条任务
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addRW(object sender, EventArgs e)
+        {
+            loadAddScriptContent(0);
+        }
         /// <summary>
         /// 修改任务
         /// </summary>
