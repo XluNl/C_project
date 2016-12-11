@@ -159,25 +159,6 @@ namespace VirtualTrain
             tabControl1.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            AddScript addScript = new AddScript();
-            addScript.Call = creatScript; ;
-            // 创建脚本面板
-            addScript.ShowDialog();
-        }
-
-        private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
         #region 角色编辑面板
         private void btn_r_update_Click(object sender, EventArgs e)
         {
@@ -878,24 +859,56 @@ namespace VirtualTrain
 
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private List<script> allScene;
+
+        public List<script> AllScene
+        {
+            get { return allScene; }
+            set { allScene = value; }
+        }
+        
         /// <summary>
         /// 初始化记载全部场景
         /// </summary>
-        public void getAllSence()
-        {
+        public void getAllSence() {
 
             ScriptDAL scrDAL = new ScriptDAL();
-            List<script> scp = scrDAL.getAllSence();
+            this.allScene = scrDAL.getAllSence();
 
-            foreach (script scr in scp)
+            foreach (script scr in this.allScene)
             {
-
-                this.creatScript(scr, scr.Id);
+                this.creatScript(scr,scr.Id);
             }
         }
+        /// <summary>
+        /// 点击添加按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            loadSenceEditFrom(0);
+        }
 
+        /// <summary>
+        /// 调用修改场景的面板
+        /// </summary>
+        /// <param name="tg">0表示添加、1表示修改</param>
+        private void loadSenceEditFrom(int tg)
+        {
+            AddScript addScript = new AddScript();
+            addScript.Call = creatScript;
+            addScript.Tg = tg;
+            if(tg==1){//修改，传过去场景id
+                script sc = (script)this.contextMenuStrip1.Tag;
+                addScript.Scenc = sc;
+            }
+            // 创建脚本面板
+            addScript.ShowDialog(); 
+        }
         /// <summary>
         /// 创建脚本UI展示
         /// </summary>
@@ -905,27 +918,26 @@ namespace VirtualTrain
         {
 
             int btn_H = 30;
-            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.5);
+            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
             int org = 10;
             int org_Y = org;
-            int org_X = Convert.ToInt32(btn_W * 0.48);
+            int org_X =(this.panel2.Size.Width - btn_W)/2;
 
             int count = this.panel2.Controls.Count;
-            if (count > 0)
-            {
-                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H + org;
+            if(count>0){
+                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
             }
-            Button btn = new Button();
-            btn.MouseDown += MouseDown;
-            btn.Width = btn_W;
-            btn.Height = btn_H;
-            btn.Location = new Point(org_X, org_Y);
-            btn.Tag = senceid;
-            btn.Text = "scencID=" + btn.Tag + "    " + scp.Scencname;
-            this.contextMenuStrip1.Tag = btn.Tag;
-            btn.ContextMenuStrip = this.contextMenuStrip1;
-            this.panel2.Controls.Add(btn);
-            this.panel2.AutoScroll = true;
+                Button btn = new Button();
+                btn.MouseDown += MouseDown;
+                btn.Width = btn_W;
+                btn.Height = btn_H;
+                btn.Location = new Point(org_X, org_Y);
+                btn.Tag = scp;//直接将模型给tag
+                btn.Text = "scencID=" + senceid + "    " + scp.Scencname;
+                //this.contextMenuStrip1.Tag = btn.Tag;
+                btn.ContextMenuStrip = this.contextMenuStrip1;
+                this.panel2.Controls.Add(btn);
+                this.panel2.AutoScroll = true;
         }
 
         /// <summary>
@@ -935,23 +947,27 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem btn = (ToolStripMenuItem)sender;
-            int id = (int)btn.GetCurrentParent().Tag;
+            //ToolStripMenuItem btn = (ToolStripMenuItem)sender;
+            //int id = (int)btn.GetCurrentParent().Tag;
+            script sc = (script)this.contextMenuStrip1.Tag;
             ScriptDAL scrDAL = new ScriptDAL();
-            if (scrDAL.delectSenceWithID(id))
-            {
+            if (scrDAL.delectSenceWithID(sc.Id)){
                 // 刷新
                 this.panel2.Controls.Clear();
                 this.getAllSence();
             }
         }
 
+        /// <summary>
+        /// 右键的时候 将对应的id赋值给ContextMenuStrip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseDown(object sender, MouseEventArgs e)
-        {
+        { 
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 Button btn = (Button)sender;
-                int tt = (int)btn.Tag;
                 btn.ContextMenuStrip.Tag = btn.Tag;
             }
 
@@ -959,15 +975,29 @@ namespace VirtualTrain
 
 
         /// <summary>
-        /// 编辑场景
+        /// 为场景添加任务
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void 编辑ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            script sc = (script)this.contextMenuStrip1.Tag;
             EditScriptFrom edit = new EditScriptFrom();
+            edit.Senceid = sc.Id;
             edit.ShowDialog();
         }
 
+        /// <summary>
+        /// 修改场景配置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void 修改ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadSenceEditFrom(1);
+
+        }
+
+        
     }
 }

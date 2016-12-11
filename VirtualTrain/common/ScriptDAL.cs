@@ -44,6 +44,32 @@ namespace VirtualTrain.common
             return sc;
         }
 
+       /// <summary>
+       /// 获取场景 的全部角色
+       /// </summary>
+       /// <param name="scid"></param>
+       /// <returns></returns>
+        public List<script> getAllScencRoleWithScencid(int scid) {
+
+            List<script> list = new List<script>();
+            string sql = "select *from VR_scenc_roleId where scenc_Id =" + scid;
+           
+            DataTable tabel = SQLHelper.ExecuteTable(sql);
+
+            foreach (DataRow row in tabel.Rows)
+            {
+                list.Add(roleWitnRow(row));
+            }
+            return list;
+        }
+
+        private script roleWitnRow(DataRow row)
+        {
+            script role = new script();
+            role.Id = Convert.ToInt32(row["scenc_Id"]);
+            role.Screncscriptid = Convert.ToInt32(row["role_Id"]);
+            return role;
+        }
 
         /// <summary>
         /// 添加场景
@@ -76,6 +102,40 @@ namespace VirtualTrain.common
             return num > 0;
         }
 
+       /// <summary>
+       /// 修改场景信息
+       /// </summary>
+       /// <param name="sc">场景信息</param>
+       /// <param name="roles">场景下面所有的任务</param>
+       /// <returns></returns>
+        public void editSenceWith(script sc,List<script> roles) { 
+        
+            // 1、第一步修改场景的信息（名称，和是否多人）
+            string sql = "update VR_scenc set scenc_name =@scenc_name,scene_isonline=@scene_isonline where id=@id;";
+            SqlParameter[] pss = { 
+                                new SqlParameter("@scenc_name",sc.Scencname),
+                                new SqlParameter("@scene_isonline",sc.Isonline),
+                                new SqlParameter("@id",sc.Id)
+                                };
+            SQLHelper.ExecuteNonQuery(sql, pss);
+            // 2、将场景修改后的角色，更新到数据库（先删除所有，再添加）
+ 
+                //01、先删除全部
+                string sql_sc = " delete from VR_scenc_roleId where scenc_Id="+sc.Id;
+                SQLHelper.ExecuteNonQuery(sql_sc);
+                
+                //02、再添加
+                foreach (script ro in roles)
+                {
+                string ss = "insert VR_scenc_roleId(role_Id,scenc_Id) values(@role_Id,@scenc_Id)";
+                    SqlParameter[] sp = { 
+                                new SqlParameter("@role_Id",ro.Screncscriptid),
+                                new SqlParameter("@scenc_Id",sc.Id)
+                                };
+                    SQLHelper.ExecuteNonQuery(ss, sp);
+                }
+
+        }
 
        /// <summary>
        /// 获取全部场景
@@ -102,6 +162,7 @@ namespace VirtualTrain.common
             script sp = new script();
             sp.Id = Convert.ToInt32(scp["id"]);
             sp.Scencname = scp["scenc_name"].ToString();
+            sp.Isonline = Convert.ToInt32(scp["scene_isonline"]);
             return sp;
         }
 
@@ -126,5 +187,19 @@ namespace VirtualTrain.common
             return isnot;
         }
 
+        public bool checkRoleOnScencIsNotWith(int scencid,int roleid) {
+
+            string sql = "select COUNT(*) from task where Senceid =@Senceid and Taskroleid =@Taskroleid";
+
+            SqlParameter[] sp = { 
+                                new SqlParameter("@Senceid",scencid),
+                                new SqlParameter("@Taskroleid",roleid),
+                                };
+
+            int num =  (int)SQLHelper.ExecuteScalar(sql,sp);
+
+            return num > 0;
+
+        }
     }
 }

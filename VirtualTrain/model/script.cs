@@ -35,7 +35,9 @@ namespace VirtualTrain.model
             set { _scencname = value; }
         }
 
-        // 
+///////////////////////////////////////////////////////////////////////////////////////
+       // 将场景 和角色的中间表字段，合并到角色下面
+       //角色对应的ID
         private int _screncscriptid;
 
         public int Screncscriptid
@@ -43,6 +45,8 @@ namespace VirtualTrain.model
             get { return _screncscriptid; }
             set { _screncscriptid = value; }
         }
+
+       // 角色对应的名称
         private string _screncscriptname;
 
         public string Screncscriptname
