@@ -100,6 +100,7 @@
     <Compile Include="common\AutoSetQuestionHelper.cs" />
     <Compile Include="common\DBHelper.cs" />
     <Compile Include="common\ExamHelper.cs" />
+    <Compile Include="common\ResouresDAL.cs" />
     <Compile Include="common\ScriptDAL.cs" />
     <Compile Include="common\SQLHelper.cs" />
     <Compile Include="common\TaskDAL.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="model\Mission.cs" />
     <Compile Include="model\Paper.cs" />
     <Compile Include="model\Question.cs" />
+    <Compile Include="model\ResouresModel.cs" />
     <Compile Include="model\Role.cs" />
     <Compile Include="model\script.cs" />
     <Compile Include="model\TaskModel.cs" />

@@ -14,6 +14,8 @@ namespace VirtualTrain
     {
 
         TaskDAL dal = new TaskDAL();
+
+
         List<Role> listrole = new List<Role>();
        
         private Call _call;
@@ -49,12 +51,23 @@ namespace VirtualTrain
             get { return _taskmode; }
             set { _taskmode = value; }
         }
+
+
+        // 修改时 保存选中的任务id
+        private int curSelectTaskid;
+
+        public int CurSelectTaskid
+        {
+            get { return curSelectTaskid; }
+            set { curSelectTaskid = value; }
+        }
         public AddScriptContent()
         {
             InitializeComponent();
         }
 
 
+        ResouresDAL resDAL = new ResouresDAL();
         /// <summary>
         /// 点击确定 添加按钮
         /// </summary>
@@ -62,8 +75,8 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            
             // 组织一条任务
-            int taskid = 20;
             // 获取角色id
             int roleID = this.jolesBOX.SelectedIndex;
             Role ro = listrole[roleID];
@@ -71,19 +84,27 @@ namespace VirtualTrain
             //1、通知主编及面板创建一个任务的模型、将任务ID传过去,将任务对应的角色编号传过去
             if (this.Tag1 == 1) {//修改
                 this.Taskmode.Taskroleid = ro.id;
-                this.Taskmode.Taskid = taskid;
                 this.Taskmode.Senceid = this.Senceid;
+                if (this.curSelectTaskid>1)
+                {
+                    this.Taskmode.Taskid = this.curSelectTaskid;
+                }
                 this.Call(this.Taskmode, this.Tag1);
             }else { //添加、插入
-                TaskModel task = new TaskModel();
-                task.Taskid = taskid;
-                task.Taskroleid = ro.id;
-                task.Senceid = this.Senceid;
-                this.Call(task, this.Tag1);
+                // 判断用户是否选择资源
+                if (this.curSelectTaskid < 1)//添加
+                {
+                    MessageBox.Show("请选择一条任务");
+                    return;
+                }
+                TaskModel taskmo = new TaskModel();
+                taskmo.Senceid = this.Senceid;
+                taskmo.Taskroleid = ro.id;
+                taskmo.Taskid = this.curSelectTaskid;
+                this.Call(taskmo, this.Tag1);
             }
-
             
-            this.Close();
+           this.Close();
         }
 
         /// <summary>
@@ -104,14 +125,13 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void AddScriptContent_Load(object sender, EventArgs e)
         {
-            List<Role> roles = dal.getAllRoleWithSenceID(this.Senceid);
-
             //将信息保存
-            this.listrole = roles;
+            this.listrole = dal.getAllRoleWithSenceID(this.Senceid);
+
             this.jolesBOX.Items.Clear();
             this.jolesBOX.SelectedValueChanged += ValueChanged;
             int index = 0;
-            foreach (Role ro in roles)
+            foreach (Role ro in listrole)
             {
                 this.jolesBOX.Items.Add(ro.name);
 
@@ -125,8 +145,23 @@ namespace VirtualTrain
                 index++;
             }
 
-            // 说明是修改，付默认值
+            // 2、加载资源数据
+            this.dataGridView1.DataSource = resDAL.getAllResources();
+            this.dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
            
+        }
+
+        void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            
+            int selecttaskid = (int)this.dataGridView1.Rows[this.dataGridView1.CurrentRow.Index].Cells[0].Value;
+
+            this.curSelectTaskid= selecttaskid;
+
+            if (this.dataGridView1.Rows[this.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString() == "")
+            {
+                MessageBox.Show("请选择一项进行删除");
+            } 
         }
 
         /// <summary>

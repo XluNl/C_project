@@ -138,6 +138,22 @@ namespace VirtualTrain.common
            rol.name = row["name"].ToString();
            return rol;
        }
-       
+
+       /// <summary>
+       /// 根据场景任务 表 获得任务
+       /// </summary>
+       /// <param name="resid"></param>
+       /// <returns></returns>
+       public ResouresModel getOneResourcesWithId(int resid)
+       {
+           string sq = "select *from game_questions where id =" + resid;
+           DataTable table = SQLHelper.ExecuteTable(sq);
+
+           // 取一个，正常情况下也只有一个
+           ResouresModel res = new ResouresModel();
+           res.Question = table.Rows[0]["question"].ToString();
+
+           return res;
+       }
     }
 }
