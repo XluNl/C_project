@@ -71,6 +71,9 @@
             this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -94,15 +97,6 @@
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-<<<<<<< HEAD
-            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
->>>>>>> origin/master
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -256,10 +250,10 @@
             // 
             // button4
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button4.Location = new System.Drawing.Point(324, 217);
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(356, 210);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(90, 30);
             this.button4.TabIndex = 11;
             this.button4.Text = "修改";
             this.button4.UseVisualStyleBackColor = true;
@@ -267,10 +261,10 @@
             // 
             // button5
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button5.Location = new System.Drawing.Point(189, 217);
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(236, 210);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(90, 30);
             this.button5.TabIndex = 10;
             this.button5.Text = "删除";
             this.button5.UseVisualStyleBackColor = true;
@@ -278,10 +272,10 @@
             // 
             // button15
             // 
-            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button15.Location = new System.Drawing.Point(57, 217);
+            this.button15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button15.Location = new System.Drawing.Point(115, 210);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.Size = new System.Drawing.Size(90, 30);
             this.button15.TabIndex = 9;
             this.button15.Text = "添加";
             this.button15.UseVisualStyleBackColor = true;
@@ -332,7 +326,7 @@
             this.dgvRole.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRole.RowTemplate.Height = 23;
             this.dgvRole.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRole.Size = new System.Drawing.Size(443, 173);
+            this.dgvRole.Size = new System.Drawing.Size(443, 170);
             this.dgvRole.TabIndex = 8;
             // 
             // r_id
@@ -397,10 +391,10 @@
             // 
             // button9
             // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button9.Location = new System.Drawing.Point(284, 164);
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Location = new System.Drawing.Point(312, 158);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(93, 30);
+            this.button9.Size = new System.Drawing.Size(90, 30);
             this.button9.TabIndex = 7;
             this.button9.Text = "修改";
             this.button9.UseVisualStyleBackColor = true;
@@ -408,10 +402,10 @@
             // 
             // button10
             // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button10.Location = new System.Drawing.Point(156, 164);
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.Location = new System.Drawing.Point(196, 158);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(93, 30);
+            this.button10.Size = new System.Drawing.Size(90, 30);
             this.button10.TabIndex = 6;
             this.button10.Text = "删除";
             this.button10.UseVisualStyleBackColor = true;
@@ -419,10 +413,10 @@
             // 
             // button11
             // 
-            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button11.Location = new System.Drawing.Point(31, 164);
+            this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button11.Location = new System.Drawing.Point(83, 158);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(93, 30);
+            this.button11.Size = new System.Drawing.Size(90, 30);
             this.button11.TabIndex = 5;
             this.button11.Text = "添加";
             this.button11.UseVisualStyleBackColor = true;
@@ -434,6 +428,9 @@
             this.dgvvideo.AllowUserToDeleteRows = false;
             this.dgvvideo.AllowUserToResizeColumns = false;
             this.dgvvideo.AllowUserToResizeRows = false;
+            this.dgvvideo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvvideo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvvideo.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -460,7 +457,6 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvvideo.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvvideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvvideo.Location = new System.Drawing.Point(3, 3);
             this.dgvvideo.Name = "dgvvideo";
             this.dgvvideo.ReadOnly = true;
@@ -474,7 +470,7 @@
             this.dgvvideo.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvvideo.RowTemplate.Height = 23;
             this.dgvvideo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvvideo.Size = new System.Drawing.Size(399, 198);
+            this.dgvvideo.Size = new System.Drawing.Size(399, 140);
             this.dgvvideo.TabIndex = 4;
             // 
             // v_id
@@ -499,6 +495,27 @@
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
+            // fileName
+            // 
+            this.fileName.DataPropertyName = "fileName";
+            this.fileName.HeaderText = "文件名称";
+            this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
+            // 
+            // startTime
+            // 
+            this.startTime.DataPropertyName = "startTime";
+            this.startTime.HeaderText = "开始时间";
+            this.startTime.Name = "startTime";
+            this.startTime.ReadOnly = true;
+            // 
+            // endTime
+            // 
+            this.endTime.DataPropertyName = "endTime";
+            this.endTime.HeaderText = "结束时间";
+            this.endTime.Name = "endTime";
+            this.endTime.ReadOnly = true;
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.button12);
@@ -515,10 +532,10 @@
             // 
             // button12
             // 
-            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button12.Location = new System.Drawing.Point(323, 171);
+            this.button12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button12.Location = new System.Drawing.Point(312, 158);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.Size = new System.Drawing.Size(90, 30);
             this.button12.TabIndex = 7;
             this.button12.Text = "修改";
             this.button12.UseVisualStyleBackColor = true;
@@ -526,10 +543,10 @@
             // 
             // button13
             // 
-            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button13.Location = new System.Drawing.Point(188, 171);
+            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button13.Location = new System.Drawing.Point(198, 158);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.Size = new System.Drawing.Size(90, 30);
             this.button13.TabIndex = 6;
             this.button13.Text = "删除";
             this.button13.UseVisualStyleBackColor = true;
@@ -537,10 +554,10 @@
             // 
             // button14
             // 
-            this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button14.Location = new System.Drawing.Point(56, 171);
+            this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button14.Location = new System.Drawing.Point(85, 158);
             this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.Size = new System.Drawing.Size(90, 30);
             this.button14.TabIndex = 5;
             this.button14.Text = "添加";
             this.button14.UseVisualStyleBackColor = true;
@@ -552,6 +569,9 @@
             this.dgvimg.AllowUserToDeleteRows = false;
             this.dgvimg.AllowUserToResizeColumns = false;
             this.dgvimg.AllowUserToResizeRows = false;
+            this.dgvimg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvimg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvimg.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -576,7 +596,6 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvimg.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvimg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvimg.Location = new System.Drawing.Point(3, 3);
             this.dgvimg.Name = "dgvimg";
             this.dgvimg.ReadOnly = true;
@@ -590,7 +609,7 @@
             this.dgvimg.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvimg.RowTemplate.Height = 23;
             this.dgvimg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvimg.Size = new System.Drawing.Size(399, 198);
+            this.dgvimg.Size = new System.Drawing.Size(399, 143);
             this.dgvimg.TabIndex = 4;
             // 
             // i_id
@@ -638,10 +657,10 @@
             // 
             // button8
             // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button8.Location = new System.Drawing.Point(225, 175);
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.Location = new System.Drawing.Point(312, 156);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
+            this.button8.Size = new System.Drawing.Size(90, 30);
             this.button8.TabIndex = 1;
             this.button8.Text = "删除";
             this.button8.UseVisualStyleBackColor = true;
@@ -649,10 +668,10 @@
             // 
             // button7
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button7.Location = new System.Drawing.Point(127, 175);
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Location = new System.Drawing.Point(195, 156);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.Size = new System.Drawing.Size(90, 30);
             this.button7.TabIndex = 1;
             this.button7.Text = "修改";
             this.button7.UseVisualStyleBackColor = true;
@@ -660,10 +679,10 @@
             // 
             // button6
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button6.Location = new System.Drawing.Point(28, 175);
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(85, 156);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(90, 30);
             this.button6.TabIndex = 1;
             this.button6.Text = "添加";
             this.button6.UseVisualStyleBackColor = true;
@@ -675,6 +694,9 @@
             this.dgvText.AllowUserToDeleteRows = false;
             this.dgvText.AllowUserToResizeColumns = false;
             this.dgvText.AllowUserToResizeRows = false;
+            this.dgvText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvText.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvText.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -699,7 +721,6 @@
             dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvText.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dgvText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvText.Location = new System.Drawing.Point(3, 3);
             this.dgvText.Name = "dgvText";
             this.dgvText.ReadOnly = true;
@@ -713,7 +734,7 @@
             this.dgvText.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvText.RowTemplate.Height = 23;
             this.dgvText.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvText.Size = new System.Drawing.Size(399, 198);
+            this.dgvText.Size = new System.Drawing.Size(399, 140);
             this.dgvText.TabIndex = 0;
             // 
             // id
@@ -779,52 +800,6 @@
             // 
             this.toolTip1.ToolTipTitle = "点击";
             // 
-<<<<<<< HEAD
-            // v_id
-            // 
-            this.v_id.DataPropertyName = "id";
-            this.v_id.HeaderText = "id";
-            this.v_id.Name = "v_id";
-            this.v_id.ReadOnly = true;
-            this.v_id.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "question";
-            this.Column7.HeaderText = "名称";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "name";
-            this.Column8.HeaderText = "专业";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // fileName
-            // 
-            this.fileName.DataPropertyName = "fileName";
-            this.fileName.HeaderText = "文件名称";
-            this.fileName.Name = "fileName";
-            this.fileName.ReadOnly = true;
-            // 
-            // startTime
-            // 
-            this.startTime.DataPropertyName = "startTime";
-            this.startTime.HeaderText = "开始时间";
-            this.startTime.Name = "startTime";
-            this.startTime.ReadOnly = true;
-            // 
-            // endTime
-            // 
-            this.endTime.DataPropertyName = "endTime";
-            this.endTime.HeaderText = "结束时间";
-            this.endTime.Name = "endTime";
-            this.endTime.ReadOnly = true;
-            // 
-=======
->>>>>>> origin/master
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);

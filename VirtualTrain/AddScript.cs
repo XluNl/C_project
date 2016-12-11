@@ -202,7 +202,7 @@ namespace VirtualTrain
             script sc = new script();
             sc.Id = this.Scenc.Id;
             sc.Screncscriptid = ro.Id;
-            //1、bb为true 则要移除(移除则要，先查看数据库里面当前角色是否有在使用)
+            // 删除(移除则要，先查看数据库里面当前角色是否有在使用)
             if (!box.Checked)
             {
 
@@ -210,7 +210,6 @@ namespace VirtualTrain
                 {
                     foreach (script sp in this.ScRoles)
                     {
-
                         if (sp.Screncscriptid == sc.Screncscriptid)
                         {
                             this.ScRoles.Remove(sp);
