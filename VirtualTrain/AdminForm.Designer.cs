@@ -94,6 +94,9 @@
             this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -439,7 +442,10 @@
             this.dgvvideo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.v_id,
             this.Column7,
-            this.Column8});
+            this.Column8,
+            this.fileName,
+            this.startTime,
+            this.endTime});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -767,6 +773,27 @@
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
+            // fileName
+            // 
+            this.fileName.DataPropertyName = "fileName";
+            this.fileName.HeaderText = "文件名称";
+            this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
+            // 
+            // startTime
+            // 
+            this.startTime.DataPropertyName = "startTime";
+            this.startTime.HeaderText = "开始时间";
+            this.startTime.Name = "startTime";
+            this.startTime.ReadOnly = true;
+            // 
+            // endTime
+            // 
+            this.endTime.DataPropertyName = "endTime";
+            this.endTime.HeaderText = "结束时间";
+            this.endTime.Name = "endTime";
+            this.endTime.ReadOnly = true;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -859,5 +886,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn v_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn endTime;
     }
 }

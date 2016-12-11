@@ -47,10 +47,10 @@ namespace VirtualTrain
                 }
                 catch (Exception)
                 {
-                    
+
                     throw;
                 }
-              
+
             }
         }
 
@@ -69,7 +69,7 @@ namespace VirtualTrain
                 video.url = url;
                 video.name = txtName.Text;
                 video.startTime = float.Parse(txtStart.Tag.ToString());
-                video.endTime = float.Parse( txtEnd.Tag.ToString());
+                video.endTime = float.Parse(txtEnd.Tag.ToString());
 
 
                 video.major = cboMajors.Text.Trim();
@@ -96,9 +96,9 @@ namespace VirtualTrain
                     axwmp.URL = v_path + @"\" + value.url;
                     //根据Video对象的值，设置相应控件
                     txtName.Text = value.name;
-                    txtStart.Text = secondsToStr(value.startTime*1000);
+                    txtStart.Text = GameHelper.secondsToStr(value.startTime * 1000);
                     txtStart.Tag = value.startTime;
-                    txtEnd.Text = secondsToStr(value.endTime*1000);
+                    txtEnd.Text = GameHelper.secondsToStr(value.endTime * 1000);
                     txtEnd.Tag = value.endTime;
                     cboMajors.Text = value.major;
                 }
@@ -189,46 +189,6 @@ namespace VirtualTrain
             txtEnd.Tag = axwmp.Ctlcontrols.currentPosition;
         }
 
-        //秒的时间格式显示
-        public static String secondsToStr(double time)
-        {
-            String result = "";
-            int seconds = (int)(time / 1000);
-            //System.out.println("毫秒数:-->"+time+" 秒-->"+seconds);
-            int hour = 0;
-            int minute = 0;
-            int second = 0;
-            if (seconds > 60)
-            {
-                if (seconds > 3600)
-                {
-                    hour = seconds / 3600;
-                    minute = seconds % 3600 / 60;
-                    second = seconds % 3600 % 60 % 60;
-                }
-                else
-                {
-                    second = seconds % 60;
-                    minute = seconds / 60;
-                }
-            }
-            else
-            {
-                second = seconds;
-            }
-            result = parseStr(hour) + ":" + parseStr(minute) + ":"
-            + parseStr(second);
-            return result;
-        }
-
-        private static String parseStr(int time)
-        {
-            if (time >= 10)
-            {
-                return time + "";
-            }
-            return "0" + time;
-        }
 
         //private void axwmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         //{

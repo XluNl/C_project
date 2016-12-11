@@ -133,7 +133,7 @@ namespace VirtualTrain
         private void show_video()
         {
             DBHelper db = new DBHelper();
-            string sql = "select a.id,a.question,b.name from game_questions a,majors b where a.majorId=b.id and a.type=2";
+            string sql = "select a.id,a.question,a.fileName,a.startTime,a.endTime,b.name from game_questions a,majors b where a.majorId=b.id and a.type=2";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
             dgvvideo.DataSource = dt;
