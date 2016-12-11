@@ -136,9 +136,37 @@ namespace VirtualTrain
             string sql = "select a.id,a.question,a.fileName,a.startTime,a.endTime,b.name from game_questions a,majors b where a.majorId=b.id and a.type=2";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
-            dgvvideo.DataSource = dt;
+            dgvvideo.DataSource = UpdateDataTable(dt);
             dgvvideo.Columns[1].FillWeight = 40;
             dgvvideo.Columns[2].FillWeight = 30;
+        }
+
+        private DataTable UpdateDataTable(DataTable argDataTable)
+        {
+            DataTable dtResult = new DataTable();
+            //克隆表结构
+            dtResult = argDataTable.Clone();
+            foreach (DataColumn col in dtResult.Columns)
+            {
+                if (col.ColumnName == "startTime" || col.ColumnName == "endTime")
+                {
+                    //修改列类型
+                    col.DataType = typeof(String);
+                }
+            }
+            foreach (DataRow row in argDataTable.Rows)
+            {
+                DataRow rowNew = dtResult.NewRow();
+                rowNew["id"] = row["id"];
+                rowNew["question"] = row["question"];
+                rowNew["name"] = row["name"];
+                rowNew["fileName"] = row["fileName"];
+                //修改记录值
+                rowNew["startTime"] = GameHelper.secondsToStr(float.Parse(row["startTime"].ToString()) * 1000);
+                rowNew["endTime"] = GameHelper.secondsToStr(float.Parse(row["endTime"].ToString()) * 1000);
+                dtResult.Rows.Add(rowNew);
+            }
+            return dtResult;
         }
 
         private void show_role()
@@ -636,7 +664,7 @@ namespace VirtualTrain
             DataGridViewRow currentRow = dgvvideo.Rows[dgvvideo.SelectedRows[0].Index];
             video.id = Convert.ToInt32(currentRow.Cells[0].Value);
             video.name = currentRow.Cells[1].Value.ToString();
-            video.major = currentRow.Cells[2].Value.ToString();
+            video.major = currentRow.Cells[5].Value.ToString();
             DBHelper db = new DBHelper();
             string sql = "select startTime,endTime,fileName from game_questions where id=" + video.id;
             try
@@ -859,8 +887,8 @@ namespace VirtualTrain
 
         }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private List<script> allScene;
 
@@ -869,18 +897,19 @@ namespace VirtualTrain
             get { return allScene; }
             set { allScene = value; }
         }
-        
+
         /// <summary>
         /// 初始化记载全部场景
         /// </summary>
-        public void getAllSence() {
+        public void getAllSence()
+        {
 
             ScriptDAL scrDAL = new ScriptDAL();
             this.allScene = scrDAL.getAllSence();
 
             foreach (script scr in this.allScene)
             {
-                this.creatScript(scr,scr.Id);
+                this.creatScript(scr, scr.Id);
             }
         }
         /// <summary>
@@ -902,12 +931,13 @@ namespace VirtualTrain
             AddScript addScript = new AddScript();
             addScript.Call = creatScript;
             addScript.Tg = tg;
-            if(tg==1){//修改，传过去场景id
+            if (tg == 1)
+            {//修改，传过去场景id
                 script sc = (script)this.contextMenuStrip1.Tag;
                 addScript.Scenc = sc;
             }
             // 创建脚本面板
-            addScript.ShowDialog(); 
+            addScript.ShowDialog();
         }
         /// <summary>
         /// 创建脚本UI展示
@@ -921,23 +951,24 @@ namespace VirtualTrain
             int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
             int org = 10;
             int org_Y = org;
-            int org_X =(this.panel2.Size.Width - btn_W)/2;
+            int org_X = (this.panel2.Size.Width - btn_W) / 2;
 
             int count = this.panel2.Controls.Count;
-            if(count>0){
-                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
+            if (count > 0)
+            {
+                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H + org;
             }
-                Button btn = new Button();
-                btn.MouseDown += MouseDown;
-                btn.Width = btn_W;
-                btn.Height = btn_H;
-                btn.Location = new Point(org_X, org_Y);
-                btn.Tag = scp;//直接将模型给tag
-                btn.Text = "scencID=" + senceid + "    " + scp.Scencname;
-                //this.contextMenuStrip1.Tag = btn.Tag;
-                btn.ContextMenuStrip = this.contextMenuStrip1;
-                this.panel2.Controls.Add(btn);
-                this.panel2.AutoScroll = true;
+            Button btn = new Button();
+            btn.MouseDown += MouseDown;
+            btn.Width = btn_W;
+            btn.Height = btn_H;
+            btn.Location = new Point(org_X, org_Y);
+            btn.Tag = scp;//直接将模型给tag
+            btn.Text = "scencID=" + senceid + "    " + scp.Scencname;
+            //this.contextMenuStrip1.Tag = btn.Tag;
+            btn.ContextMenuStrip = this.contextMenuStrip1;
+            this.panel2.Controls.Add(btn);
+            this.panel2.AutoScroll = true;
         }
 
         /// <summary>
@@ -951,7 +982,8 @@ namespace VirtualTrain
             //int id = (int)btn.GetCurrentParent().Tag;
             script sc = (script)this.contextMenuStrip1.Tag;
             ScriptDAL scrDAL = new ScriptDAL();
-            if (scrDAL.delectSenceWithID(sc.Id)){
+            if (scrDAL.delectSenceWithID(sc.Id))
+            {
                 // 刷新
                 this.panel2.Controls.Clear();
                 this.getAllSence();
@@ -964,7 +996,7 @@ namespace VirtualTrain
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MouseDown(object sender, MouseEventArgs e)
-        { 
+        {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 Button btn = (Button)sender;
@@ -998,6 +1030,6 @@ namespace VirtualTrain
 
         }
 
-        
+
     }
 }

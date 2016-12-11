@@ -68,12 +68,6 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.dgvvideo = new System.Windows.Forms.DataGridView();
-            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -97,6 +91,12 @@
             this.编辑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.v_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.endTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -473,49 +473,6 @@
             this.dgvvideo.Size = new System.Drawing.Size(399, 140);
             this.dgvvideo.TabIndex = 4;
             // 
-            // v_id
-            // 
-            this.v_id.DataPropertyName = "id";
-            this.v_id.HeaderText = "id";
-            this.v_id.Name = "v_id";
-            this.v_id.ReadOnly = true;
-            this.v_id.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "question";
-            this.Column7.HeaderText = "名称";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "name";
-            this.Column8.HeaderText = "专业";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // fileName
-            // 
-            this.fileName.DataPropertyName = "fileName";
-            this.fileName.HeaderText = "文件名称";
-            this.fileName.Name = "fileName";
-            this.fileName.ReadOnly = true;
-            // 
-            // startTime
-            // 
-            this.startTime.DataPropertyName = "startTime";
-            this.startTime.HeaderText = "开始时间";
-            this.startTime.Name = "startTime";
-            this.startTime.ReadOnly = true;
-            // 
-            // endTime
-            // 
-            this.endTime.DataPropertyName = "endTime";
-            this.endTime.HeaderText = "结束时间";
-            this.endTime.Name = "endTime";
-            this.endTime.ReadOnly = true;
-            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.button12);
@@ -799,6 +756,49 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipTitle = "点击";
+            // 
+            // v_id
+            // 
+            this.v_id.DataPropertyName = "id";
+            this.v_id.HeaderText = "id";
+            this.v_id.Name = "v_id";
+            this.v_id.ReadOnly = true;
+            this.v_id.Visible = false;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "question";
+            this.Column7.HeaderText = "名称";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "name";
+            this.Column8.HeaderText = "专业";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // fileName
+            // 
+            this.fileName.DataPropertyName = "fileName";
+            this.fileName.HeaderText = "文件名称";
+            this.fileName.Name = "fileName";
+            this.fileName.ReadOnly = true;
+            // 
+            // startTime
+            // 
+            this.startTime.DataPropertyName = "startTime";
+            this.startTime.HeaderText = "开始时间";
+            this.startTime.Name = "startTime";
+            this.startTime.ReadOnly = true;
+            // 
+            // endTime
+            // 
+            this.endTime.DataPropertyName = "endTime";
+            this.endTime.HeaderText = "结束时间";
+            this.endTime.Name = "endTime";
+            this.endTime.ReadOnly = true;
             // 
             // AdminForm
             // 
