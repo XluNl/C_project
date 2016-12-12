@@ -136,9 +136,37 @@ namespace VirtualTrain
             string sql = "select a.id,a.question,a.fileName,a.startTime,a.endTime,b.name from game_questions a,majors b where a.majorId=b.id and a.type=2";
             DbCommand cmd = db.GetSqlStringCommand(sql);
             DataTable dt = db.ExecuteDataTable(cmd);
-            dgvvideo.DataSource = dt;
+            dgvvideo.DataSource = UpdateDataTable(dt);
             dgvvideo.Columns[1].FillWeight = 40;
             dgvvideo.Columns[2].FillWeight = 30;
+        }
+
+        private DataTable UpdateDataTable(DataTable argDataTable)
+        {
+            DataTable dtResult = new DataTable();
+            //克隆表结构
+            dtResult = argDataTable.Clone();
+            foreach (DataColumn col in dtResult.Columns)
+            {
+                if (col.ColumnName == "startTime" || col.ColumnName == "endTime")
+                {
+                    //修改列类型
+                    col.DataType = typeof(String);
+                }
+            }
+            foreach (DataRow row in argDataTable.Rows)
+            {
+                DataRow rowNew = dtResult.NewRow();
+                rowNew["id"] = row["id"];
+                rowNew["question"] = row["question"];
+                rowNew["name"] = row["name"];
+                rowNew["fileName"] = row["fileName"];
+                //修改记录值
+                rowNew["startTime"] = GameHelper.secondsToStr(float.Parse(row["startTime"].ToString()) * 1000);
+                rowNew["endTime"] = GameHelper.secondsToStr(float.Parse(row["endTime"].ToString()) * 1000);
+                dtResult.Rows.Add(rowNew);
+            }
+            return dtResult;
         }
 
         private void show_role()
@@ -237,6 +265,11 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvRole.Rows[dgvRole.SelectedRows[i].Index].Cells[0].Value);
+                        if (checkTable(id + "", "task", "Taskroleid") || checkTable(id + "", "VR_scenc_roleId", "role_Id"))
+                        {
+                            MessageBox.Show("角色使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         String strDelete = "delete from vr_roleid where id=" + id;
                         array[i] = strDelete;
                     }
@@ -636,7 +669,7 @@ namespace VirtualTrain
             DataGridViewRow currentRow = dgvvideo.Rows[dgvvideo.SelectedRows[0].Index];
             video.id = Convert.ToInt32(currentRow.Cells[0].Value);
             video.name = currentRow.Cells[1].Value.ToString();
-            video.major = currentRow.Cells[2].Value.ToString();
+            video.major = currentRow.Cells[5].Value.ToString();
             DBHelper db = new DBHelper();
             string sql = "select startTime,endTime,fileName from game_questions where id=" + video.id;
             try
@@ -715,6 +748,11 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvvideo.Rows[dgvvideo.SelectedRows[i].Index].Cells[0].Value);
+                        if (checkTable(id + "", "task", "Taskid"))
+                        {
+                            MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         String strDelete = "delete from game_questions where id=" + id;
                         array[i] = strDelete;
                     }
@@ -891,7 +929,8 @@ namespace VirtualTrain
         /// <summary>
         /// 初始化记载全部场景
         /// </summary>
-        public void getAllSence() {
+        public void getAllSence()
+        {
 
             ScriptDAL scrDAL = new ScriptDAL();
             this.allScene = scrDAL.getAllSence();
@@ -942,17 +981,16 @@ namespace VirtualTrain
                 this.Btn.Tag = scp;
             }
             else {// 添加
-                int btn_H = 30;
-                int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
-                int org = 10;
-                int org_Y = org;
-                int org_X = (this.panel2.Size.Width - btn_W) / 2;
+            int btn_H = 30;
+            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
+            int org = 10;
+            int org_Y = org;
+            int org_X =(this.panel2.Size.Width - btn_W)/2;
 
-                int count = this.panel2.Controls.Count;
-                if (count > 0)
-                {
-                    org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H + org;
-                }
+            int count = this.panel2.Controls.Count;
+            if(count>0){
+                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
+            }
                 Button btn = new Button();
                 btn.MouseDown += MouseDown;
                 btn.Width = btn_W;
@@ -963,8 +1001,8 @@ namespace VirtualTrain
                 btn.ContextMenuStrip = this.contextMenuStrip1;
                 this.panel2.Controls.Add(btn);
                 this.panel2.AutoScroll = true;
-            }
-            
+        }
+
         }
 
         /// <summary>
@@ -987,10 +1025,10 @@ namespace VirtualTrain
                 {
                     if (scrDAL.delectSenceWithID(sc.Id))
                     {
-                        // 刷新
-                        this.panel2.Controls.Clear();
+                // 刷新
+                this.panel2.Controls.Clear();
                         this.Tg = 2;//删除标记
-                        this.getAllSence();
+                this.getAllSence();
                         MessageBox.Show("删除成功");
                     }
                 }
