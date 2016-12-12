@@ -265,6 +265,11 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvRole.Rows[dgvRole.SelectedRows[i].Index].Cells[0].Value);
+                        if (checkTable(id + "", "task", "Taskroleid") || checkTable(id + "", "VR_scenc_roleId", "role_Id"))
+                        {
+                            MessageBox.Show("角色使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         String strDelete = "delete from vr_roleid where id=" + id;
                         array[i] = strDelete;
                     }
@@ -743,6 +748,11 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvvideo.Rows[dgvvideo.SelectedRows[i].Index].Cells[0].Value);
+                        if (checkTable(id + "", "task", "Taskid"))
+                        {
+                            MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         String strDelete = "delete from game_questions where id=" + id;
                         array[i] = strDelete;
                     }
