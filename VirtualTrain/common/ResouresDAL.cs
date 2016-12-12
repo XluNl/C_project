@@ -14,12 +14,19 @@ namespace VirtualTrain.common
         /// <summary>
         ///获取全部资源
         /// </summary>
-        public DataTable getAllResources()
+        public DataTable getAllResources(int type)
         {
-            string sql = "select *from game_questions";
+            string sql = "";
+            if (type < 3)
+            {
+                sql = "select *from game_questions where type="+type;
+            }
+            else { 
+                 sql = "select *from game_questions";
+            }
             return SQLHelper.ExecuteTable(sql);
 
-            string sq = "select *from game_questions where id = 4;";
+           
         }
 
        

@@ -14,6 +14,7 @@ namespace VirtualTrain
     {
 
         TaskDAL dal = new TaskDAL();
+        ResouresDAL resDAL = new ResouresDAL();
 
 
         List<Role> listrole = new List<Role>();
@@ -52,22 +53,13 @@ namespace VirtualTrain
             set { _taskmode = value; }
         }
 
-
-        // 修改时 保存选中的任务id
-        private int curSelectTaskid;
-
-        public int CurSelectTaskid
-        {
-            get { return curSelectTaskid; }
-            set { curSelectTaskid = value; }
-        }
         public AddScriptContent()
         {
             InitializeComponent();
         }
 
 
-        ResouresDAL resDAL = new ResouresDAL();
+        
         /// <summary>
         /// 点击确定 添加按钮
         /// </summary>
@@ -75,9 +67,12 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            // 组织一条任务
-            // 获取角色id
+            if (this.jolesBOX.SelectedIndex < 0)
+            {
+                MessageBox.Show("请指定角色！");
+                return;
+            }
+
             int roleID = this.jolesBOX.SelectedIndex;
             Role ro = listrole[roleID];
 
@@ -85,22 +80,21 @@ namespace VirtualTrain
             if (this.Tag1 == 1) {//修改
                 this.Taskmode.Taskroleid = ro.id;
                 this.Taskmode.Senceid = this.Senceid;
-                if (this.curSelectTaskid>1)
+                if (dataGridView1.SelectedRows.Count >0)//有修改，则取新值
                 {
-                    this.Taskmode.Taskid = this.curSelectTaskid;
+                    this.Taskmode.Taskid = (int)this.dataGridView1.Rows[this.dataGridView1.CurrentRow.Index].Cells[0].Value;
                 }
                 this.Call(this.Taskmode, this.Tag1);
             }else { //添加、插入
-                // 判断用户是否选择资源
-                if (this.curSelectTaskid < 1)//添加
+                if (dataGridView1.SelectedRows.Count < 1)
                 {
-                    MessageBox.Show("请选择一条任务");
+                    MessageBox.Show("请选择一条任务！");
                     return;
                 }
                 TaskModel taskmo = new TaskModel();
                 taskmo.Senceid = this.Senceid;
                 taskmo.Taskroleid = ro.id;
-                taskmo.Taskid = this.curSelectTaskid;
+                taskmo.Taskid = (int)this.dataGridView1.Rows[this.dataGridView1.CurrentRow.Index].Cells[0].Value;
                 this.Call(taskmo, this.Tag1);
             }
             
@@ -125,11 +119,10 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void AddScriptContent_Load(object sender, EventArgs e)
         {
+            this.comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             //将信息保存
             this.listrole = dal.getAllRoleWithSenceID(this.Senceid);
-
             this.jolesBOX.Items.Clear();
-            this.jolesBOX.SelectedValueChanged += ValueChanged;
             int index = 0;
             foreach (Role ro in listrole)
             {
@@ -145,34 +138,50 @@ namespace VirtualTrain
                 index++;
             }
 
+            this.comboBox1.SelectedIndex = 3;
+        }
+
+        void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = this.comboBox1.SelectedIndex;
+
+            // 0文字、1图像、2视频、3全部
             // 2、加载资源数据
-            this.dataGridView1.DataSource = resDAL.getAllResources();
-            this.dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
-           
-        }
-
-        void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            
-            int selecttaskid = (int)this.dataGridView1.Rows[this.dataGridView1.CurrentRow.Index].Cells[0].Value;
-
-            this.curSelectTaskid= selecttaskid;
-
-            if (this.dataGridView1.Rows[this.dataGridView1.CurrentRow.Index].Cells[0].Value.ToString() == "")
+            this.dataGridView1.AutoGenerateColumns = false;//禁止自动生成列
+            this.dataGridView1.DataSource = resDAL.getAllResources(index);
+            this.dataGridView1.SelectedRows[0].Selected = false;
+            this.dataGridView1.Columns[0].FillWeight = 20;
+            this.dataGridView1.Columns[1].FillWeight = 90;
+            this.dataGridView1.Columns[3].FillWeight = 120;
+            if (index==0)
             {
-                MessageBox.Show("请选择一项进行删除");
-            } 
+                this.dataGridView1.Columns[2].Visible = true;
+                this.dataGridView1.Columns[3].Visible = false;
+                this.dataGridView1.Columns[4].Visible = false;
+                this.dataGridView1.Columns[5].Visible = false;
+            }else if(index==1){
+                this.dataGridView1.Columns[2].Visible = true;
+                this.dataGridView1.Columns[3].Visible = true;
+                this.dataGridView1.Columns[4].Visible = false;
+                this.dataGridView1.Columns[5].Visible = false;
+            }
+            else if (index == 2)
+            {
+                this.dataGridView1.Columns[2].Visible = false;
+                this.dataGridView1.Columns[3].Visible = true;
+                this.dataGridView1.Columns[4].Visible = true;
+                this.dataGridView1.Columns[5].Visible = true;
+            }
+            else {
+                this.dataGridView1.Columns[2].Visible = true;
+                this.dataGridView1.Columns[3].Visible = true;
+                this.dataGridView1.Columns[4].Visible = true;
+                this.dataGridView1.Columns[5].Visible = true;
+
+                this.dataGridView1.Columns[3].FillWeight = 150;
+            }
         }
 
-        /// <summary>
-        /// comboBox 被选中时触发
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ValueChanged(object sender, EventArgs e)
-        {
-            int index = this.jolesBOX.SelectedIndex;
-        }
-
+        
     }
 }

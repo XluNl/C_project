@@ -9,7 +9,7 @@ using VirtualTrain.common;
 using VirtualTrain.model;
 namespace VirtualTrain
 {
-    public delegate void call(script scr,int cenceid);
+    public delegate void call(script scr);
     public partial class AddScript : Form
     {
         ScriptDAL scDAL = new ScriptDAL();
@@ -75,7 +75,12 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            // 名称不能为null
+            if (BoxName.Text.Length < 1)
+            {
+                MessageBox.Show("名称不能为空！");
+                return;
+            }
             // 添加场景到数据库
             script scp = new script();
             scp.Scencname = BoxName.Text;
@@ -83,8 +88,16 @@ namespace VirtualTrain
 
             // 修改操作
             if (this.Tg == 1){
+
+                if (this.ScRoles.Count<1)
+                {
+                    MessageBox.Show("请选择角色！");
+                    return;
+                }
                 scp.Id = this.Scenc.Id;
                 scDAL.editSenceWith(scp,this.ScRoles);
+                // 回调
+                this.Call(scp);
 
             }else {//添加操作
                 // 获取所有选中的checkbox
@@ -98,11 +111,15 @@ namespace VirtualTrain
                         scencScripts.Add(sc);
                     }
                 }
-
+                if (scencScripts.Count<1)
+                {
+                    MessageBox.Show("请选择角色！");
+                    return;
+                }
                 int senceid;
                 if (scDAL.addScript(scp, scencScripts, out senceid)){
-
-                    this.Call(scp, senceid);
+                    scp.Id = senceid;
+                    this.Call(scp);
                 };
             }
             // 关闭窗口
@@ -122,15 +139,12 @@ namespace VirtualTrain
 
             // 2、如果是修改，则记载对应场景的全部角色
             if (this.Tg == 1) {
+                this.BoxName.Text = this.Scenc.Scencname;
                 this.ScRoles = scrDAL.getAllScencRoleWithScencid(this.scenc.Id);
             }
             
-            // 3、根据数据 布局UI
+            // 3、根据数据 布局Role_UI
             loadRolesWithRoleList(scrs);
-            // 01、修改时，要将之前保存的角色选中
-
-            // 02、添加时，直接加载全部的角色
-            // 03、修改时，本来选中的角色，要被取消，则要判断这个角色有没有被使用
             
         }
 
@@ -173,20 +187,6 @@ namespace VirtualTrain
             this.Loadtag = 1;
         }
 
-        private void check_TabIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("当前角色使用中，不能删除！");
-        }
-
-        private void check_MouseClick(object sender, MouseEventArgs e)
-        {
-            CheckBox box = (CheckBox)sender;
-            bool bb = box.Checked;
-            VR_Role ro = (VR_Role)box.Tag;
-
-            MessageBox.Show("check_MouseClick");
-        }
-
         /// <summary>
         /// 点击chenboX时发生
         /// </summary>
@@ -222,11 +222,12 @@ namespace VirtualTrain
                 { //说明 这个角色在当前任务里面有使用 不能删除
 
                     MessageBox.Show("当前角色使用中，不能删除！");
+                    this.Loadtag = 0;
                     box.Checked = true;
+                    this.Loadtag = 1;
                 }
 
-            }
-            else
+            }else
             {
                 //添加一个
                 this.ScRoles.Add(sc);

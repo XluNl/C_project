@@ -173,18 +173,16 @@ namespace VirtualTrain.common
        /// <param name="id"></param>
         public bool delectSenceWithID(int scencid) {
 
-            string sql = "delete from dbo.VR_scenc where id=" + scencid;
-
+            //1、删除场景对应角色
+            string sql_role = "delete from VR_scenc_roleId where scenc_Id ="+scencid;
+           int nn= SQLHelper.ExecuteNonQuery(sql_role);
+           
+            //2、步删除场景对应的任务(因为任务外键，引用常见主键所以得先删除)
+            string sql_task = "delete from task where Senceid ="+scencid;
+            int num = SQLHelper.ExecuteNonQuery(sql_task);
             // 3、场景删除成功
-            bool isnot = SQLHelper.ExecuteNonQuery(sql) > 0;
-            if (isnot)
-            {
-                //2、删除场景对应角色
-                string sql_role = "delete from VR_scenc_roleId where scenc_Id ="+scencid;
-                //1、步删除场景对应的任务
-                string sql_task = "delete from task where Senceid ="+scencid;
-            }
-            return isnot;
+            string sql = "delete from dbo.VR_scenc where id=" + scencid;
+            return SQLHelper.ExecuteNonQuery(sql) > 0;
         }
 
         public bool checkRoleOnScencIsNotWith(int scencid,int roleid) {
@@ -203,5 +201,17 @@ namespace VirtualTrain.common
         }
 
 
+       /// <summary>
+       /// 判断场景是否可以被删除
+       /// </summary>
+       /// <param name="senceid"></param>
+       /// <returns></returns>
+        public bool checkSenceIsDelectWithSenceid(int senceid)
+        {
+            string sql = "select COUNT(*)from task where Senceid="+senceid;
+
+            int num = (int)SQLHelper.ExecuteScalar(sql);
+            return num > 0;
+        }
     }
 }

@@ -104,7 +104,7 @@
             // cboMajors
             // 
             this.cboMajors.FormattingEnabled = true;
-            this.cboMajors.Location = new System.Drawing.Point(80, 120);
+            this.cboMajors.Location = new System.Drawing.Point(56, 120);
             this.cboMajors.Name = "cboMajors";
             this.cboMajors.Size = new System.Drawing.Size(121, 20);
             this.cboMajors.TabIndex = 4;
@@ -132,9 +132,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(21, 123);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 12);
+            this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 5;
-            this.label4.Text = "所属专业";
+            this.label4.Text = "专业";
             // 
             // btnOk
             // 
@@ -236,9 +236,9 @@
             this.pnlanswer.Controls.Add(this.txtOptionD);
             this.pnlanswer.Controls.Add(this.txtOptionA);
             this.pnlanswer.Controls.Add(this.txtOptionB);
-            this.pnlanswer.Location = new System.Drawing.Point(70, 164);
+            this.pnlanswer.Location = new System.Drawing.Point(56, 164);
             this.pnlanswer.Name = "pnlanswer";
-            this.pnlanswer.Size = new System.Drawing.Size(536, 194);
+            this.pnlanswer.Size = new System.Drawing.Size(547, 194);
             this.pnlanswer.TabIndex = 7;
             // 
             // TextQuestionDialog

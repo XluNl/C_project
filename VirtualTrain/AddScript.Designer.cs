@@ -54,15 +54,14 @@
             this.BoxName.Name = "BoxName";
             this.BoxName.Size = new System.Drawing.Size(223, 21);
             this.BoxName.TabIndex = 1;
-            this.BoxName.Text = "红光带";
             this.BoxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(40, 172);
+            this.groupBox1.Location = new System.Drawing.Point(40, 158);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(596, 188);
+            this.groupBox1.Size = new System.Drawing.Size(593, 216);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "可选角色:最多10人";
@@ -72,12 +71,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 17);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(590, 168);
+            this.panel1.Size = new System.Drawing.Size(587, 196);
             this.panel1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(419, 396);
+            this.button1.Location = new System.Drawing.Point(416, 397);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -87,7 +86,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(558, 396);
+            this.button2.Location = new System.Drawing.Point(555, 397);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -98,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(38, 114);
+            this.label3.Location = new System.Drawing.Point(38, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 12);
             this.label3.TabIndex = 6;
@@ -107,7 +106,7 @@
             // Boxonline
             // 
             this.Boxonline.AutoSize = true;
-            this.Boxonline.Location = new System.Drawing.Point(97, 113);
+            this.Boxonline.Location = new System.Drawing.Point(97, 104);
             this.Boxonline.Name = "Boxonline";
             this.Boxonline.Size = new System.Drawing.Size(120, 16);
             this.Boxonline.TabIndex = 7;

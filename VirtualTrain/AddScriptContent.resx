@@ -147,16 +147,16 @@
     <value>6</value>
   </data>
   <data name="comboBox1.Items" xml:space="preserve">
-    <value>文字多选</value>
+    <value>文字</value>
   </data>
   <data name="comboBox1.Items1" xml:space="preserve">
-    <value>文字单选</value>
+    <value>图像</value>
   </data>
   <data name="comboBox1.Items2" xml:space="preserve">
-    <value>图像多选</value>
+    <value>视屏</value>
   </data>
   <data name="comboBox1.Items3" xml:space="preserve">
-    <value>视屏</value>
+    <value>全部</value>
   </data>
   <data name="comboBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>109, 38</value>

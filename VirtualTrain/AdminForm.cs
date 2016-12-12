@@ -862,6 +862,24 @@ namespace VirtualTrain
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+        // 记录添加脚本面板 是0添加还是1删除
+        private int _tg;
+
+        public int Tg
+        {
+            get { return _tg; }
+            set { _tg = value; }
+        }
+
+        private Button _btn;
+
+        public Button Btn
+        {
+            get { return _btn; }
+            set { _btn = value; }
+        }
+
         private List<script> allScene;
 
         public List<script> AllScene
@@ -880,7 +898,7 @@ namespace VirtualTrain
 
             foreach (script scr in this.allScene)
             {
-                this.creatScript(scr,scr.Id);
+                this.creatScript(scr);
             }
         }
         /// <summary>
@@ -896,9 +914,10 @@ namespace VirtualTrain
         /// <summary>
         /// 调用修改场景的面板
         /// </summary>
-        /// <param name="tg">0表示添加、1表示修改</param>
+        /// <param name="tg">0表示添加、1表示修改、2表删除</param>
         private void loadSenceEditFrom(int tg)
         {
+            this.Tg = tg;
             AddScript addScript = new AddScript();
             addScript.Call = creatScript;
             addScript.Tg = tg;
@@ -914,30 +933,38 @@ namespace VirtualTrain
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void creatScript(script scp, int senceid)
+        private void creatScript(script scp)
         {
-
-            int btn_H = 30;
-            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
-            int org = 10;
-            int org_Y = org;
-            int org_X =(this.panel2.Size.Width - btn_W)/2;
-
-            int count = this.panel2.Controls.Count;
-            if(count>0){
-                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
+            // 修改
+            if (this.Tg == 1)
+            {
+                Btn.Text = scp.Scencname;
+                this.Btn.Tag = scp;
             }
+            else {// 添加
+                int btn_H = 30;
+                int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
+                int org = 10;
+                int org_Y = org;
+                int org_X = (this.panel2.Size.Width - btn_W) / 2;
+
+                int count = this.panel2.Controls.Count;
+                if (count > 0)
+                {
+                    org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H + org;
+                }
                 Button btn = new Button();
                 btn.MouseDown += MouseDown;
                 btn.Width = btn_W;
                 btn.Height = btn_H;
                 btn.Location = new Point(org_X, org_Y);
                 btn.Tag = scp;//直接将模型给tag
-                btn.Text = "scencID=" + senceid + "    " + scp.Scencname;
-                //this.contextMenuStrip1.Tag = btn.Tag;
+                btn.Text = "scencID=" + scp.Id + "    " + scp.Scencname;
                 btn.ContextMenuStrip = this.contextMenuStrip1;
                 this.panel2.Controls.Add(btn);
                 this.panel2.AutoScroll = true;
+            }
+            
         }
 
         /// <summary>
@@ -950,12 +977,25 @@ namespace VirtualTrain
             //ToolStripMenuItem btn = (ToolStripMenuItem)sender;
             //int id = (int)btn.GetCurrentParent().Tag;
             script sc = (script)this.contextMenuStrip1.Tag;
+
             ScriptDAL scrDAL = new ScriptDAL();
-            if (scrDAL.delectSenceWithID(sc.Id)){
-                // 刷新
-                this.panel2.Controls.Clear();
-                this.getAllSence();
+            // 检查当前场景是否可以被删除
+            if (scrDAL.checkSenceIsDelectWithSenceid(sc.Id))
+            {
+                DialogResult result = MessageBox.Show("检测到当前脚本下面有任务,删除后不可恢复！确认删除点击是", "重要提示：", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (scrDAL.delectSenceWithID(sc.Id))
+                    {
+                        // 刷新
+                        this.panel2.Controls.Clear();
+                        this.Tg = 2;//删除标记
+                        this.getAllSence();
+                        MessageBox.Show("删除成功");
+                    }
+                }
             }
+           
         }
 
         /// <summary>
@@ -968,6 +1008,8 @@ namespace VirtualTrain
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 Button btn = (Button)sender;
+                // 记录当前操作的btn
+                this.Btn = btn;
                 btn.ContextMenuStrip.Tag = btn.Tag;
             }
 
