@@ -69,7 +69,7 @@ namespace VirtualTrain
         {
             if (this.jolesBOX.SelectedIndex < 0)
             {
-                MessageBox.Show("请指定角色！");
+                MessageBox.Show("请指定角色！", "提示！");
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace VirtualTrain
             }else { //添加、插入
                 if (dataGridView1.SelectedRows.Count < 1)
                 {
-                    MessageBox.Show("请选择一条任务！");
+                    MessageBox.Show("请选择一条任务！", "提示！");
                     return;
                 }
                 TaskModel taskmo = new TaskModel();
@@ -149,7 +149,11 @@ namespace VirtualTrain
             // 2、加载资源数据
             this.dataGridView1.AutoGenerateColumns = false;//禁止自动生成列
             this.dataGridView1.DataSource = resDAL.getAllResources(index);
-            this.dataGridView1.SelectedRows[0].Selected = false;
+            if (dataGridView1.Rows.Count > 1)
+            {
+                this.dataGridView1.SelectedRows[0].Selected = false;
+            }
+            //this.dataGridView1.SelectedRows[0].Selected = false;
             this.dataGridView1.Columns[0].FillWeight = 20;
             this.dataGridView1.Columns[1].FillWeight = 90;
             this.dataGridView1.Columns[3].FillWeight = 120;
