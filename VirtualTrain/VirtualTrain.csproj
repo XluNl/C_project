@@ -129,6 +129,12 @@
     <Compile Include="GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Home\SelectRoleFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home\SelectRoleFrom.Designer.cs">
+      <DependentUpon>SelectRoleFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageQuestionFrom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +354,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\SelectRoleFrom.resx">
+      <DependentUpon>SelectRoleFrom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageQuestionFrom.resx">
       <DependentUpon>ImageQuestionFrom.cs</DependentUpon>

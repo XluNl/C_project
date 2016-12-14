@@ -153,7 +153,7 @@ namespace VirtualTrain
             {
                 this.dataGridView1.SelectedRows[0].Selected = false;
             }
-            //this.dataGridView1.SelectedRows[0].Selected = false;
+            //this.dataGridView1.SelectedRows[0].Selected = false; 
             this.dataGridView1.Columns[0].FillWeight = 20;
             this.dataGridView1.Columns[1].FillWeight = 90;
             this.dataGridView1.Columns[3].FillWeight = 120;

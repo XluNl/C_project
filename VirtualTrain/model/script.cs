@@ -35,6 +35,14 @@ namespace VirtualTrain.model
             set { _scencname = value; }
         }
 
+       // 场景对应的所有角色
+        private List<script> _sceceroles;
+
+        public List<script> Sceceroles
+        {
+            get { return _sceceroles; }
+            set { _sceceroles = value; }
+        }
 ///////////////////////////////////////////////////////////////////////////////////////
        // 将场景 和角色的中间表字段，合并到角色下面
        //角色对应的ID

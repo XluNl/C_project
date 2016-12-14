@@ -5,25 +5,19 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using VirtualTrain.Home;
-namespace VirtualTrain
+
+namespace VirtualTrain.Home
 {
-    public partial class JoinTeamForm : Form
+    public partial class SelectRoleFrom : Form
     {
-        public JoinTeamForm()
+        public SelectRoleFrom()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new SelectRoleFrom().ShowDialog();
-            this.Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            new loadSceneForm().ShowDialog();
         }
     }
 }
