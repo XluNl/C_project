@@ -129,11 +129,11 @@ namespace Game_Server
                         string talkString = receiveString.Substring(splitString[0].Length + splitString[1].Length + 2);
                         statusInfo(string.Format("{0}对{1}说：{2}", gamer.name, splitString[1], talkString));
                         SendToClient(gamer, "talk," + gamer.name + "," + talkString);
-                        foreach (Gamer target in gamerList)
+                        foreach (Gamer g in gamerList)
                         {
-                            if (target.name == splitString[1] && gamer.name != splitString[1])
+                            if (g.name == splitString[1] && gamer.name != splitString[1])
                             {
-                                SendToClient(target, "talk," + gamer.name + "," + talkString);
+                                SendToClient(g, "talk," + gamer.name + "," + talkString);
                                 break;
                             }
                         }
