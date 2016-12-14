@@ -23,7 +23,7 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void IndexLoadePag_Load(object sender, EventArgs e)
         {
-            List<script> scrs = DAL.getAllSence();
+            List<script> scrs = this.DAL.getAllSence();
             if (scrs.Count > 0){
                 this.initproject(scrs);
             }else {
@@ -39,7 +39,7 @@ namespace VirtualTrain
                 if (item.Isonline == 1)
                 {
                     // 加载角色选择页面时，再更具角色id，加载对应角色具体信息
-                    item.Sceceroles = DAL.getAllScencRoleWithScencid(item.Id);
+                    item.Sceceroles = this.DAL.getAllScencRoleWithScencid(item.Id);
                 }
                 this.creatSenceWithMode(item);
             }

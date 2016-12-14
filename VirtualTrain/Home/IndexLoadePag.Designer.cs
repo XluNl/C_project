@@ -52,7 +52,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoScroll = true;
             this.panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(317, 66);
+            this.panel2.Location = new System.Drawing.Point(313, 72);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(376, 293);
             this.panel2.TabIndex = 6;
