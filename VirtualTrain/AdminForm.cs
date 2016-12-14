@@ -230,6 +230,10 @@ namespace VirtualTrain
             {
                 MessageBox.Show("存在相同名称，请更改名称！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (checkTable(role.id + "", "task", "Taskroleid") || checkTable(role.id + "", "VR_scenc_roleId", "role_Id"))
+            {
+                MessageBox.Show("角色使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
                 DBHelper db = new DBHelper();
@@ -393,6 +397,10 @@ namespace VirtualTrain
             {
                 MessageBox.Show("存在相同题目，请更改题目！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (checkTable(question.id + "", "task", "Taskid"))
+            {
+                MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
                 DBHelper db = new DBHelper();
@@ -429,6 +437,11 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvText.Rows[dgvText.SelectedRows[i].Index].Cells[0].Value);
+                        if (checkTable(id + "", "task", "Taskid"))
+                        {
+                            MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         String strDelete = "delete from game_questions where id=" + id;
                         array[i] = strDelete;
                     }
@@ -552,6 +565,10 @@ namespace VirtualTrain
             {
                 MessageBox.Show("存在相同题目，请更改题目！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (checkTable(question.id + "", "task", "Taskid"))
+            {
+                MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
                 DBHelper db = new DBHelper();
@@ -587,6 +604,11 @@ namespace VirtualTrain
                     for (int i = 0; i < count; i++)
                     {
                         int id = Convert.ToInt32(dgvimg.Rows[dgvimg.SelectedRows[i].Index].Cells[0].Value);
+                        if (checkTable(id + "", "task", "Taskid"))
+                        {
+                            MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         String strDelete = "delete from game_questions where id=" + id;
                         array[i] = strDelete;
                     }
@@ -712,6 +734,10 @@ namespace VirtualTrain
             if (checkTable(video.name, video.id, "game_questions", "question"))
             {
                 MessageBox.Show("存在相同项目，请更改！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (checkTable(video.id + "", "task", "Taskid"))
+            {
+                MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -897,8 +923,8 @@ namespace VirtualTrain
 
         }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         // 记录添加脚本面板 是0添加还是1删除
@@ -925,7 +951,7 @@ namespace VirtualTrain
             get { return allScene; }
             set { allScene = value; }
         }
-        
+
         /// <summary>
         /// 初始化记载全部场景
         /// </summary>
@@ -960,12 +986,13 @@ namespace VirtualTrain
             AddScript addScript = new AddScript();
             addScript.Call = creatScript;
             addScript.Tg = tg;
-            if(tg==1){//修改，传过去场景id
+            if (tg == 1)
+            {//修改，传过去场景id
                 script sc = (script)this.contextMenuStrip1.Tag;
                 addScript.Scenc = sc;
             }
             // 创建脚本面板
-            addScript.ShowDialog(); 
+            addScript.ShowDialog();
         }
         /// <summary>
         /// 创建脚本UI展示
@@ -980,17 +1007,19 @@ namespace VirtualTrain
                 Btn.Text = scp.Scencname;
                 this.Btn.Tag = scp;
             }
-            else {// 添加
-            int btn_H = 30;
-            int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
-            int org = 10;
-            int org_Y = org;
-            int org_X =(this.panel2.Size.Width - btn_W)/2;
+            else
+            {// 添加
+                int btn_H = 30;
+                int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
+                int org = 10;
+                int org_Y = org;
+                int org_X = (this.panel2.Size.Width - btn_W) / 2;
 
-            int count = this.panel2.Controls.Count;
-            if(count>0){
-                org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H+org;
-            }
+                int count = this.panel2.Controls.Count;
+                if (count > 0)
+                {
+                    org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H + org;
+                }
                 Button btn = new Button();
                 btn.MouseDown += MouseDown;
                 btn.Width = btn_W;
@@ -1001,7 +1030,7 @@ namespace VirtualTrain
                 btn.ContextMenuStrip = this.contextMenuStrip1;
                 this.panel2.Controls.Add(btn);
                 this.panel2.AutoScroll = true;
-        }
+            }
 
         }
 
@@ -1025,15 +1054,15 @@ namespace VirtualTrain
                 {
                     if (scrDAL.delectSenceWithID(sc.Id))
                     {
-                // 刷新
-                this.panel2.Controls.Clear();
+                        // 刷新
+                        this.panel2.Controls.Clear();
                         this.Tg = 2;//删除标记
-                this.getAllSence();
+                        this.getAllSence();
                         MessageBox.Show("删除成功");
                     }
                 }
             }
-           
+
         }
 
         /// <summary>
@@ -1042,7 +1071,7 @@ namespace VirtualTrain
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void MouseDown(object sender, MouseEventArgs e)
-        { 
+        {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 Button btn = (Button)sender;
@@ -1078,6 +1107,6 @@ namespace VirtualTrain
 
         }
 
-        
+
     }
 }
