@@ -140,7 +140,7 @@ namespace VirtualTrain.common
        }
 
        /// <summary>
-       /// 根据场景任务 表 获得任务
+       /// 根据场景任务 id获得一条资源
        /// </summary>
        /// <param name="resid"></param>
        /// <returns></returns>
@@ -151,8 +151,18 @@ namespace VirtualTrain.common
 
            // 取一个，正常情况下也只有一个
            ResouresModel res = new ResouresModel();
+           res.Id = Convert.ToInt32(table.Rows[0]["id"]);
            res.Question = table.Rows[0]["question"].ToString();
-
+           res.Answer = table.Rows[0]["answer"].ToString();
+           res.MajorId = Convert.ToInt32(table.Rows[0]["majorId"]);
+           res.Type = Convert.ToInt32(table.Rows[0]["type"]);
+           res.OptionA = table.Rows[0]["OptionA"].ToString();
+           res.OptionB = table.Rows[0]["OptionB"].ToString();
+           res.OptionC = table.Rows[0]["OptionC"].ToString();
+           res.OptionD = table.Rows[0]["OptionD"].ToString();
+           res.FileName = table.Rows[0]["fileName"].ToString();
+           res.StartTime = Convert.ToDouble(table.Rows[0]["startTime"]);
+           res.EndTime = Convert.ToDouble(table.Rows[0]["endTime"]);
            return res;
        }
     }

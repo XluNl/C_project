@@ -185,6 +185,12 @@ namespace VirtualTrain.common
             return SQLHelper.ExecuteNonQuery(sql) > 0;
         }
 
+       /// <summary>
+       /// 修改场景信息时，用来判断当前角色是否可以被取消
+       /// </summary>
+       /// <param name="scencid">场景ID</param>
+       /// <param name="roleid">角色ID</param>
+       /// <returns></returns>
         public bool checkRoleOnScencIsNotWith(int scencid,int roleid) {
 
             string sql = "select COUNT(*) from task where Senceid =@Senceid and Taskroleid =@Taskroleid";

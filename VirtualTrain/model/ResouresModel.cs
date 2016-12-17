@@ -76,16 +76,16 @@ namespace VirtualTrain.model
             get { return fileName; }
             set { fileName = value; }
         }
-        private float startTime;//开始时间
+        private double startTime;//开始时间
 
-        public float StartTime
+        public double StartTime
         {
             get { return startTime; }
             set { startTime = value; }
         }
-        private float endTime;//结束时间
+        private double endTime;//结束时间
 
-        public float EndTime
+        public double EndTime
         {
             get { return endTime; }
             set { endTime = value; }
