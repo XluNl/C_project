@@ -123,12 +123,6 @@
     <Compile Include="EditScriptFrom.Designer.cs">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameForm.Designer.cs">
-      <DependentUpon>GameForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Home\ImageFrom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,9 +363,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditScriptFrom.resx">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameForm.resx">
-      <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\ImageFrom.resx">
       <DependentUpon>ImageFrom.cs</DependentUpon>

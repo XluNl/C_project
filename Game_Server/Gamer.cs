@@ -11,7 +11,7 @@ namespace Game_Server
         public TcpClient client { get; private set; }
         public BinaryReader br { get; private set; }
         public BinaryWriter bw { get; private set; }
-        public string name { get; set; }
+        public string roleId { get; set; }
 
         public Gamer(TcpClient client)
         {
