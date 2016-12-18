@@ -27,7 +27,7 @@ namespace VirtualTrain
             if (scrs.Count > 0){
                 this.initproject(scrs);
             }else {
-                MessageBox.Show("提示!","没有发现可用场景！");
+                MessageBox.Show("提示!","没有可用场景！");
             }   
         }
 
@@ -43,7 +43,23 @@ namespace VirtualTrain
                 }
                 this.creatSenceWithMode(item);
             }
+
+            // 添加退出按钮
+            Button canlebtn = new Button();
+            canlebtn.Text = "退出";
+            canlebtn.Location = new Point(panel2.Location.X,panel2.Location.Y+panel2.Height+20);
+            canlebtn.Size = new Size(panel2.Width,45);
+            //canlebtn.BackColor = Color.FromArgb(0,255,128,0);
+            canlebtn.BackColor = Color.Orange;
+            canlebtn.Click += (oo,evt) => {
+
+                this.Close();
+            };
+            this.panel1.Controls.Add(canlebtn);
+
+            //this.panel2.BackColor = Color.Transparent;
         }
+      
         private void creatSenceWithMode(script sc){
         
             int btn_H = 40;
@@ -82,5 +98,6 @@ namespace VirtualTrain
             }
             
         }
+
     }
 }

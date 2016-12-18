@@ -17,7 +17,14 @@ namespace VirtualTrain.Home
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Opacity = 0;
+            this.Close();
             new loadSceneForm().ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

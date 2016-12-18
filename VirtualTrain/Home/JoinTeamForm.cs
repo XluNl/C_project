@@ -17,8 +17,8 @@ namespace VirtualTrain
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new SelectRoleFrom().ShowDialog();
             this.Close();
+            new SelectRoleFrom().ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

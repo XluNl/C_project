@@ -51,8 +51,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoScroll = true;
-            this.panel2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(313, 72);
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel2.Location = new System.Drawing.Point(313, 54);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(376, 293);
             this.panel2.TabIndex = 6;
@@ -64,6 +64,7 @@
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1010, 518);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "IndexLoadePag";

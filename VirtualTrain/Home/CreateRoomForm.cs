@@ -17,7 +17,7 @@ namespace VirtualTrain
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
 
@@ -28,11 +28,15 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Opacity = 0;
+            this.Close();
             new TapCreateRoom().ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Opacity = 0;
+            this.Close();
             new JoinTeamForm().ShowDialog();
         }
 
