@@ -12,6 +12,7 @@ namespace VirtualTrain
     public partial class IndexLoadePag : Form
     {
         ScriptDAL DAL = new ScriptDAL();
+
         public IndexLoadePag()
         {
             InitializeComponent();
