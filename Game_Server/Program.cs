@@ -17,13 +17,12 @@ namespace Game_Server
         /// <summary>
         /// 保存连接的所有用户
         /// </summary>
-        private Dictionary<Room, List<Gamer>> room_gamer;
         private static List<Gamer> gamerList = new List<Gamer>();
-        private Dictionary<Room, List<TaskModel>> room_task;
         private static List<TaskModel> tasks;
-        private Dictionary<Room, int> room_taskIndex;
         //当前任务序号
         private static int taskIndex;
+        //所有房间
+        private static List<Room> roomList;
         static TaskDAL dal = new TaskDAL();
 
         /// <summary>
@@ -139,18 +138,14 @@ namespace Game_Server
                             }
                         }
                         break;
-                    case "Talk":
-                        string talkString = receiveString.Substring(splitString[0].Length + splitString[1].Length + 2);
-                        statusInfo(string.Format("{0}对{1}说：{2}", gamer.roleId, splitString[1], talkString));
-                        SendToClient(gamer, "talk," + gamer.roleId + "," + talkString);
-                        foreach (Gamer g in gamerList)
-                        {
-                            if (g.roleId == splitString[1] && gamer.roleId != splitString[1])
-                            {
-                                SendToClient(g, "talk," + gamer.roleId + "," + talkString);
-                                break;
-                            }
-                        }
+                    case "CreateRoom":      //创建房间接口，格式CreateRoom,场景号,房间名称,房间密码
+                        int sceneId = Convert.ToInt32(splitString[1]);
+                        string rName = splitString[2];
+                        string rPwd = splitString[3];
+                        Room room = new Room(sceneId);
+                        roomList.Add(room);
+                        statusInfo(string.Format("创建{0}房间成功", rName));
+
                         break;
                     default:
                         statusInfo("什么意思啊：" + receiveString);
@@ -231,25 +226,6 @@ namespace Game_Server
             Console.WriteLine(str);
         }
 
-        //private delegate void AddItemToListBoxDelegate(string str);
-        /// <summary>
-        /// 在ListBox中追加状态信息
-        /// </summary>
-        /// <param name="str">要追加的信息</param>
-        //private void statusInfo(string str)
-        //{
-        //    if (lst_State.InvokeRequired)
-        //    {
-        //        AddItemToListBoxDelegate d = statusInfo;
-        //        lst_State.Invoke(d, str);
-        //    }
-        //    else
-        //    {
-        //        lst_State.Items.Add(str);
-        //        lst_State.SelectedIndex = lst_State.Items.Count - 1;
-        //        lst_State.ClearSelected();
-        //    }
-        //}
 
         /// <summary>
         /// 停止监听
@@ -268,20 +244,9 @@ namespace Game_Server
             myListener.Stop();
         }
 
-        /// <summary>
-        /// 关闭窗口时触发的事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (myListener != null)
-        //        btn_Stop.PerformClick();    //引发 btn_Stop 的Click事件
-        //}
 
         static void Main(string[] args)
         {
-            tasks = dal.getAllWitnSenceID(1);
             startServer();
             ConsoleKeyInfo keyInfo = Console.ReadKey();
             if (keyInfo.Key == ConsoleKey.Escape)
@@ -290,6 +255,7 @@ namespace Game_Server
             }
 
         }
+
 
 
     }

@@ -4,9 +4,9 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Game_Server
+namespace VirtualTrain
 {
-    class Gamer
+    public class Gamer
     {
         public TcpClient client { get; private set; }
         public BinaryReader br { get; private set; }

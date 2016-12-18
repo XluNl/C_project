@@ -1,11 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using VirtualTrain.common;
+using VirtualTrain.model;
 
 namespace VirtualTrain
 {
     public class Room
     {
+        TaskDAL td = new TaskDAL();
+        public Room(int sceneId)
+        {
+            this.sceneId = sceneId;
+            this._tasks = td.getAllWitnSenceID(sceneId);
+            this._maxNum = td.getAllRoleWithSenceID(sceneId).Count.ToString();
+        }
+
         //名称
         private string _name;
         public string name
@@ -24,10 +34,28 @@ namespace VirtualTrain
 
         //最大人数
         private string _maxNum;
-        public string maxNum
+
+        private List<Gamer> _gamerList;
+        public List<Gamer> gamerList
         {
-            get { return _maxNum; }
-            set { _maxNum = value; }
+            get { return _gamerList; }
+            set { _gamerList = value; }
+        }
+
+        private List<TaskModel> _tasks;
+
+        private int _taskIndex;
+        public int taskIndex
+        {
+            get { return _taskIndex; }
+            set { _taskIndex = value; }
+        }
+
+        private int _sceneId;
+        public int sceneId
+        {
+            get { return _sceneId; }
+            set { _sceneId = value; }
         }
 
         public override string ToString()

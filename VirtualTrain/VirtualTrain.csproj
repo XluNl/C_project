@@ -98,8 +98,10 @@
       <DependentUpon>CheWuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="common\AutoSetQuestionHelper.cs" />
+    <Compile Include="common\ClientDAL.cs" />
     <Compile Include="common\DBHelper.cs" />
     <Compile Include="common\ExamHelper.cs" />
+    <Compile Include="model\Gamer.cs" />
     <Compile Include="common\ResouresDAL.cs" />
     <Compile Include="common\ScriptDAL.cs" />
     <Compile Include="common\SQLHelper.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="model\Role.cs" />
     <Compile Include="model\script.cs" />
     <Compile Include="model\TaskModel.cs" />
+    <Compile Include="model\Room.cs" />
     <Compile Include="model\Type.cs" />
     <Compile Include="model\User.cs" />
     <Compile Include="Home\ModeSelectForm.cs">
