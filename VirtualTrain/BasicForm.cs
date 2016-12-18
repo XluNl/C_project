@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Data.Common;
+using VirtualTrain.common;
 
 namespace VirtualTrain
 {

@@ -98,16 +98,14 @@
       <DependentUpon>CheWuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="common\AutoSetQuestionHelper.cs" />
+    <Compile Include="common\ClientDAL.cs" />
     <Compile Include="common\DBHelper.cs" />
     <Compile Include="common\ExamHelper.cs" />
+    <Compile Include="common\GameHelper.cs" />
     <Compile Include="common\ResouresDAL.cs" />
     <Compile Include="common\ScriptDAL.cs" />
-    <Compile Include="common\SQLHelper.cs" />
-    <Compile Include="common\TaskDAL.cs" />
     <Compile Include="common\TestHelper.cs" />
-    <Compile Include="common\GameHelper.cs" />
     <Compile Include="common\URLHelper.cs" />
-    <Compile Include="common\UserHelper.cs" />
     <Compile Include="common\ViewHelper.cs" />
     <Compile Include="common\VRHelper.cs" />
     <Compile Include="Home\CreateRoomForm.cs">
@@ -122,12 +120,6 @@
     </Compile>
     <Compile Include="EditScriptFrom.Designer.cs">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameForm.Designer.cs">
-      <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Home\ImageFrom.cs">
       <SubType>Form</SubType>
@@ -186,24 +178,18 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="model\Major.cs" />
-    <Compile Include="model\Mission.cs" />
-    <Compile Include="model\Paper.cs" />
-    <Compile Include="model\Question.cs" />
-    <Compile Include="model\ResouresModel.cs" />
-    <Compile Include="model\Role.cs" />
-    <Compile Include="model\script.cs" />
-    <Compile Include="model\TaskModel.cs" />
-    <Compile Include="model\Type.cs" />
-    <Compile Include="model\User.cs" />
     <Compile Include="Home\ModeSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Home\ModeSelectForm.Designer.cs">
       <DependentUpon>ModeSelectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="model\Mission.cs" />
+    <Compile Include="model\Paper.cs" />
+    <Compile Include="model\Question.cs" />
+    <Compile Include="model\script.cs" />
+    <Compile Include="model\Type.cs" />
     <Compile Include="model\Video.cs" />
-    <Compile Include="model\VR_Role.cs" />
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -369,9 +355,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditScriptFrom.resx">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameForm.resx">
-      <DependentUpon>GameForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\ImageFrom.resx">
       <DependentUpon>ImageFrom.cs</DependentUpon>
@@ -727,6 +710,12 @@
   <ItemGroup>
     <Content Include="Resources\add_rw_JT.jpg" />
     <Content Include="Resources\add_rw.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{b8d01161-3ed4-424a-883f-b805db54c3a3}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

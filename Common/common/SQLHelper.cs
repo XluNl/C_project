@@ -4,8 +4,8 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Configuration; 
-namespace VirtualTrain.common
+using System.Configuration;
+namespace Common.common
 {
      public class SQLHelper
     {

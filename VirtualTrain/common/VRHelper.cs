@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data.Common;
+using Common.model;
 
-namespace VirtualTrain
+namespace VirtualTrain.common
 {
     class VRHelper
     {

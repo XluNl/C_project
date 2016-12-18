@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualTrain", "VirtualTrai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game_Server", "Game_Server\Game_Server.csproj", "{B5CD4E78-7676-43E7-BCC9-FF16891A8093}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{B8D01161-3ED4-424A-883F-B805DB54C3A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,16 @@ Global
 		{B5CD4E78-7676-43E7-BCC9-FF16891A8093}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B5CD4E78-7676-43E7-BCC9-FF16891A8093}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B5CD4E78-7676-43E7-BCC9-FF16891A8093}.Release|x86.ActiveCfg = Release|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B8D01161-3ED4-424A-883F-B805DB54C3A3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

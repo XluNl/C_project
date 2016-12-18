@@ -1,45 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 
-namespace VirtualTrain
+namespace VirtualTrain.common
 {
-    public partial class GameForm : Form
+    class ClientDAL
     {
-        private static string ServerIP = ConfigurationManager.AppSettings["ip"];
-        private static int port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
-        private bool isExit = false;
-        private TcpClient client;
-        private BinaryReader br;
-        private BinaryWriter bw;
+        private static ClientDAL _instance = new ClientDAL();
 
-        public GameForm()
-        {
-            InitializeComponent();
-        }
-
-        private void login()
+        private ClientDAL()
         {
             try
             {
-                //此处为方便演示，实际使用时要将Dns.GetHostName()改为服务器域名
-                //IPAddress ipAd = IPAddress.Parse("182.150.193.7");
+                ServerIP= ConfigurationManager.AppSettings["ip"];
+                port= Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
                 client = new TcpClient();
                 client.Connect(IPAddress.Parse(ServerIP), port);
-                MessageBox.Show("连接成功");
+                //MessageBox.Show("连接成功");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("连接失败，原因：" + ex.Message);
+                //MessageBox.Show("连接失败，原因：" + ex.Message);
                 return;
             }
             //获取网络流
@@ -52,6 +38,29 @@ namespace VirtualTrain
             threadReceive.IsBackground = true;
             threadReceive.Start();
         }
+        /// <summary>
+        /// 获取单一实例
+        /// </summary>
+        /// <returns></returns>
+        public static ClientDAL GetInstance()
+        {
+            return _instance;
+        }
+
+        private static string ServerIP;
+        
+        private static int port;
+        
+        private bool isExit = false;
+        private TcpClient client;
+        private BinaryReader br;
+        private BinaryWriter bw;
+
+        public delegate void WaitHandler();
+        public event WaitHandler WaitEvent;
+
+        public delegate void ShowRoomHandler(string roomInfo);
+        public event ShowRoomHandler ShowRoomEvent;
 
         /// <summary>
         /// 处理服务器信息
@@ -71,7 +80,7 @@ namespace VirtualTrain
                 {
                     if (isExit == false)
                     {
-                        MessageBox.Show("与服务器失去连接");
+                        //MessageBox.Show("与服务器失去连接");
                     }
                     break;
                 }
@@ -85,35 +94,40 @@ namespace VirtualTrain
                     case "logout":  //格式： logout,用户名
                         //RemoveUserName(splitString[1]);
                         break;
-                    case "answer":    //格式： talk,用户名,对话信息
-                        Question question = GameHelper.getQuestion();
-                        lblQuestion.Text = question.question;
-                        OptionA.Text = question.optionA;
-                        OptionB.Text = question.optionB;
-                        OptionC.Text = question.optionC;
-                        OptionD.Text = question.optionD;
+                    case "play":    //格式： talk,用户名,对话信息
+
+                        //Question question = GameHelper.getQuestion();
+                        //lblQuestion.Text = question.question;
+                        //OptionA.Text = question.optionA;
+                        //OptionB.Text = question.optionB;
+                        //OptionC.Text = question.optionC;
+                        //OptionD.Text = question.optionD;
                         //AddTalkMessage(splitString[1] + "：\r\n");
                         //AddTalkMessage(receiveString.Substring(splitString[0].Length + splitString[1].Length + 2));
                         break;
-                    case "video":
-                        wmp.URL = Application.StartupPath + @"\data\" + "Wildlife.wmv";
-                        wmp.Ctlcontrols.play();
-                        break;
                     case "wait":
-                        wait();
+                        if (WaitEvent!=null)
+                        {
+                            WaitEvent();
+                        }
+                        break;
+                    case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
+                        if (ShowRoomEvent!=null)
+                        {
+                            ShowRoomEvent(splitString[1]);
+                        }
                         break;
                     default:
                         break;
                 }
             }
-            Application.Exit();
         }
 
         /// <summary>
         /// 向服务端发送消息
         /// </summary>
         /// <param name="message"></param>
-        private void SendMessage(string message)
+        public void SendMessage(string message)
         {
             try
             {
@@ -123,31 +137,11 @@ namespace VirtualTrain
             }
             catch
             {
-                MessageBox.Show("发送失败");
+                //MessageBox.Show("发送失败");
             }
         }
 
-        private delegate void WaitDelegate();
-
-        private void wait()
-        {
-            if (pnlquestion.InvokeRequired)
-            {
-                WaitDelegate w = new WaitDelegate(wait);
-                pnlquestion.Invoke(w, new object[] { });
-            }
-            else
-            {
-                pnlquestion.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// 窗体关闭事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void close()
         {
             //未与服务器连接前 client 为 null
             if (client != null)
@@ -163,24 +157,6 @@ namespace VirtualTrain
                 catch
                 {
                 }
-            }
-        }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            SendMessage("Game,");
-        }
-
-        private void GameForm_Load(object sender, EventArgs e)
-        {
-            login();
-        }
-
-        private void wmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        {
-            if (e.newState==8)
-            {
-                SendMessage("Game,");
             }
         }
     }

@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B5CD4E78-7676-43E7-BCC9-FF16891A8093}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{B8D01161-3ED4-424A-883F-B805DB54C3A3}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Game_Server</RootNamespace>
-    <AssemblyName>Game_Server</AssemblyName>
+    <RootNamespace>Common</RootNamespace>
+    <AssemblyName>Common</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,14 +36,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="common\SQLHelper.cs" />
+    <Compile Include="common\TaskDAL.cs" />
+    <Compile Include="common\UserHelper.cs" />
+    <Compile Include="model\Gamer.cs" />
+    <Compile Include="model\Major.cs" />
+    <Compile Include="model\ResouresModel.cs" />
+    <Compile Include="model\Role.cs" />
+    <Compile Include="model\Room.cs" />
+    <Compile Include="model\TaskModel.cs" />
+    <Compile Include="model\User.cs" />
+    <Compile Include="model\VR_Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{b8d01161-3ed4-424a-883f-b805db54c3a3}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

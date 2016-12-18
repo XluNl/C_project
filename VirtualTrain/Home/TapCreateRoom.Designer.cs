@@ -33,9 +33,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtPwd = new System.Windows.Forms.TextBox();
+            this.txtMaxNum = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button2
@@ -56,6 +56,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "取消";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -86,35 +87,36 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "人数：";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(179, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(192, 21);
-            this.textBox1.TabIndex = 7;
+            this.txtName.Location = new System.Drawing.Point(179, 45);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(192, 21);
+            this.txtName.TabIndex = 7;
             // 
-            // textBox2
+            // txtPwd
             // 
-            this.textBox2.Location = new System.Drawing.Point(179, 86);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(192, 21);
-            this.textBox2.TabIndex = 8;
+            this.txtPwd.Location = new System.Drawing.Point(179, 86);
+            this.txtPwd.Name = "txtPwd";
+            this.txtPwd.Size = new System.Drawing.Size(192, 21);
+            this.txtPwd.TabIndex = 8;
             // 
-            // textBox3
+            // txtMaxNum
             // 
-            this.textBox3.Location = new System.Drawing.Point(179, 129);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(192, 21);
-            this.textBox3.TabIndex = 9;
+            this.txtMaxNum.Location = new System.Drawing.Point(179, 129);
+            this.txtMaxNum.Name = "txtMaxNum";
+            this.txtMaxNum.ReadOnly = true;
+            this.txtMaxNum.Size = new System.Drawing.Size(192, 21);
+            this.txtMaxNum.TabIndex = 9;
             // 
             // TapCreateRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 259);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMaxNum);
+            this.Controls.Add(this.txtPwd);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -124,6 +126,7 @@
             this.Name = "TapCreateRoom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TapCreateRoom";
+            this.Load += new System.EventHandler(this.TapCreateRoom_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,8 +139,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtPwd;
+        private System.Windows.Forms.TextBox txtMaxNum;
     }
 }

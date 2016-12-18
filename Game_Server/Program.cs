@@ -6,6 +6,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Configuration;
+using Common.model;
+using Common.common;
 
 namespace Game_Server
 {
@@ -15,6 +17,12 @@ namespace Game_Server
         /// 保存连接的所有用户
         /// </summary>
         private static List<Gamer> gamerList = new List<Gamer>();
+        private static List<TaskModel> tasks;
+        //当前任务序号
+        private static int taskIndex;
+        //所有房间
+        private static List<Room> roomList;
+        static TaskDAL dal = new TaskDAL();
 
         /// <summary>
         /// 服务器IP地址
@@ -86,6 +94,7 @@ namespace Game_Server
         {
             Gamer gamer = (Gamer)userState;
             TcpClient client = gamer.client;
+            int sceneId;
             while (isNormalExit == false)
             {
                 string receiveString = null;
@@ -108,35 +117,41 @@ namespace Game_Server
                 switch (splitString[0])
                 {
                     case "Login":
-                        gamer.name = splitString[1];
+                        gamer.roleId = splitString[1];
                         SendToAllClient(gamer, receiveString);
                         break;
                     case "Logout":
                         SendToAllClient(gamer, receiveString);
                         RemoveGamer(gamer);
                         return;
-                    case "Game":
-                        SendToClient(gamer,"wait,");
+                    case "Next":
+                        taskIndex++;
                         foreach (Gamer g in gamerList)
                         {
-                            if (!gamer.Equals(g))
+                            if (g.roleId.Equals(tasks[taskIndex].Taskroleid))
                             {
-                                SendToClient(g, "video,");
+                                SendToClient(g, "play," + tasks[taskIndex].Taskid);
+                            }
+                            else
+                            {
+                                SendToClient(g, "wait,");
                             }
                         }
                         break;
-                    case "Talk":
-                        string talkString = receiveString.Substring(splitString[0].Length + splitString[1].Length + 2);
-                        statusInfo(string.Format("{0}对{1}说：{2}", gamer.name, splitString[1], talkString));
-                        SendToClient(gamer, "talk," + gamer.name + "," + talkString);
-                        foreach (Gamer g in gamerList)
-                        {
-                            if (g.name == splitString[1] && gamer.name != splitString[1])
-                            {
-                                SendToClient(g, "talk," + gamer.name + "," + talkString);
-                                break;
-                            }
-                        }
+                    case "CreateRoom":      //创建房间接口，格式CreateRoom,场景号,房间名称,房间密码
+                        sceneId = Convert.ToInt32(splitString[1]);
+                        string rName = splitString[2];
+                        string rPwd = splitString[3];
+                        Room room = new Room(sceneId);
+                        room.name = rName;
+                        room.pwd = rPwd;
+                        roomList.Add(room);
+                        statusInfo(string.Format("创建{0}房间成功", rName));
+
+                        break;
+                    case "ShowRoom":    //返回某场景所有房间，格式ShowRoom,场景号
+                        sceneId = Convert.ToInt32(splitString[1]);
+                        SendToClient(gamer, "showroom," + dal.getRoomBySceneId(roomList, sceneId));
                         break;
                     default:
                         statusInfo("什么意思啊：" + receiveString);
@@ -158,14 +173,14 @@ namespace Game_Server
                 //获取所有客户端在线信息到当前登录用户
                 for (int i = 0; i < gamerList.Count; i++)
                 {
-                    SendToClient(gamer, "login," + gamerList[i].name);
+                    SendToClient(gamer, "login," + gamerList[i].roleId);
                 }
                 //把自己上线，发送给所有客户端
                 for (int i = 0; i < gamerList.Count; i++)
                 {
-                    if (gamer.name != gamerList[i].name)
+                    if (gamer.roleId != gamerList[i].roleId)
                     {
-                        SendToClient(gamerList[i], "login," + gamer.name);
+                        SendToClient(gamerList[i], "login," + gamer.roleId);
                     }
                 }
             }
@@ -173,7 +188,7 @@ namespace Game_Server
             {
                 for (int i = 0; i < gamerList.Count; i++)
                 {
-                    if (gamerList[i].name != gamer.name)
+                    if (gamerList[i].roleId != gamer.roleId)
                     {
                         SendToClient(gamerList[i], message);
                     }
@@ -193,11 +208,11 @@ namespace Game_Server
                 //将字符串写入网络流，此方法会自动附加字符串长度前缀
                 gamer.bw.Write(message);
                 gamer.bw.Flush();
-                statusInfo(string.Format("向[{0}]发送：{1}", gamer.name, message));
+                statusInfo(string.Format("向[{0}]发送：{1}", gamer.roleId, message));
             }
             catch
             {
-                statusInfo(string.Format("向[{0}]发送信息失败", gamer.name));
+                statusInfo(string.Format("向[{0}]发送信息失败", gamer.roleId));
             }
         }
 
@@ -217,25 +232,6 @@ namespace Game_Server
             Console.WriteLine(str);
         }
 
-        //private delegate void AddItemToListBoxDelegate(string str);
-        /// <summary>
-        /// 在ListBox中追加状态信息
-        /// </summary>
-        /// <param name="str">要追加的信息</param>
-        //private void statusInfo(string str)
-        //{
-        //    if (lst_State.InvokeRequired)
-        //    {
-        //        AddItemToListBoxDelegate d = statusInfo;
-        //        lst_State.Invoke(d, str);
-        //    }
-        //    else
-        //    {
-        //        lst_State.Items.Add(str);
-        //        lst_State.SelectedIndex = lst_State.Items.Count - 1;
-        //        lst_State.ClearSelected();
-        //    }
-        //}
 
         /// <summary>
         /// 停止监听
@@ -254,16 +250,6 @@ namespace Game_Server
             myListener.Stop();
         }
 
-        /// <summary>
-        /// 关闭窗口时触发的事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (myListener != null)
-        //        btn_Stop.PerformClick();    //引发 btn_Stop 的Click事件
-        //}
 
         static void Main(string[] args)
         {
@@ -276,6 +262,7 @@ namespace Game_Server
 
         }
 
-       
+
+
     }
 }

@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using VirtualTrain.Properties;
 using VirtualTrain.model;
 using VirtualTrain.common;
+using Common.model;
+using Common.common;
 namespace VirtualTrain
 {
     public partial class EditScriptFrom : Form

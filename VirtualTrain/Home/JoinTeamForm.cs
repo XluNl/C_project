@@ -15,10 +15,27 @@ namespace VirtualTrain
             InitializeComponent();
         }
 
+        private string _pwd;
+        public string pwd
+        {
+            set
+            {
+                _pwd = value;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (this._pwd.Equals(textBox1.Text))
+            {
             new SelectRoleFrom().ShowDialog();
+            this.Close();
+        }
+            else
+            {
+                lbl.Text = "密码错误";
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)

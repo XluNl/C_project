@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using VirtualTrain.model;
 using VirtualTrain.common;
+using Common.model;
+using Common.common;
 namespace VirtualTrain
 {
     public delegate  void Call(TaskModel ta,int tag);

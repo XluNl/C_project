@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.Common;
+using VirtualTrain.common;
+using Common.common;
 
 //check 
 namespace VirtualTrain

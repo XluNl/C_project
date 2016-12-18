@@ -4,14 +4,14 @@ using System.IO;
 using System.Net.Sockets;
 using System.Text;
 
-namespace Game_Server
+namespace Common.model
 {
-    class Gamer
+    public class Gamer
     {
         public TcpClient client { get; private set; }
         public BinaryReader br { get; private set; }
         public BinaryWriter bw { get; private set; }
-        public string name { get; set; }
+        public string roleId { get; set; }
 
         public Gamer(TcpClient client)
         {

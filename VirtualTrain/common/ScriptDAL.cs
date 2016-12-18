@@ -5,6 +5,8 @@ using VirtualTrain.model;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using Common.model;
+using Common.common;
 namespace VirtualTrain.common
 {
    public class ScriptDAL

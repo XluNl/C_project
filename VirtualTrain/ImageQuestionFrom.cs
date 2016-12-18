@@ -8,6 +8,9 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data.Common;
 using System.Configuration;
+using VirtualTrain.model;
+using VirtualTrain.common;
+using Common.model;
 
 namespace VirtualTrain
 {

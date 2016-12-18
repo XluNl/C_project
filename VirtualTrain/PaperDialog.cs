@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
+using VirtualTrain.model;
+using VirtualTrain.common;
 
 namespace VirtualTrain
 {

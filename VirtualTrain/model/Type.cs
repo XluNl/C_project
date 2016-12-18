@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VirtualTrain
+namespace VirtualTrain.model
 {
     public class Type
     {

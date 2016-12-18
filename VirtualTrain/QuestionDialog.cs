@@ -7,6 +7,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.Common;
 using System.Collections;
+using VirtualTrain.model;
+using VirtualTrain.common;
+using Common.model;
 
 namespace VirtualTrain
 {
@@ -164,7 +167,7 @@ namespace VirtualTrain
                 {
                     while (reader.Read())
                     {
-                        Type type = new Type();
+                        VirtualTrain.model.Type type = new VirtualTrain.model.Type();
                         type.id = (int)reader["id"];
                         type.name = (string)reader["name"];
                         cboTypes.Items.Add(type);
@@ -232,7 +235,7 @@ namespace VirtualTrain
             object item = comboBox.SelectedItem;
             if (item != null)
             {
-                Type type = item as Type;
+                VirtualTrain.model.Type type = item as VirtualTrain.model.Type;
                 return type.id;
             }
             else

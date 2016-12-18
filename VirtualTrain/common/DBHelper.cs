@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using System.Configuration;
-namespace VirtualTrain
+namespace VirtualTrain.common
 {
     public class DBHelper
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VirtualTrain.model
+namespace Common.model
 {
    public class VR_Role
     {

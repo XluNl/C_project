@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Common.common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using VirtualTrain.common;
 
 namespace VirtualTrain
 {
@@ -33,16 +35,45 @@ namespace VirtualTrain
             new TapCreateRoom().ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void CreateRoomForm_Load(object sender, EventArgs e)
         {
             this.Opacity = 0;
             this.Close();
             new JoinTeamForm().ShowDialog();
+            ClientDAL.GetInstance().ShowRoomEvent += this.showRoom;
+            ClientDAL.GetInstance().SendMessage("ShowRoom," + UserHelper.sceneId);
         }
 
-        private void CreateRoomForm_Load(object sender, EventArgs e)
+        private void showRoom(string roomInfo)
         {
+            gb.Controls.Clear();
+            int index = 0;
+            int Y_space = 50;
+            string[] rooms = roomInfo.Split(';');
+            foreach (var room in rooms)
+            {
+                string[] room_detail = room.Split('_');
+                string name = room_detail[0];
+                string pwd = room_detail[1];
+                string online_num = room_detail[2];
+                string max_num = room_detail[3];
+                Button btn = new Button();
+                btn.Width = 380;
+                btn.Height = 25;
+                btn.Tag = pwd;
+                btn.Click += btn_Click;
+                gb.Controls.Add(btn);
+                btn.Location = new Point(30, Y_space * index);
+                index++;
+            }
+        }
 
+        void btn_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            JoinTeamForm jtf = new JoinTeamForm();
+            jtf.pwd = btn.Tag.ToString();
+            jtf.ShowDialog();
         }
     }
 }
