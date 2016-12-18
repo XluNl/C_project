@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Common.common;
-using Common.model;
-
 namespace Common.model
 {
     public class Room

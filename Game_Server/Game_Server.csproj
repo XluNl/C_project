@@ -46,6 +46,10 @@
       <Project>{b8d01161-3ed4-424a-883f-b805db54c3a3}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VirtualTrain\VirtualTrain.csproj">
+      <Project>{d5b66917-2210-4c04-950f-0eb2ade7a3bb}</Project>
+      <Name>VirtualTrain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

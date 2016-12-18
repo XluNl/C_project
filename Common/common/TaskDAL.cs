@@ -1,11 +1,11 @@
 ﻿ using System;
 using System.Collections.Generic;
 using System.Text;
-using VirtualTrain.model;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
-namespace VirtualTrain.common
+using Common.model;
+namespace Common.common
 {
    public class TaskDAL
     {
