@@ -17,6 +17,8 @@ namespace VirtualTrain.common
         {
             try
             {
+                ServerIP= ConfigurationManager.AppSettings["ip"];
+                port= Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
                 client = new TcpClient();
                 client.Connect(IPAddress.Parse(ServerIP), port);
                 //MessageBox.Show("连接成功");
@@ -45,8 +47,10 @@ namespace VirtualTrain.common
             return _instance;
         }
 
-        private static string ServerIP = ConfigurationManager.AppSettings["ip"];
-        private static int port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
+        private static string ServerIP;
+        
+        private static int port;
+        
         private bool isExit = false;
         private TcpClient client;
         private BinaryReader br;
@@ -54,6 +58,9 @@ namespace VirtualTrain.common
 
         public delegate void WaitHandler();
         public event WaitHandler WaitEvent;
+
+        public delegate void ShowRoomHandler(string roomInfo);
+        public event ShowRoomHandler ShowRoomEvent;
 
         /// <summary>
         /// 处理服务器信息
@@ -104,6 +111,12 @@ namespace VirtualTrain.common
                             WaitEvent();
                         }
                         break;
+                    case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
+                        if (ShowRoomEvent!=null)
+                        {
+                            ShowRoomEvent(splitString[1]);
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -114,7 +127,7 @@ namespace VirtualTrain.common
         /// 向服务端发送消息
         /// </summary>
         /// <param name="message"></param>
-        private void SendMessage(string message)
+        public void SendMessage(string message)
         {
             try
             {

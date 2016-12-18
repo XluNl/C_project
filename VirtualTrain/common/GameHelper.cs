@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
+using VirtualTrain.model;
 
-namespace VirtualTrain
+namespace VirtualTrain.common
 {
     class GameHelper
     {

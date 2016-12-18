@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VirtualTrain
+namespace Common.model
 {
     public class Major
     {

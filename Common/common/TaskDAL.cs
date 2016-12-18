@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VirtualTrain.model;
+using Common.model;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
-namespace VirtualTrain.common
+namespace Common.common
 {
     public class TaskDAL
     {
@@ -173,8 +173,9 @@ namespace VirtualTrain.common
             return res;
         }
 
-        private List<Room> getRoomBySceneId(List<Room> rooms, int sceneId)
+        public string getRoomBySceneId(List<Room> rooms, int sceneId)
         {
+            string roomInfo = "";
             List<Room> room = new List<Room>();
             foreach (var r in rooms)
             {
@@ -183,7 +184,15 @@ namespace VirtualTrain.common
                     room.Add(r);
                 }
             }
-            return room;
+            foreach (Room r in room)
+            {
+                roomInfo += r.name + "_";
+                roomInfo += r.pwd + "_";
+                roomInfo += r.gamerList.Count + "_";
+                roomInfo += r.maxNum + ";";
+            }
+            roomInfo = roomInfo.Substring(0, roomInfo.Length - 1);
+            return roomInfo;
         }
     }
 }

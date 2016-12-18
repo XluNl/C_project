@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace VirtualTrain
+namespace VirtualTrain.common
 {
     class ViewHelper
     {

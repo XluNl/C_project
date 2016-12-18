@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using VirtualTrain.common;
-using VirtualTrain.model;
+using Common.common;
+using Common.model;
 
-namespace VirtualTrain
+namespace Common.model
 {
     public class Room
     {
@@ -34,6 +34,10 @@ namespace VirtualTrain
 
         //最大人数
         private string _maxNum;
+        public string maxNum
+        {
+            get { return _maxNum; }
+        }
 
         private List<Gamer> _gamerList;
         public List<Gamer> gamerList

@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using VirtualTrain.model;
+using VirtualTrain.common;
 
 namespace VirtualTrain
 {

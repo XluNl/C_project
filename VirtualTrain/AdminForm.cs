@@ -11,6 +11,7 @@ using VirtualTrain.common;
 using System.IO;
 using VirtualTrain;
 using System.Configuration;
+using Common.model;
 
 namespace VirtualTrain
 {

@@ -32,7 +32,6 @@
             this.BasicFrame = new System.Windows.Forms.SplitContainer();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.upDownSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.cboMajors = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDian = new System.Windows.Forms.Button();
             this.btnTMIS = new System.Windows.Forms.Button();
@@ -90,7 +89,6 @@
             // 
             this.upDownSplitContainer.Panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("upDownSplitContainer.Panel1.BackgroundImage")));
             this.upDownSplitContainer.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.upDownSplitContainer.Panel1.Controls.Add(this.cboMajors);
             this.upDownSplitContainer.Panel1.Controls.Add(this.btnBack);
             this.upDownSplitContainer.Panel1.Controls.Add(this.btnDian);
             this.upDownSplitContainer.Panel1.Controls.Add(this.btnTMIS);
@@ -108,19 +106,6 @@
             this.upDownSplitContainer.SplitterDistance = 375;
             this.upDownSplitContainer.SplitterWidth = 1;
             this.upDownSplitContainer.TabIndex = 14;
-            // 
-            // cboMajors
-            // 
-            this.cboMajors.BackColor = System.Drawing.Color.White;
-            this.cboMajors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboMajors.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboMajors.FormattingEnabled = true;
-            this.cboMajors.Location = new System.Drawing.Point(407, 145);
-            this.cboMajors.Margin = new System.Windows.Forms.Padding(0);
-            this.cboMajors.Name = "cboMajors";
-            this.cboMajors.Size = new System.Drawing.Size(35, 20);
-            this.cboMajors.TabIndex = 17;
-            this.cboMajors.SelectedIndexChanged += new System.EventHandler(this.cboMajors_SelectedIndexChanged);
             // 
             // btnBack
             // 
@@ -234,7 +219,7 @@
             this.btnU3D.Size = new System.Drawing.Size(135, 20);
             this.btnU3D.TabIndex = 3;
             this.btnU3D.UseVisualStyleBackColor = false;
-            this.btnU3D.Click += new System.EventHandler(this.picMajor_Click);
+            this.btnU3D.Click += new System.EventHandler(this.btnU3D_Click);
             this.btnU3D.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
             this.btnU3D.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
@@ -272,6 +257,5 @@
         private System.Windows.Forms.Button btnTMIS;
         private System.Windows.Forms.Button btnZhuan;
         private System.Windows.Forms.Button btnADX;
-        private System.Windows.Forms.ComboBox cboMajors;
     }
 }

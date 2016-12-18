@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -72,6 +73,7 @@ namespace VirtualTrain
         {
             Button btn = (Button)sender;
             script sc = (script)btn.Tag;
+            UserHelper.sceneId = sc.Id;
             if (sc.Isonline == 1)
             {
                 new ModeSelectForm().ShowDialog();

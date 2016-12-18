@@ -6,9 +6,8 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Configuration;
-using VirtualTrain.model;
-using VirtualTrain.common;
-using VirtualTrain;
+using Common.model;
+using Common.common;
 
 namespace Game_Server
 {
@@ -95,6 +94,7 @@ namespace Game_Server
         {
             Gamer gamer = (Gamer)userState;
             TcpClient client = gamer.client;
+            int sceneId;
             while (isNormalExit == false)
             {
                 string receiveString = null;
@@ -139,13 +139,19 @@ namespace Game_Server
                         }
                         break;
                     case "CreateRoom":      //创建房间接口，格式CreateRoom,场景号,房间名称,房间密码
-                        int sceneId = Convert.ToInt32(splitString[1]);
+                        sceneId = Convert.ToInt32(splitString[1]);
                         string rName = splitString[2];
                         string rPwd = splitString[3];
                         Room room = new Room(sceneId);
+                        room.name = rName;
+                        room.pwd = rPwd;
                         roomList.Add(room);
                         statusInfo(string.Format("创建{0}房间成功", rName));
 
+                        break;
+                    case "ShowRoom":    //返回某场景所有房间，格式ShowRoom,场景号
+                        sceneId = Convert.ToInt32(splitString[1]);
+                        SendToClient(gamer, "showroom," + dal.getRoomBySceneId(roomList, sceneId));
                         break;
                     default:
                         statusInfo("什么意思啊：" + receiveString);
