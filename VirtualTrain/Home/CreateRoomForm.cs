@@ -37,9 +37,6 @@ namespace VirtualTrain
 
         private void CreateRoomForm_Load(object sender, EventArgs e)
         {
-            this.Opacity = 0;
-            this.Close();
-            new JoinTeamForm().ShowDialog();
             ClientDAL.GetInstance().ShowRoomEvent += this.showRoom;
             ClientDAL.GetInstance().SendMessage("ShowRoom," + UserHelper.sceneId);
         }
@@ -75,5 +72,6 @@ namespace VirtualTrain
             jtf.pwd = btn.Tag.ToString();
             jtf.ShowDialog();
         }
+
     }
 }

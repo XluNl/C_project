@@ -18,8 +18,22 @@ namespace VirtualTrain
         public StudentWelcomeForm()
         {
             InitializeComponent();
+
+            //解决窗体闪烁
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+
+            this.UpdateStyles();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams paras = base.CreateParams;
+                paras.ExStyle |= 0x02000000;
+                return paras;
+            }
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             //弹出消息框向用户确认
@@ -62,9 +76,6 @@ namespace VirtualTrain
             //    default:
             //        break;
             //}
-
-            //解决窗体闪烁
-            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
         }
 
         private void cboMajorsInit()

@@ -8,12 +8,9 @@ using System.Windows.Forms;
 
 namespace VirtualTrain
 {
-    //public delegate void loadSceneDelegate(ModeSelectForm from);
-    //public delegate void CreateRoomDelegate(ModeSelectForm from);
     public partial class ModeSelectForm : Form
     {
-        //public event loadSceneDelegate loadSceneDele;
-        //public event CreateRoomDelegate CreateRoomDele;
+
         public ModeSelectForm()
         {
             InitializeComponent();
@@ -36,6 +33,11 @@ namespace VirtualTrain
         private void ModeSelectForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
