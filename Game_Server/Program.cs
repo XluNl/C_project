@@ -151,7 +151,10 @@ namespace Game_Server
                         break;
                     case "ShowRoom":    //返回某场景所有房间，格式ShowRoom,场景号
                         sceneId = Convert.ToInt32(splitString[1]);
-                        SendToClient(gamer, "showroom," + dal.getRoomBySceneId(roomList, sceneId));
+                        if (roomList != null)
+                        {
+                            SendToClient(gamer, "showroom," + dal.getRoomBySceneId(roomList, sceneId));
+                        }
                         break;
                     default:
                         statusInfo("什么意思啊：" + receiveString);
