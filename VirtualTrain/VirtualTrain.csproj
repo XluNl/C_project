@@ -122,17 +122,17 @@
     <Compile Include="EditScriptFrom.Designer.cs">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home\ImageFrom.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Home\ImageControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Home\ImageFrom.Designer.cs">
-      <DependentUpon>ImageFrom.cs</DependentUpon>
+    <Compile Include="Home\ImageControl.Designer.cs">
+      <DependentUpon>ImageControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home\QuestionFrom.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Home\QuestionControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Home\QuestionFrom.Designer.cs">
-      <DependentUpon>QuestionFrom.cs</DependentUpon>
+    <Compile Include="Home\QuestionControl.Designer.cs">
+      <DependentUpon>QuestionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Home\SelectRoleFrom.cs">
       <SubType>Form</SubType>
@@ -140,11 +140,11 @@
     <Compile Include="Home\SelectRoleFrom.Designer.cs">
       <DependentUpon>SelectRoleFrom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home\VideoFrom.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Home\VideoControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Home\VideoFrom.Designer.cs">
-      <DependentUpon>VideoFrom.cs</DependentUpon>
+    <Compile Include="Home\VideoControl.Designer.cs">
+      <DependentUpon>VideoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageQuestionFrom.cs">
       <SubType>Form</SubType>
@@ -357,17 +357,17 @@
     <EmbeddedResource Include="EditScriptFrom.resx">
       <DependentUpon>EditScriptFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home\ImageFrom.resx">
-      <DependentUpon>ImageFrom.cs</DependentUpon>
+    <EmbeddedResource Include="Home\ImageControl.resx">
+      <DependentUpon>ImageControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home\QuestionFrom.resx">
-      <DependentUpon>QuestionFrom.cs</DependentUpon>
+    <EmbeddedResource Include="Home\QuestionControl.resx">
+      <DependentUpon>QuestionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\SelectRoleFrom.resx">
       <DependentUpon>SelectRoleFrom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home\VideoFrom.resx">
-      <DependentUpon>VideoFrom.cs</DependentUpon>
+    <EmbeddedResource Include="Home\VideoControl.resx">
+      <DependentUpon>VideoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageQuestionFrom.resx">
       <DependentUpon>ImageQuestionFrom.cs</DependentUpon>

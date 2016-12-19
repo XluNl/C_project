@@ -63,6 +63,7 @@
             this.Name = "ModeSelectForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ModeSelectForm";
+            this.Load += new System.EventHandler(this.ModeSelectForm_Load);
             this.ResumeLayout(false);
 
         }

@@ -32,5 +32,10 @@ namespace VirtualTrain
             this.Close();
             new loadSceneForm().ShowDialog();
         }
+
+        private void ModeSelectForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
