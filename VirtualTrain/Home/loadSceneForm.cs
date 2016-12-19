@@ -21,8 +21,26 @@ namespace VirtualTrain
         public loadSceneForm()
         {
             InitializeComponent();
+           
+            this.panel1.BackColor = Color.Transparent;
+            this.panel2.BackColor = Color.Transparent;
+            this.panel3.BackColor = Color.Transparent;
+            this.groupBox1.BackColor = Color.Transparent;
+            this.groupBox2.BackColor = Color.Transparent;
+            //解决窗体闪烁
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+            this.UpdateStyles();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams paras = base.CreateParams;
+                paras.ExStyle |= 0x02000000;
+                return paras;
+            }
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -65,8 +83,11 @@ namespace VirtualTrain
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void loadSceneForm_Load(object sender, EventArgs e)
         {
+
+           
             //测试 默认加载一个视频任务
             this.creatVideoBy(new TaskModel());
+
         }
 
         /// <summary>

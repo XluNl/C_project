@@ -22,7 +22,15 @@ namespace VirtualTrain
         {
             InitializeComponent();
         }
-
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams paras = base.CreateParams;
+                paras.ExStyle |= 0x02000000;
+                return paras;
+            }
+        }
         //“登录”按钮的单击事件
         private void btnLogin_Click(object sender, EventArgs e)
         {

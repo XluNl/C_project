@@ -19,9 +19,21 @@ namespace VirtualTrain
     {
         public TeacherWelcomeForm()
         {
-            InitializeComponent();
-        }
 
+            InitializeComponent();
+            //解决窗体闪烁
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
+            this.UpdateStyles();
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams paras = base.CreateParams;
+                paras.ExStyle |= 0x02000000;
+                return paras;
+            }
+        }
         private void cboMajorsInit()
         {
             cboMajors.Items.Clear();
