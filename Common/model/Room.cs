@@ -37,7 +37,7 @@ namespace Common.model
             get { return _maxNum; }
         }
 
-        private List<Gamer> _gamerList;
+        private List<Gamer> _gamerList=new List<Gamer>();
         public List<Gamer> gamerList
         {
             get { return _gamerList; }

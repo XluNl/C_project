@@ -57,6 +57,7 @@ namespace VirtualTrain
                 Button btn = new Button();
                 btn.Width = 380;
                 btn.Height = 25;
+                btn.Text = online_num + "/" + max_num;
                 btn.Tag = pwd;
                 btn.Click += btn_Click;
                 gb.Controls.Add(btn);

@@ -21,7 +21,7 @@ namespace Game_Server
         //当前任务序号
         private static int taskIndex;
         //所有房间
-        private static List<Room> roomList;
+        private static List<Room> roomList = new List<Room>();
         static TaskDAL dal = new TaskDAL();
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Game_Server
                         break;
                     case "ShowRoom":    //返回某场景所有房间，格式ShowRoom,场景号
                         sceneId = Convert.ToInt32(splitString[1]);
-                        if (roomList != null)
+                        if (roomList != null && roomList.Count > 0)
                         {
                             SendToClient(gamer, "showroom," + dal.getRoomBySceneId(roomList, sceneId));
                         }
