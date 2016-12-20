@@ -525,9 +525,6 @@
     <None Include="Resources\20.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\14.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="AxWMPLib">
       <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
       <VersionMajor>1</VersionMajor>
@@ -554,9 +551,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\02.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\picche.jpg" />
@@ -719,6 +713,8 @@
     <None Include="bin\Debug\add_rw_JT.jpg" />
     <None Include="Resources\add_r.png" />
     <None Include="Resources\add_rw_J.png" />
+    <None Include="Resources\02.bmp" />
+    <None Include="Resources\14.bmp" />
     <Content Include="Resources\bac.jpg" />
     <Content Include="Resources\g01.jpg" />
     <None Include="Resources\g05.jpg" />
