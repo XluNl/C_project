@@ -206,7 +206,7 @@
             this.Controls.Add(this.label1);
             this.Name = "VideoEditedFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "VideoEditedFrom";
+            this.Text = "视频编辑";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.VideoEditedFrom_FormClosed);
             this.Load += new System.EventHandler(this.VideoEditedFrom_Load);
             this.groupBox1.ResumeLayout(false);

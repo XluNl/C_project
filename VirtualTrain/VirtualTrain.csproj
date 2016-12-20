@@ -709,6 +709,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\lc.png" />
+    <None Include="Resources\sh_log.png" />
     <None Include="bin\Debug\add_rw.png" />
     <None Include="bin\Debug\add_rw_JT.jpg" />
     <None Include="Resources\add_r.png" />

@@ -45,7 +45,7 @@ namespace VirtualTrain
             if (index >= TestHelper.selectedQuestionId.Length - 1)
             {
                 //undo
-                btnNext.BackgroundImage = VirtualTrain.Properties.Resources._14;
+                btnNext.BackgroundImage = VirtualTrain.Properties.Resources.j_14;
                 //btnNext.Text = "检查答案";
             }
         }

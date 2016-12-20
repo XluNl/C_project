@@ -187,7 +187,7 @@
             this.Controls.Add(this.label2);
             this.Name = "ImageQuestionFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ImageSelectFrom";
+            this.Text = "图像选择编辑";
             this.Load += new System.EventHandler(this.ImageQuestionFrom_Load);
             this.gb.ResumeLayout(false);
             this.gb.PerformLayout();

@@ -258,7 +258,7 @@
             this.Name = "TextQuestionDialog";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "题目对话框";
+            this.Text = "选择题编辑";
             this.Load += new System.EventHandler(this.QuestionDialog_Load);
             this.pnlanswer.ResumeLayout(false);
             this.pnlanswer.PerformLayout();

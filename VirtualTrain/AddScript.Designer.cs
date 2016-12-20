@@ -127,7 +127,7 @@
             this.Controls.Add(this.label1);
             this.Name = "AddScript";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddScript";
+            this.Text = "创建场景";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.Load += new System.EventHandler(this.AddScript_Load);
             this.groupBox1.ResumeLayout(false);

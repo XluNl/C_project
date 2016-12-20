@@ -1010,7 +1010,7 @@ namespace VirtualTrain
             }
             else
             {// 添加
-                int btn_H = 30;
+                int btn_H = 40;
                 int btn_W = Convert.ToInt32(this.panel2.Size.Width * 0.78);
                 int org = 10;
                 int org_Y = org;
