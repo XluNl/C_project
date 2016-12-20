@@ -1047,7 +1047,7 @@ namespace VirtualTrain
             script sc = (script)this.contextMenuStrip1.Tag;
 
             ScriptDAL scrDAL = new ScriptDAL();
-            // 检查当前场景是否可以被删除
+            // 检查当前场景是否可以被删除，有则警告用户
             if (scrDAL.checkSenceIsDelectWithSenceid(sc.Id))
             {
                 DialogResult result = MessageBox.Show("检测到当前脚本下面有任务,删除后不可恢复！确认删除点击是", "重要提示：", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1061,6 +1061,17 @@ namespace VirtualTrain
                         this.getAllSence();
                         MessageBox.Show("删除成功");
                     }
+                }
+            }
+            else {//没有则直接删除
+
+                if (scrDAL.delectSenceWithID(sc.Id))
+                {
+                    // 刷新
+                    this.panel2.Controls.Clear();
+                    this.Tg = 2;//删除标记
+                    this.getAllSence();
+                    MessageBox.Show("删除成功");
                 }
             }
 

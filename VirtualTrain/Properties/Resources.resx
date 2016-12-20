@@ -313,12 +313,6 @@
   <data name="add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\png-1768.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add_rw" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\add_rw.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add_rw_JT" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\add_rw_JT.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="g01" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\g01.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -333,5 +327,11 @@
   </data>
   <data name="g05" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\g05.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_r" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_r.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="add_rw_J" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_rw_J.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

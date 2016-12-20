@@ -158,18 +158,21 @@ namespace Common.common
 
            // 取一个，正常情况下也只有一个
            ResouresModel res = new ResouresModel();
-           res.Id = Convert.ToInt32(table.Rows[0]["id"]);
-           res.Question = table.Rows[0]["question"].ToString();
-           res.Answer = table.Rows[0]["answer"].ToString();
-           res.MajorId = Convert.ToInt32(table.Rows[0]["majorId"]);
-           res.Type = Convert.ToInt32(table.Rows[0]["type"]);
-           res.OptionA = table.Rows[0]["OptionA"].ToString();
-           res.OptionB = table.Rows[0]["OptionB"].ToString();
-           res.OptionC = table.Rows[0]["OptionC"].ToString();
-           res.OptionD = table.Rows[0]["OptionD"].ToString();
-           res.FileName = table.Rows[0]["fileName"].ToString();
-           res.StartTime = Convert.ToDouble(table.Rows[0]["startTime"]);
-           res.EndTime = Convert.ToDouble(table.Rows[0]["endTime"]);
+           // 下面判断值不能为nil
+           res.Id = !table.Rows[0].IsNull("id") ? Convert.ToInt32(table.Rows[0]["id"]) : -1;
+           res.Question = !table.Rows[0].IsNull("question")?table.Rows[0]["question"].ToString():"";
+           res.Answer = !table.Rows[0].IsNull("answer") ? table.Rows[0]["answer"].ToString() : "";
+           res.Answer = !table.Rows[0].IsNull("answer") ? table.Rows[0]["answer"].ToString() : "";
+           res.MajorId = !table.Rows[0].IsNull("majorId") ? Convert.ToInt32(table.Rows[0]["majorId"]) : -1;
+           res.Type = !table.Rows[0].IsNull("type") ? Convert.ToInt32(table.Rows[0]["type"]) : -1;
+           res.OptionA = !table.Rows[0].IsNull("OptionA") ? table.Rows[0]["OptionA"].ToString() : "";
+           res.OptionB = !table.Rows[0].IsNull("OptionB") ? table.Rows[0]["OptionB"].ToString() : "";
+           res.OptionC = !table.Rows[0].IsNull("OptionC") ? table.Rows[0]["OptionC"].ToString() : "";
+           res.OptionD = !table.Rows[0].IsNull("OptionD") ? table.Rows[0]["OptionD"].ToString() : "";
+           res.FileName = !table.Rows[0].IsNull("fileName") ? table.Rows[0]["fileName"].ToString() : "";
+           res.EndTime = table.Rows[0]["startTime"].ToString() != "" ? Convert.ToDouble(table.Rows[0]["startTime"]) : -1;
+           res.EndTime = table.Rows[0]["endTime"].ToString() != "" ? Convert.ToDouble(table.Rows[0]["endTime"]) : -1;
+
            return res;
        }
 

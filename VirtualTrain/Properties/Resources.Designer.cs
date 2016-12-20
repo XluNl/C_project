@@ -93,9 +93,9 @@ namespace VirtualTrain.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap add_rw {
+        internal static System.Drawing.Bitmap add_r {
             get {
-                object obj = ResourceManager.GetObject("add_rw", resourceCulture);
+                object obj = ResourceManager.GetObject("add_r", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace VirtualTrain.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap add_rw_JT {
+        internal static System.Drawing.Bitmap add_rw_J {
             get {
-                object obj = ResourceManager.GetObject("add_rw_JT", resourceCulture);
+                object obj = ResourceManager.GetObject("add_rw_J", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -210,7 +210,7 @@ namespace VirtualTrain.common
 
 
        /// <summary>
-       /// 判断场景是否可以被删除
+       /// 判断场景是否可以被删除，如果检查有任务则警告用户，否则直接删除
        /// </summary>
        /// <param name="senceid"></param>
        /// <returns></returns>

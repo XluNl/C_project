@@ -99,21 +99,17 @@ namespace VirtualTrain
             int btn_Y = (int)(org * 1.1);
 
             this.panel_pr.AutoScroll = true;
+
             // 添加按钮
             int addimg_H = 45;
             int count = this.panel_pr.Controls.Count;
             PictureBox addimg = new PictureBox();
-            addimg.Text = "添加";
-            //addimg.BackColor = Color.Red;
             addimg.Size = new Size(btn_W, addimg_H);
             addimg.Click += addRW;
             addimg.Location = new Point(pan_X + btn_org, btn_Y);
-            
-            addimg.Image = new Bitmap(Resources.add);
-            //string str  = Application.StartupPath+"\\add_rw.png";
-            //addimg.Image = Image.FromFile(str);
-            //addimg.Image = new Bitmap(Application.StartupPath + @"/Resources/add_rw_JT.jpg");
+            addimg.Image = new Bitmap(Resources.add_r);
             addimg.SizeMode = PictureBoxSizeMode.Zoom;
+            addimg.BackColor = Color.Transparent;
             this.panel_pr.Controls.Add(addimg);
             this.Picbox = addimg;
         }
@@ -166,14 +162,11 @@ namespace VirtualTrain
             pan.Controls.Add(btn);
 
             PictureBox img = new PictureBox();
-            img.Text = "图像";
-            //img.BackColor = Color.Blue;
             img.Size = new Size(btn_W, btn_H - btn_org);
             img.Location = new Point(btn_org, btn_Y + btn_H);
-            img.Image = new Bitmap(Resources.add);
-            //string str = Application.StartupPath + "\\add_rw_JT.jpg";
-            //img.Image = Image.FromFile(str);
+            img.Image = new Bitmap(Resources.add_rw_J);
             img.SizeMode = PictureBoxSizeMode.Zoom;
+            img.BackColor = Color.Transparent;
             pan.Controls.Add(img);
         }
 

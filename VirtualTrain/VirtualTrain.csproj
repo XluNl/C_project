@@ -207,6 +207,11 @@
     <Compile Include="PaperNameDialog.Designer.cs">
       <DependentUpon>PaperNameDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="QuestionDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -428,14 +433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="StudentForm.resx">
       <DependentUpon>StudentForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -717,6 +717,8 @@
   <ItemGroup>
     <None Include="bin\Debug\add_rw.png" />
     <None Include="bin\Debug\add_rw_JT.jpg" />
+    <None Include="Resources\add_r.png" />
+    <None Include="Resources\add_rw_J.png" />
     <Content Include="Resources\bac.jpg" />
     <Content Include="Resources\g01.jpg" />
     <None Include="Resources\g05.jpg" />
