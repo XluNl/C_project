@@ -29,7 +29,7 @@ namespace VirtualTrain
             
             InitializeComponent();
 
-            this.panel2.BackColor = Color.Transparent;
+            //this.panel2.BackColor = Color.Transparent;
             //解决窗体闪烁
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 

@@ -33,16 +33,14 @@ namespace VirtualTrain.Home
             get { return curTask; }
             set { curTask = value; }
         }
-
-
-        private void videoControl2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.qr(this,5);
+        }
+
+        private void QuestionControl_Load(object sender, EventArgs e)
+        {
+            this.textBox1.Text = "我被设置了";
         }
     }
 }
