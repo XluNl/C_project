@@ -37,7 +37,9 @@ namespace VirtualTrain
 
         private void CreateRoomForm_Load(object sender, EventArgs e)
         {
+
             ClientDAL.GetInstance().ShowRoomEvent += this.showRoom;
+
             ClientDAL.GetInstance().SendMessage("ShowRoom," + UserHelper.sceneId);
         }
 
