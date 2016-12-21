@@ -38,16 +38,17 @@ namespace VirtualTrain
         private void CreateRoomForm_Load(object sender, EventArgs e)
         {
 
-            ClientDAL.GetInstance().ShowRoomEvent += this.showRoom;
+            ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.showRoom));
 
             ClientDAL.GetInstance().SendMessage("ShowRoom," + UserHelper.sceneId);
         }
 
+        int index = 0;
+        int Y_space = 100;
         private void showRoom(string roomInfo)
         {
             gb.Controls.Clear();
-            int index = 0;
-            int Y_space = 50;
+
             string[] rooms = roomInfo.Split(';');
             foreach (var room in rooms)
             {
@@ -59,12 +60,27 @@ namespace VirtualTrain
                 Button btn = new Button();
                 btn.Width = 380;
                 btn.Height = 25;
-                btn.Text = online_num + "/" + max_num;
+                btn.Text = name+","+online_num + "/" + max_num;
                 btn.Tag = pwd;
                 btn.Click += btn_Click;
+                AddGbControls(btn);
+
+                index++;
+            }
+        }
+
+        private delegate void AddGbControlsDelegate(Button btn);
+        private void AddGbControls(Button btn)
+        {
+            if (gb.InvokeRequired)
+            {
+                AddGbControlsDelegate d = new AddGbControlsDelegate(AddGbControls);
+                gb.Invoke(d, btn);
+            }
+            else
+            {
                 gb.Controls.Add(btn);
                 btn.Location = new Point(30, Y_space * index);
-                index++;
             }
         }
 
@@ -73,6 +89,7 @@ namespace VirtualTrain
             Button btn = (Button)sender;
             JoinTeamForm jtf = new JoinTeamForm();
             jtf.pwd = btn.Tag.ToString();
+            jtf.name = btn.Text;
             jtf.ShowDialog();
         }
 

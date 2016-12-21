@@ -16,12 +16,14 @@ namespace Game_Server
         /// <summary>
         /// 保存连接的所有用户
         /// </summary>
-        private static List<Gamer> gamerList = new List<Gamer>();
+        private static List<Gamer> gamerList;
         private static List<TaskModel> tasks;
         //当前任务序号
         private static int taskIndex;
         //所有房间
         private static List<Room> roomList = new List<Room>();
+
+        private static Room room;
         static TaskDAL dal = new TaskDAL();
 
         /// <summary>
@@ -79,9 +81,8 @@ namespace Game_Server
                 Gamer gamer = new Gamer(newClient);
                 Thread threadReceive = new Thread(ReceiveData);
                 threadReceive.Start(gamer);
-                gamerList.Add(gamer);
                 statusInfo(string.Format("[{0}]进入", newClient.Client.RemoteEndPoint));
-                statusInfo(string.Format("当前连接用户数：{0}", gamerList.Count));
+                //statusInfo(string.Format("当前连接用户数：{0}", gamerList.Count));
             }
 
         }
@@ -116,9 +117,10 @@ namespace Game_Server
                 string[] splitString = receiveString.Split(',');
                 switch (splitString[0])
                 {
-                    case "Login":
+                    case "Login":      //玩家选定角色接口，格式Login,角色号
+
                         gamer.roleId = splitString[1];
-                        SendToAllClient(gamer, receiveString);
+                        statusInfo(string.Format(client.Client.RemoteEndPoint + "选择了{0}角色", splitString[1]));
                         break;
                     case "Logout":
                         SendToAllClient(gamer, receiveString);
@@ -142,9 +144,10 @@ namespace Game_Server
                         sceneId = Convert.ToInt32(splitString[1]);
                         string rName = splitString[2];
                         string rPwd = splitString[3];
-                        Room room = new Room(sceneId);
+                        room = new Room(sceneId);
                         room.name = rName;
                         room.pwd = rPwd;
+                        room.gamerList.Add(gamer);
                         roomList.Add(room);
                         statusInfo(string.Format("创建{0}房间成功", rName));
 
@@ -154,6 +157,21 @@ namespace Game_Server
                         if (roomList != null && roomList.Count > 0)
                         {
                             SendToClient(gamer, "showroom," + dal.getRoomBySceneId(roomList, sceneId));
+                        }
+                        break;
+                    case "EnterRoom":   //将玩家加入某房间，格式EnterRoom,房间名
+                        string roomName = splitString[1];
+                        room = dal.getRoomByName(roomList, roomName);
+                        room.gamerList.Add(gamer);
+                        statusInfo(string.Format(client.Client.RemoteEndPoint + "进入{0}房间", roomName));
+                        break;
+                    case "ShowState":    //返回某房间在线玩家选择状态，格式ShowState
+                        room = dal.getRoomByGamer(roomList, gamer);
+                        string gamerInfo = dal.getGamerStateByRoom(room);
+                        if (!string.IsNullOrEmpty(gamerInfo))
+                        {
+                            gamerList = room.gamerList;
+                            SendToAllClient(null, "showstate," + gamerInfo);
                         }
                         break;
                     default:
@@ -195,6 +213,13 @@ namespace Game_Server
                     {
                         SendToClient(gamerList[i], message);
                     }
+                }
+            }
+            else if (command == "showstate")
+            {
+                for (int i = 0; i < gamerList.Count; i++)
+                {
+                    SendToClient(gamerList[i], message);
                 }
             }
         }
