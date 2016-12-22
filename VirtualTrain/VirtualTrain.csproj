@@ -724,6 +724,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\调度.png" />
+    <None Include="Resources\供电.png" />
+    <None Include="Resources\工务.png" />
+    <None Include="Resources\电务.png" />
+    <None Include="Resources\车务.png" />
     <None Include="Resources\lc.png" />
     <None Include="Resources\sh_log.png" />
     <None Include="bin\Debug\add_rw.png" />

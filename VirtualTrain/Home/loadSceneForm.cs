@@ -23,6 +23,7 @@ namespace VirtualTrain
         // 默认第一条元素
         private int curTaskId = 0;
         private List<TaskModel> _taskmodes;
+       
         //根据场景ID获取场景全部task实体
         public List<TaskModel> Taskmodes
         {

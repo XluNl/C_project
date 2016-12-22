@@ -383,6 +383,16 @@ namespace VirtualTrain.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 供电 {
+            get {
+                object obj = ResourceManager.GetObject("供电", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 供电电子书1 {
             get {
                 object obj = ResourceManager.GetObject("供电电子书1", resourceCulture);
@@ -443,6 +453,16 @@ namespace VirtualTrain.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 工务 {
+            get {
+                object obj = ResourceManager.GetObject("工务", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 工务电子书1 {
             get {
                 object obj = ResourceManager.GetObject("工务电子书1", resourceCulture);
@@ -496,6 +516,16 @@ namespace VirtualTrain.Properties {
         internal static System.Drawing.Bitmap 抬头栏 {
             get {
                 object obj = ResourceManager.GetObject("抬头栏", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 电务 {
+            get {
+                object obj = ResourceManager.GetObject("电务", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -643,6 +673,16 @@ namespace VirtualTrain.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap 调度 {
+            get {
+                object obj = ResourceManager.GetObject("调度", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap 调度电子书1 {
             get {
                 object obj = ResourceManager.GetObject("调度电子书1", resourceCulture);
@@ -666,6 +706,16 @@ namespace VirtualTrain.Properties {
         internal static System.Drawing.Bitmap 调教 {
             get {
                 object obj = ResourceManager.GetObject("调教", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 车务 {
+            get {
+                object obj = ResourceManager.GetObject("车务", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
