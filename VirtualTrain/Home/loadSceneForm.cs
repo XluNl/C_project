@@ -155,5 +155,6 @@ namespace VirtualTrain
             MessageBox.Show("创建一个Video-------" + tag.ToString());
             this.creatVideoBy(new TaskModel());
         }
+
     }
 }

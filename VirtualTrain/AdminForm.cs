@@ -1119,5 +1119,18 @@ namespace VirtualTrain
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //\\局域网目标ip地址\
+            //\\局域网主机名\
+            OpenFileDialog file = new OpenFileDialog();
+            //file.InitialDirectory = "C:\\VR\\Image";
+            file.InitialDirectory = "127.0.0.1\\C:\\VR\\Video";
+            file.Title = "请选择图片";
+            file.Multiselect = false;
+            file.Filter = "图片文件|*.jpg";
+            file.ShowDialog();
+        }
+
     }
 }
