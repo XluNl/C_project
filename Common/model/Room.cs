@@ -11,7 +11,7 @@ namespace Common.model
         {
             this.sceneId = sceneId;
             this._tasks = td.getAllWitnSenceID(sceneId);
-            this._maxNum = td.getAllRoleWithSenceID(sceneId).Count.ToString();
+            this._maxNum = td.getAllRoleWithSenceID(sceneId).Count;
         }
 
         //名称
@@ -31,13 +31,13 @@ namespace Common.model
         }
 
         //最大人数
-        private string _maxNum;
-        public string maxNum
+        private int _maxNum;
+        public int maxNum
         {
             get { return _maxNum; }
         }
 
-        private List<Gamer> _gamerList=new List<Gamer>();
+        private List<Gamer> _gamerList = new List<Gamer>();
         public List<Gamer> gamerList
         {
             get { return _gamerList; }

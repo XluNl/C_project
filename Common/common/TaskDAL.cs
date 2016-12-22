@@ -5,6 +5,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Data;
 using Common.model;
+using System.Text.RegularExpressions;
 namespace Common.common
 {
     public class TaskDAL
@@ -242,6 +243,14 @@ namespace Common.common
                 }
             }
             return room;
+        }
+
+        //获得字符串中某字符个数
+        public int regexStr(string str, string reg)
+        {
+            Regex rg = new Regex(reg);
+            MatchCollection mc = rg.Matches(str);
+            return mc.Count;
         }
     }
 }
