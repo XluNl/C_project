@@ -28,9 +28,7 @@ namespace VirtualTrain.Home
 
             pnls.Enabled = false;
             btn_login.Enabled = false;
-            //this.Opacity = 0;
-            //this.Close();
-            //new loadSceneForm().ShowDialog();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -42,6 +40,7 @@ namespace VirtualTrain.Home
         {
             initView();
             ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.showstate));
+            ClientDAL.GetInstance().Register(new ClientDAL.OperateHandler(this.startgame));
 
             ClientDAL.GetInstance().SendMessage("ShowState");
         }
@@ -113,10 +112,10 @@ namespace VirtualTrain.Home
                             if (btn.Tag.ToString().Equals(id))
                             {
                                 InvokeShowState(btn);
+                                break;
                             }
                         }
                     }
-
                 }
             }
         }
@@ -136,5 +135,25 @@ namespace VirtualTrain.Home
             }
         }
 
+        private void startgame()
+        {
+            InvokeStartGame();
+        }
+
+        private delegate void InvokeStartGameDelegate();
+        private void InvokeStartGame()
+        {
+            if (this.InvokeRequired)
+            {
+                InvokeStartGameDelegate isgd = new InvokeStartGameDelegate(InvokeStartGame);
+                this.Invoke(isgd);
+            }
+            else
+            {
+                this.Opacity = 0;
+                this.Close();
+                new loadSceneForm().ShowDialog();
+            }
+        }
     }
 }

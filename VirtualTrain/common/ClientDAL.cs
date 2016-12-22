@@ -56,8 +56,8 @@ namespace VirtualTrain.common
         private BinaryReader br;
         private BinaryWriter bw;
 
-        public delegate void WaitHandler();
-        private event WaitHandler WaitEvent;
+        public delegate void OperateHandler();
+        private event OperateHandler OperateEvent;
 
         public delegate void ShowHandler(string Info);
         private event ShowHandler ShowEvent;
@@ -69,9 +69,9 @@ namespace VirtualTrain.common
             {
                 ShowEvent = method as ShowHandler;
             }
-            else if (method is WaitHandler)
+            else if (method is OperateHandler)
             {
-                WaitEvent = method as WaitHandler;
+                OperateEvent = method as OperateHandler;
             }
           
         }
@@ -126,9 +126,9 @@ namespace VirtualTrain.common
                         //AddTalkMessage(receiveString.Substring(splitString[0].Length + splitString[1].Length + 2));
                         break;
                     case "wait":
-                        if (WaitEvent!=null)
+                        if (OperateEvent!=null)
                         {
-                            WaitEvent();
+                            OperateEvent();
                         }
                         break;
                     case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
@@ -141,6 +141,12 @@ namespace VirtualTrain.common
                         if (ShowEvent != null)
                         {
                             ShowEvent(splitString[1]);
+                        }
+                        break;
+                    case "startgame":
+                        if (OperateEvent!=null)
+                        {
+                            OperateEvent();
                         }
                         break;
                     default:

@@ -121,6 +121,7 @@ namespace Game_Server
 
                         gamer.roleId = splitString[1];
                         statusInfo(string.Format(client.Client.RemoteEndPoint + "选择了{0}角色", splitString[1]));
+
                         break;
                     case "Logout":
                         SendToAllClient(gamer, receiveString);
@@ -167,11 +168,18 @@ namespace Game_Server
                         break;
                     case "ShowState":    //返回某房间在线玩家选择状态，格式ShowState
                         room = dal.getRoomByGamer(roomList, gamer);
+                        gamerList = room.gamerList;
                         string gamerInfo = dal.getGamerStateByRoom(room);
                         if (!string.IsNullOrEmpty(gamerInfo))
                         {
-                            gamerList = room.gamerList;
-                            SendToAllClient(null, "showstate," + gamerInfo);
+                            if (room.gamerList.Count >= room.maxNum && dal.regexStr(gamerInfo, "_") == (room.maxNum - 1))
+                            {
+                                SendToAllClient(null, "startgame");
+                            }
+                            else
+                            {
+                                SendToAllClient(null, "showstate," + gamerInfo);
+                            }
                         }
                         break;
                     default:
@@ -215,7 +223,7 @@ namespace Game_Server
                     }
                 }
             }
-            else if (command == "showstate")
+            else if (command == "showstate" || command == "startgame")
             {
                 for (int i = 0; i < gamerList.Count; i++)
                 {
