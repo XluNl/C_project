@@ -152,7 +152,8 @@ namespace VirtualTrain
             VC.Dispose();
             //2、创建
             MessageBox.Show("创建一个Question-------" + tag.ToString());
-            this.creatQuestionBy(new ResouresModel());
+            //3、创建下一个
+            this.button2_Click(this, new EventArgs());
         }
        
         /// <summary>
@@ -174,7 +175,8 @@ namespace VirtualTrain
             QC.Dispose();
             //2、创建
             MessageBox.Show("创建一个Image-------" + tag.ToString());
-            this.creatImageBy(new ResouresModel());
+            //3、创建下一个
+            this.button2_Click(this, new EventArgs());
         }
       
         
@@ -197,7 +199,8 @@ namespace VirtualTrain
             IC.Dispose();
             //2、创建
             MessageBox.Show("创建一个Video-------" + tag.ToString());
-            this.creatVideoBy(new ResouresModel());
+            //3、创建下一个
+            this.button2_Click(this,new EventArgs());
         }
         /// <summary>
         /// 上一步
@@ -207,12 +210,12 @@ namespace VirtualTrain
         private void button1_Click(object sender, EventArgs e)
         {
             //
-            if (this.curTaskId<0)
+            if (this.curTaskId<=0)
             {
                 this.curTaskId=0;
                 return;
             }
-            this.curTaskId++;
+            this.curTaskId--;
             this.InItdata();
         }
         /// <summary>
@@ -222,12 +225,12 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.curTaskId>this.ResModes.Count-1)
+            if (this.curTaskId>=this.ResModes.Count-1)
             {
                 this.curTaskId = this.ResModes.Count - 1;
                 return;
             }
-            this.curTaskId--;
+            this.curTaskId++;
             this.InItdata();
         }
 
