@@ -27,5 +27,10 @@ namespace Common.model
             bw.Close();
             client.Close();
         }
+
+        public override string ToString()
+        {
+            return this.roleId;
+        }
     }
 }

@@ -57,10 +57,30 @@ namespace VirtualTrain.common
         private BinaryWriter bw;
 
         public delegate void WaitHandler();
-        public event WaitHandler WaitEvent;
+        private event WaitHandler WaitEvent;
 
-        public delegate void ShowRoomHandler(string roomInfo);
-        public event ShowRoomHandler ShowRoomEvent;
+        public delegate void ShowHandler(string Info);
+        private event ShowHandler ShowEvent;
+
+        // 注册事件
+        public void Register(Delegate method)
+        {
+            if (method is ShowHandler)
+            {
+                ShowEvent = method as ShowHandler;
+            }
+            else if (method is WaitHandler)
+            {
+                WaitEvent = method as WaitHandler;
+            }
+          
+        }
+
+        // 取消注册
+        public void UnRegister(Delegate method)
+        {
+            //NumberChanged -= method;
+        }
 
         /// <summary>
         /// 处理服务器信息
@@ -112,9 +132,15 @@ namespace VirtualTrain.common
                         }
                         break;
                     case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
-                        if (ShowRoomEvent!=null)
+                        //if (ShowEvent!=null)
+                        //{
+                        //    ShowEvent(splitString[1]);
+                        //}
+                        //break;
+                    case "showstate":   //得到某房间在线玩家选择状态，格式showstate,角色号_角色号···
+                        if (ShowEvent != null)
                         {
-                            ShowRoomEvent(splitString[1]);
+                            ShowEvent(splitString[1]);
                         }
                         break;
                     default:

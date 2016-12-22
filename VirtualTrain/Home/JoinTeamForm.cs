@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using VirtualTrain.common;
 using VirtualTrain.Home;
 namespace VirtualTrain
 {
@@ -24,13 +25,23 @@ namespace VirtualTrain
             }
         }
 
+        private string _name;
+        public string name
+        {
+            set
+            {
+                _name = value;
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (this._pwd.Equals(textBox1.Text))
             {
-            new SelectRoleFrom().ShowDialog();
-            this.Close();
-        }
+                ClientDAL.GetInstance().SendMessage("EnterRoom," + _name);
+                new SelectRoleFrom().ShowDialog();
+                this.Close();
+            }
             else
             {
                 lbl.Text = "密码错误";
