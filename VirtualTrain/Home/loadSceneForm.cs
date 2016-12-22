@@ -74,7 +74,6 @@ namespace VirtualTrain
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            
         }
 
      
@@ -142,20 +141,19 @@ namespace VirtualTrain
         {
             VideoControl vc = new VideoControl(resmode);
             vc.Size = this.panel1.Size;
-            vc.qr += VCCallBackByQR;
+            vc.qr += (VideoControl v, int tag) =>
+            {
+                //1、创建一个新的元素时，将当前这个删除
+                v.Dispose();
+                //2、创建
+                MessageBox.Show("创建一个VideoControl-------" + tag.ToString());
+                //3、创建下一个
+                this.button2_Click(this, new EventArgs());
+            };
             this.panel1.Controls.Add(vc);
         }
-        // voideo确认回调方法
-        private void VCCallBackByQR(VideoControl VC, int tag)
-        {
-            //1、创建一个新的元素时，将当前这个删除
-            VC.Dispose();
-            //2、创建
-            MessageBox.Show("创建一个Question-------" + tag.ToString());
-            //3、创建下一个
-            this.button2_Click(this, new EventArgs());
-        }
-       
+ 
+     
         /// <summary>
         /// 创建常规多选题
         /// </summary>
@@ -164,22 +162,19 @@ namespace VirtualTrain
         {
             QuestionControl QC = new QuestionControl(resmode);
             QC.Size = this.panel1.Size;
-            QC.qr += QCCallBackByQR;
+            QC.qr += (QuestionControl v, int tag) =>
+            {
+                //1、创建一个新的元素时，将当前这个删除
+                v.Dispose();
+                //2、创建
+                MessageBox.Show("创建一个Question-------" + tag.ToString());
+                //3、创建下一个
+                this.button2_Click(this, new EventArgs());
+            };
             this.panel1.Controls.Add(QC);
         }
-        // Question确认回调方法
-        private void QCCallBackByQR(Control QC, int tag)
-        {
- 
-            //1、创建一个新的元素时，将当前这个删除;
-            QC.Dispose();
-            //2、创建
-            MessageBox.Show("创建一个Image-------" + tag.ToString());
-            //3、创建下一个
-            this.button2_Click(this, new EventArgs());
-        }
-      
-        
+
+       
         /// <summary>
         /// 创建img多选
         /// </summary>
@@ -188,20 +183,18 @@ namespace VirtualTrain
         {
             ImageControl IC = new ImageControl(resmode);
             IC.Size = this.panel1.Size;
-            IC.qr += ImgCallBackByQR;
+            IC.qr += (ImageControl v, int tag) =>
+            {
+                //1、创建一个新的元素时，将当前这个删除
+                v.Dispose();
+                //2、创建
+                MessageBox.Show("创建一个ImageControl-------" + tag.ToString());
+                //3、创建下一个
+                this.button2_Click(this, new EventArgs());
+            };
             this.panel1.Controls.Add(IC);
         }
 
-        // images确认回调方法
-        private void ImgCallBackByQR(ImageControl IC, int tag)
-        {
-            //1、创建一个新的元素时，将当前这个删除
-            IC.Dispose();
-            //2、创建
-            MessageBox.Show("创建一个Video-------" + tag.ToString());
-            //3、创建下一个
-            this.button2_Click(this,new EventArgs());
-        }
         /// <summary>
         /// 上一步
         /// </summary>
