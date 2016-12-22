@@ -74,15 +74,7 @@ namespace VirtualTrain
             foreach (script item in scrs)
             {
                 if (num >= 5) num = 0;//素材只有5个
-
-                // 如果有任务模式，则将场景对应的角色全部查出来
-                if (item.Isonline == 1)
-                {
-                    // 加载角色选择页面时，再更具角色id，加载对应角色具体信息
-                    item.Sceceroles = this.DAL.getAllScencRoleWithScencid(item.Id);
-                }
                 this.creatSenceWithMode(item,this.imgs[num]);
-
                 num++;
             }
 

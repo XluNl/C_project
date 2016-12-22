@@ -13,11 +13,41 @@ using System.Windows.Forms;
 using VirtualTrain.Home;
 using VirtualTrain.model;
 using Common.model;
-
+using Common.common;
 namespace VirtualTrain
 {
     public partial class loadSceneForm : Form
     {
+        TaskDAL DAL = new TaskDAL();
+
+        // 默认第一条元素
+        private int curTaskId = 0;
+        private List<TaskModel> _taskmodes;
+        //根据场景ID获取场景全部task实体
+        public List<TaskModel> Taskmodes
+        {
+            get {
+                _taskmodes = this.DAL.getAllWitnSenceID(UserHelper.sceneId);
+                return _taskmodes; 
+            }
+            set { _taskmodes = value; }
+        }
+        private List<ResouresModel> _resModes;
+
+        //根据tast实体，获取全部res资源实体
+        public List<ResouresModel> ResModes
+        {
+            get {
+                List<ResouresModel> temp = new List<ResouresModel>();
+                foreach (TaskModel item in this.Taskmodes)
+                {
+                    temp.Add(DAL.getOneResourcesWithId(item.Taskid));
+                }
+                _resModes = temp;
+                return _resModes;
+            }
+            set { _resModes = value; }
+        }
         public loadSceneForm()
         {
             InitializeComponent();
@@ -64,39 +94,53 @@ namespace VirtualTrain
             //}
         }
 
-        /// <summary>
-        /// 窗体关闭事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-          
-        }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void loadSceneForm_Load(object sender, EventArgs e)
         {
-
-           
-            //测试 默认加载一个视频任务
-            this.creatVideoBy(new TaskModel());
-
+            this.InItdata();
         }
+
+        private void InItdata()
+        {
+            // 1、每次创建之前，先移除之前的
+            this.panel1.Controls.Clear();
+
+            // 2、创建
+            ResouresModel res = this.ResModes[this.curTaskId];
+
+            this.creatDispaypanelWithRestype(res);
+        }
+        /// <summary>
+        /// 根据资源类型创建 展示面板
+        /// </summary>
+        /// <param name="type">0、文字 2、图像 3、视频</param>
+        private void creatDispaypanelWithRestype(ResouresModel resmode){
+
+            switch (resmode.Type)
+            {
+                case 0:
+                    this.creatQuestionBy(resmode);
+                    break;
+                case 1:
+                    this.creatImageBy(resmode);
+                    break;
+                case 2:
+                    this.creatVideoBy(resmode);
+                    break;
+                default:
+                    break;
+            }
+        }
+
 
         /// <summary>
         /// 创建视频
         /// </summary>
         /// <param name="taskmode"></param>
-        public void creatVideoBy(TaskModel taskmode) {
-
-            VideoControl vc = new VideoControl(taskmode);
+        public void creatVideoBy(ResouresModel resmode)
+        {
+            VideoControl vc = new VideoControl(resmode);
             vc.Size = this.panel1.Size;
             vc.qr += VCCallBackByQR;
             this.panel1.Controls.Add(vc);
@@ -108,16 +152,16 @@ namespace VirtualTrain
             VC.Dispose();
             //2、创建
             MessageBox.Show("创建一个Question-------" + tag.ToString());
-            this.creatQuestionBy(new TaskModel());
+            this.creatQuestionBy(new ResouresModel());
         }
        
         /// <summary>
         /// 创建常规多选题
         /// </summary>
         /// <param name="taskmode"></param>
-        public void creatQuestionBy(TaskModel taskmode)
+        public void creatQuestionBy(ResouresModel resmode)
         {
-            QuestionControl QC = new QuestionControl(taskmode);
+            QuestionControl QC = new QuestionControl(resmode);
             QC.Size = this.panel1.Size;
             QC.qr += QCCallBackByQR;
             this.panel1.Controls.Add(QC);
@@ -130,7 +174,7 @@ namespace VirtualTrain
             QC.Dispose();
             //2、创建
             MessageBox.Show("创建一个Image-------" + tag.ToString());
-            this.creatImageBy(new TaskModel());
+            this.creatImageBy(new ResouresModel());
         }
       
         
@@ -138,9 +182,9 @@ namespace VirtualTrain
         /// 创建img多选
         /// </summary>
         /// <param name="taskmode"></param>
-        public void creatImageBy(TaskModel taskmode)
+        public void creatImageBy(ResouresModel resmode)
         {
-            ImageControl IC = new ImageControl(taskmode);
+            ImageControl IC = new ImageControl(resmode);
             IC.Size = this.panel1.Size;
             IC.qr += ImgCallBackByQR;
             this.panel1.Controls.Add(IC);
@@ -153,8 +197,41 @@ namespace VirtualTrain
             IC.Dispose();
             //2、创建
             MessageBox.Show("创建一个Video-------" + tag.ToString());
-            this.creatVideoBy(new TaskModel());
+            this.creatVideoBy(new ResouresModel());
         }
+        /// <summary>
+        /// 上一步
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //
+            if (this.curTaskId<0)
+            {
+                this.curTaskId=0;
+                return;
+            }
+            this.curTaskId++;
+            this.InItdata();
+        }
+        /// <summary>
+        /// 下一步
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (this.curTaskId>this.ResModes.Count-1)
+            {
+                this.curTaskId = this.ResModes.Count - 1;
+                return;
+            }
+            this.curTaskId--;
+            this.InItdata();
+        }
+
+        
 
     }
 }

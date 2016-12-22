@@ -17,30 +17,26 @@ namespace VirtualTrain.Home
         //    InitializeComponent();
         //}
         // 自定义构造函数
-        public QuestionControl(TaskModel task)
+        public QuestionControl(ResouresModel resMode)
         {
             InitializeComponent();
-            this.curTask = task;
+            this.ResMode = resMode;
         }
         // 点击确认回调
         public event QCQueRen qr;
 
         // 存储当前任务模型
-        private TaskModel curTask;
+        private ResouresModel ResMode { get; set; }
 
-        public TaskModel CurTask
-        {
-            get { return curTask; }
-            set { curTask = value; }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
+            // 点击确定室判断答案是否正确，正确就回调，错误弹出提示信息，并显示正确答案
             this.qr(this,5);
         }
 
         private void QuestionControl_Load(object sender, EventArgs e)
         {
-            this.textBox1.Text = "我被设置了";
+            this.textBox1.Text = this.ResMode.Question;
         }
     }
 }

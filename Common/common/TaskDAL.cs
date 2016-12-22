@@ -67,9 +67,6 @@ namespace Common.common
         public bool delectTask(TaskModel task)
         {
 
-            // 根据任务id 和场景id 删除一条对应的任务
-            //Taskid 
-            //测试先使用Taskroleid来代替，因为是唯一的
             string sql = "delete from task where Senceid =@Senceid and Taskroleid =@Taskroleid and id=@id";
 
             SqlParameter[] sp = { 
@@ -160,16 +157,17 @@ namespace Common.common
             ResouresModel res = new ResouresModel();
             res.Id = Convert.ToInt32(table.Rows[0]["id"]);
             res.Question = table.Rows[0]["question"].ToString();
-            res.Answer = table.Rows[0]["answer"].ToString();
             res.MajorId = Convert.ToInt32(table.Rows[0]["majorId"]);
             res.Type = Convert.ToInt32(table.Rows[0]["type"]);
-            res.OptionA = table.Rows[0]["OptionA"].ToString();
-            res.OptionB = table.Rows[0]["OptionB"].ToString();
-            res.OptionC = table.Rows[0]["OptionC"].ToString();
-            res.OptionD = table.Rows[0]["OptionD"].ToString();
-            res.FileName = table.Rows[0]["fileName"].ToString();
-            res.StartTime = Convert.ToDouble(table.Rows[0]["startTime"]);
-            res.EndTime = Convert.ToDouble(table.Rows[0]["endTime"]);
+
+            res.Answer = !table.Rows[0].IsNull("answer")?table.Rows[0]["answer"].ToString():"";
+            res.OptionA = !table.Rows[0].IsNull("OptionA")?table.Rows[0]["OptionA"].ToString():"";
+            res.OptionB = !table.Rows[0].IsNull("OptionB") ? table.Rows[0]["OptionB"].ToString() : "";
+            res.OptionC = !table.Rows[0].IsNull("OptionC") ? table.Rows[0]["OptionC"].ToString() : "";
+            res.OptionD = !table.Rows[0].IsNull("OptionD") ? table.Rows[0]["OptionD"].ToString() : "";
+            res.FileName =!table.Rows[0].IsNull("fileName")?table.Rows[0]["fileName"].ToString():"";
+            res.StartTime =!table.Rows[0].IsNull("startTime")? Convert.ToDouble(table.Rows[0]["startTime"]):-1;
+            res.EndTime = !table.Rows[0].IsNull("endTime") ? Convert.ToDouble(table.Rows[0]["endTime"]) : -1; ;
             return res;
         }
 

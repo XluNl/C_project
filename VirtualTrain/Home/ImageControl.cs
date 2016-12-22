@@ -18,22 +18,18 @@ namespace VirtualTrain.Home
         //    InitializeComponent();
         //}
         // 自定义构造函数
-        public ImageControl(TaskModel task)
+        public ImageControl(ResouresModel resmod)
         {
             InitializeComponent();
-            this.curTask = task;
+            this.ResMode = resmod;
+          
         }
 
         // 点击确认回调
         public event ICQueRen qr;
 
-        private TaskModel curTask;
-
-        public TaskModel CurTask
-        {
-            get { return curTask; }
-            set { curTask = value; }
-        }
+        // 存储当前任务模型
+        private ResouresModel ResMode{get;set;}
        
         /// <summary>
         /// 确认按钮
@@ -53,6 +49,27 @@ namespace VirtualTrain.Home
         private void ImageControl_Load(object sender, EventArgs e)
         {
            //更具当前curmode 初始化控件数据
-        } 
+            this.InItlayout();
+        }
+
+        /// <summary>
+        /// 初始化UI
+        /// </summary>
+        private void InItlayout() {
+
+            this.textBox1.Text = this.ResMode.Question;
+
+            // 返回一个数组
+            string[] images = this.ResMode.FileName.Split(',');
+
+            foreach (string item in images)
+            {
+                // 一个图像选项
+                Panel pan = new Panel();
+
+                this.panel1.Controls.Add(pan);
+            }
+           
+        }
     }
 }

@@ -17,22 +17,16 @@ namespace VirtualTrain.Home
         //    InitializeComponent();
         //}
         // 自定义构造函数
-        public VideoControl(TaskModel task)
+        public VideoControl(ResouresModel resmod)
         {
             InitializeComponent();
-            this.curTask = task;
+            this.ResMode = resmod;
         }
         // 点击确认回调
         public event VCQueRen qr;
 
         // 存储当前任务模型
-        private TaskModel curTask;
-
-        public TaskModel CurTask
-        {
-            get { return curTask; }
-            set { curTask = value; }
-        }
+        private ResouresModel ResMode { get; set; }
 
         private void button1_Click(object sender, EventArgs e)
         {
