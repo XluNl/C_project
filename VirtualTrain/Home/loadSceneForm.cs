@@ -98,6 +98,7 @@ namespace VirtualTrain
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void loadSceneForm_Load(object sender, EventArgs e)
         {
+
             this.InItdata();
         }
 

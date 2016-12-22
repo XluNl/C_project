@@ -45,6 +45,10 @@ namespace Common.model
         }
 
         private List<TaskModel> _tasks;
+        public List<TaskModel> tasks
+        {
+            get { return _tasks; }
+        }
 
         private int _taskIndex;
         public int taskIndex

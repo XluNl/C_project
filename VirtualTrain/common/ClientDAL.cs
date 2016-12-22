@@ -114,23 +114,15 @@ namespace VirtualTrain.common
                     case "logout":  //格式： logout,用户名
                         //RemoveUserName(splitString[1]);
                         break;
-                    case "play":    //格式： talk,用户名,对话信息
+                    
 
-                        //Question question = GameHelper.getQuestion();
-                        //lblQuestion.Text = question.question;
-                        //OptionA.Text = question.optionA;
-                        //OptionB.Text = question.optionB;
-                        //OptionC.Text = question.optionC;
-                        //OptionD.Text = question.optionD;
-                        //AddTalkMessage(splitString[1] + "：\r\n");
-                        //AddTalkMessage(receiveString.Substring(splitString[0].Length + splitString[1].Length + 2));
-                        break;
                     case "wait":
                         if (OperateEvent!=null)
                         {
                             OperateEvent();
                         }
                         break;
+                    case "play":    //格式：play,资源id
                     case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
                         //if (ShowEvent!=null)
                         //{

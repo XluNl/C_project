@@ -128,6 +128,10 @@ namespace Game_Server
                         RemoveGamer(gamer);
                         return;
                     case "Next":
+                        room = dal.getRoomByGamer(roomList, gamer);
+                        gamerList = room.gamerList;
+                        tasks = room.tasks;
+                        taskIndex = room.taskIndex;
                         taskIndex++;
                         foreach (Gamer g in gamerList)
                         {

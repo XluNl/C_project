@@ -182,9 +182,7 @@
     <Compile Include="LabelEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Home\loadSceneForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Home\loadSceneForm.cs" />
     <Compile Include="Home\loadSceneForm.Designer.cs">
       <DependentUpon>loadSceneForm.cs</DependentUpon>
     </Compile>
