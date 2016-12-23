@@ -9,6 +9,14 @@ namespace VirtualTrain.common
     class GameHelper
     {
 
+        public enum Mode
+        {
+            Offline,
+            Online
+        }
+
+        public static Mode mode;
+
         public static Question getQuestion()
         {
             Question question = null;
@@ -40,28 +48,7 @@ namespace VirtualTrain.common
             return question;
         }
 
-        public static int getIdByVideo(string name)
-        {
-            int id = 0;
-            DBHelper db = new DBHelper();
-            string sql = "select id from game_videos where name='" + name + "'";
-            try
-            {
-                DbCommand cmd = db.GetSqlStringCommand(sql);
-                using (DbDataReader reader = db.ExecuteReader(cmd))
-                {
-                    while (reader.Read())
-                    {
-                        id = (int)reader["id"];
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            return id;
-        }
+
 
         //秒的时间格式显示
         public static String secondsToStr(double time)

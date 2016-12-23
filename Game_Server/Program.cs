@@ -123,9 +123,9 @@ namespace Game_Server
                         statusInfo(string.Format(client.Client.RemoteEndPoint + "选择了{0}角色", splitString[1]));
 
                         break;
-                    case "Logout":
-                        SendToAllClient(gamer, receiveString);
+                    case "Logout":  //玩家退出房间接口，格式Logout
                         RemoveGamer(gamer);
+
                         return;
                     case "Next":
                         room = dal.getRoomByGamer(roomList, gamer);
@@ -262,9 +262,16 @@ namespace Game_Server
         /// <param name="gamer">指定要移除的用户</param>
         private static void RemoveGamer(Gamer gamer)
         {
+            room = dal.getRoomByGamer(roomList, gamer);
+            gamerList = room.gamerList;
             gamerList.Remove(gamer);
             gamer.Close();
-            statusInfo(string.Format("当前连接用户数：{0}", gamerList.Count));
+            statusInfo(string.Format("房间{0}当前连接用户数：{1}", room.name, gamerList.Count));
+            if (gamerList.Count<=0)
+            {
+                roomList.Remove(room);
+                statusInfo(string.Format("房间{0}已关闭", room.name));
+            }
         }
 
         private static void statusInfo(string str)

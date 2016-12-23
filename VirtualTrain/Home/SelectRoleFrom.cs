@@ -33,6 +33,7 @@ namespace VirtualTrain.Home
 
         private void button2_Click(object sender, EventArgs e)
         {
+            ClientDAL.GetInstance().SendMessage("Logout");
             this.Close();
         }
 
@@ -145,8 +146,8 @@ namespace VirtualTrain.Home
         {
             if (this.InvokeRequired)
             {
-                InvokeStartGameDelegate isgd = new InvokeStartGameDelegate(InvokeStartGame);
-                this.Invoke(isgd);
+                InvokeStartGameDelegate d = new InvokeStartGameDelegate(InvokeStartGame);
+                this.Invoke(d);
             }
             else
             {

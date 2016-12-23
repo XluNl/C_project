@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using VirtualTrain.common;
 
 namespace VirtualTrain
 {
@@ -18,6 +19,7 @@ namespace VirtualTrain
 
         private void button1_Click(object sender, EventArgs e)
         {
+            GameHelper.mode = GameHelper.Mode.Online;
             this.Opacity = 0;
             this.Close();
             new CreateRoomForm().ShowDialog();
@@ -25,6 +27,7 @@ namespace VirtualTrain
 
         private void button2_Click(object sender, EventArgs e)
         {
+            GameHelper.mode = GameHelper.Mode.Offline;
             this.Opacity = 0;
             this.Close();
             new loadSceneForm().ShowDialog();

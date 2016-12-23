@@ -14,6 +14,7 @@ using VirtualTrain.Home;
 using VirtualTrain.model;
 using Common.model;
 using Common.common;
+using VirtualTrain.common;
 namespace VirtualTrain
 {
     public partial class loadSceneForm : Form
@@ -23,13 +24,14 @@ namespace VirtualTrain
         // 默认第一条元素
         private int curTaskId = 0;
         private List<TaskModel> _taskmodes;
-       
+
         //根据场景ID获取场景全部task实体
         public List<TaskModel> Taskmodes
         {
-            get {
+            get
+            {
                 _taskmodes = this.DAL.getAllWitnSenceID(UserHelper.sceneId);
-                return _taskmodes; 
+                return _taskmodes;
             }
             set { _taskmodes = value; }
         }
@@ -38,7 +40,8 @@ namespace VirtualTrain
         //根据tast实体，获取全部res资源实体
         public List<ResouresModel> ResModes
         {
-            get {
+            get
+            {
                 List<ResouresModel> temp = new List<ResouresModel>();
                 foreach (TaskModel item in this.Taskmodes)
                 {
@@ -52,7 +55,7 @@ namespace VirtualTrain
         public loadSceneForm()
         {
             InitializeComponent();
-           
+
             this.panel1.BackColor = Color.Transparent;
             this.panel2.BackColor = Color.Transparent;
             this.panel3.BackColor = Color.Transparent;
@@ -77,7 +80,7 @@ namespace VirtualTrain
             this.Close();
         }
 
-     
+
 
         private delegate void WaitDelegate();
 
@@ -95,12 +98,43 @@ namespace VirtualTrain
         }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void loadSceneForm_Load(object sender, EventArgs e)
         {
+            if (GameHelper.mode == GameHelper.Mode.Offline)
+            {
+                this.InItdata();
+            }
+            else
+            {
+                ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.refreshData));
+                ClientDAL.GetInstance().Register(new ClientDAL.OperateHandler(this.wait));
+            }
 
-            this.InItdata();
         }
+
+        private void refreshData(string resId)
+        {
+            this.panel1.Controls.Clear();
+
+            ResouresModel res = DAL.getOneResourcesWithId(Convert.ToInt32(resId));
+
+            this.creatDispaypanelWithRestype(res);
+        }
+
+        //private delegate void InvokeRefreshDelegate();
+        //private void InvokeRefresh()
+        //{
+        //    if (this.InvokeRequired)
+        //    {
+        //        InvokeRefreshDelegate d = new InvokeRefreshDelegate(InvokeRefresh);
+        //        this.Invoke(d);
+        //    }
+        //    else
+        //    {
+
+        //    }
+        //}
 
         private void InItdata()
         {
@@ -116,7 +150,8 @@ namespace VirtualTrain
         /// 根据资源类型创建 展示面板
         /// </summary>
         /// <param name="type">0、文字 2、图像 3、视频</param>
-        private void creatDispaypanelWithRestype(ResouresModel resmode){
+        private void creatDispaypanelWithRestype(ResouresModel resmode)
+        {
 
             switch (resmode.Type)
             {
@@ -149,13 +184,21 @@ namespace VirtualTrain
                 v.Dispose();
                 //2、创建
                 MessageBox.Show("创建一个VideoControl-------" + tag.ToString());
-                //3、创建下一个
-                this.button2_Click(this, new EventArgs());
+
+                if (GameHelper.mode == GameHelper.Mode.Online)
+                {
+                    ClientDAL.GetInstance().SendMessage("Next");
+                }
+                else
+                {
+                    //3、创建下一个
+                    this.button2_Click(this, new EventArgs());
+                }
             };
             this.panel1.Controls.Add(vc);
         }
- 
-     
+
+
         /// <summary>
         /// 创建常规多选题
         /// </summary>
@@ -170,13 +213,20 @@ namespace VirtualTrain
                 v.Dispose();
                 //2、创建
                 MessageBox.Show("创建一个Question-------" + tag.ToString());
-                //3、创建下一个
-                this.button2_Click(this, new EventArgs());
+                if (GameHelper.mode == GameHelper.Mode.Online)
+                {
+                    ClientDAL.GetInstance().SendMessage("Next");
+                }
+                else
+                {
+                    //3、创建下一个
+                    this.button2_Click(this, new EventArgs());
+                }
             };
             this.panel1.Controls.Add(QC);
         }
 
-       
+
         /// <summary>
         /// 创建img多选
         /// </summary>
@@ -191,8 +241,15 @@ namespace VirtualTrain
                 v.Dispose();
                 //2、创建
                 MessageBox.Show("创建一个ImageControl-------" + tag.ToString());
-                //3、创建下一个
-                this.button2_Click(this, new EventArgs());
+                if (GameHelper.mode == GameHelper.Mode.Online)
+                {
+                    ClientDAL.GetInstance().SendMessage("Next");
+                }
+                else
+                {
+                    //3、创建下一个
+                    this.button2_Click(this, new EventArgs());
+                }
             };
             this.panel1.Controls.Add(IC);
         }
@@ -205,9 +262,9 @@ namespace VirtualTrain
         private void button1_Click(object sender, EventArgs e)
         {
             //
-            if (this.curTaskId<=0)
+            if (this.curTaskId <= 0)
             {
-                this.curTaskId=0;
+                this.curTaskId = 0;
                 return;
             }
             this.curTaskId--;
@@ -220,7 +277,7 @@ namespace VirtualTrain
         /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
-            if (this.curTaskId>=this.ResModes.Count-1)
+            if (this.curTaskId >= this.ResModes.Count - 1)
             {
                 this.curTaskId = this.ResModes.Count - 1;
                 return;
@@ -229,7 +286,7 @@ namespace VirtualTrain
             this.InItdata();
         }
 
-        
+
 
     }
 }
