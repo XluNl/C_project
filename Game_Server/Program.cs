@@ -8,6 +8,7 @@ using System.Threading;
 using System.Configuration;
 using Common.model;
 using Common.common;
+using System.Runtime.InteropServices;
 
 namespace Game_Server
 {
@@ -128,22 +129,7 @@ namespace Game_Server
 
                         return;
                     case "Next":
-                        room = dal.getRoomByGamer(roomList, gamer);
-                        gamerList = room.gamerList;
-                        tasks = room.tasks;
-                        taskIndex = room.taskIndex;
-                        taskIndex++;
-                        foreach (Gamer g in gamerList)
-                        {
-                            if (g.roleId.Equals(tasks[taskIndex].Taskroleid))
-                            {
-                                SendToClient(g, "play," + tasks[taskIndex].Taskid);
-                            }
-                            else
-                            {
-                                SendToClient(g, "wait,");
-                            }
-                        }
+                        NextMission(gamer);
                         break;
                     case "CreateRoom":      //创建房间接口，格式CreateRoom,场景号,房间名称,房间密码
                         sceneId = Convert.ToInt32(splitString[1]);
@@ -178,7 +164,7 @@ namespace Game_Server
                         {
                             if (room.gamerList.Count >= room.maxNum && dal.regexStr(gamerInfo, "_") == (room.maxNum - 1))
                             {
-                                SendToAllClient(null, "startgame");
+                                SendToAllClient(gamer, "startgame");
                             }
                             else
                             {
@@ -227,11 +213,25 @@ namespace Game_Server
                     }
                 }
             }
-            else if (command == "showstate" || command == "startgame")
+            else if (command == "showstate")
             {
                 for (int i = 0; i < gamerList.Count; i++)
                 {
                     SendToClient(gamerList[i], message);
+                }
+            }
+            else if (command == "startgame")
+            {
+                for (int i = 0; i < gamerList.Count; i++)
+                {
+                    if (gamerList[i].roleId != gamer.roleId)
+                    {
+                        SendToClient(gamerList[i], message + ",false");
+                    }
+                    else
+                    {
+                        SendToClient(gamer, message + ",true");
+                    }
                 }
             }
         }
@@ -267,12 +267,33 @@ namespace Game_Server
             gamerList.Remove(gamer);
             gamer.Close();
             statusInfo(string.Format("房间{0}当前连接用户数：{1}", room.name, gamerList.Count));
-            if (gamerList.Count<=0)
+            if (gamerList.Count <= 0)
             {
                 roomList.Remove(room);
                 statusInfo(string.Format("房间{0}已关闭", room.name));
             }
         }
+
+        private static void NextMission(Gamer gamer)
+        {
+            room = dal.getRoomByGamer(roomList, gamer);
+            gamerList = room.gamerList;
+            tasks = room.tasks;
+            taskIndex = room.taskIndex;
+            foreach (Gamer g in gamerList)
+            {
+                if (g.roleId.Equals(tasks[taskIndex].Taskroleid.ToString()))
+                {
+                    SendToClient(g, "play," + tasks[taskIndex].Taskid);
+                }
+                else
+                {
+                    SendToClient(g, "wait,");
+                }
+            }
+            room.taskIndex++;
+        }
+
 
         private static void statusInfo(string str)
         {

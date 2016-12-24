@@ -138,7 +138,7 @@ namespace VirtualTrain
             else
             { //直接进入教学模式
 
-                new loadSceneForm().ShowDialog();
+                new LoadSceneForm().ShowDialog();
             }
 
         }

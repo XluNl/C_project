@@ -17,8 +17,8 @@ namespace VirtualTrain.common
         {
             try
             {
-                ServerIP= ConfigurationManager.AppSettings["ip"];
-                port= Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
+                ServerIP = ConfigurationManager.AppSettings["ip"];
+                port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
                 client = new TcpClient();
                 client.Connect(IPAddress.Parse(ServerIP), port);
                 //MessageBox.Show("连接成功");
@@ -34,6 +34,10 @@ namespace VirtualTrain.common
             br = new BinaryReader(networkStream);
             bw = new BinaryWriter(networkStream);
             //SendMessage("Login," + txt_UserName.Text);
+            startNewThread();
+        }
+
+        public void  startNewThread(){
             Thread threadReceive = new Thread(new ThreadStart(ReceiveData));
             threadReceive.IsBackground = true;
             threadReceive.Start();
@@ -48,9 +52,9 @@ namespace VirtualTrain.common
         }
 
         private static string ServerIP;
-        
+
         private static int port;
-        
+
         private bool isExit = false;
         private TcpClient client;
         private BinaryReader br;
@@ -61,6 +65,9 @@ namespace VirtualTrain.common
 
         public delegate void ShowHandler(string Info);
         private event ShowHandler ShowEvent;
+
+        public delegate void OperateWithConditionHandler(bool condition);
+        private event OperateWithConditionHandler OperateWithConditionEvent;
 
         // 注册事件
         public void Register(Delegate method)
@@ -73,7 +80,11 @@ namespace VirtualTrain.common
             {
                 OperateEvent = method as OperateHandler;
             }
-          
+            else if (method is OperateWithConditionHandler)
+            {
+                OperateWithConditionEvent = method as OperateWithConditionHandler;
+            }
+
         }
 
         // 取消注册
@@ -114,21 +125,21 @@ namespace VirtualTrain.common
                     case "logout":  //格式： logout,用户名
                         //RemoveUserName(splitString[1]);
                         break;
-                    
+
 
                     case "wait":
-                        if (OperateEvent!=null)
+                        if (OperateEvent != null)
                         {
                             OperateEvent();
                         }
                         break;
                     case "play":    //格式：play,资源id
                     case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
-                        //if (ShowEvent!=null)
-                        //{
-                        //    ShowEvent(splitString[1]);
-                        //}
-                        //break;
+                    //if (ShowEvent!=null)
+                    //{
+                    //    ShowEvent(splitString[1]);
+                    //}
+                    //break;
                     case "showstate":   //得到某房间在线玩家选择状态，格式showstate,角色号_角色号···
                         if (ShowEvent != null)
                         {
@@ -136,9 +147,10 @@ namespace VirtualTrain.common
                         }
                         break;
                     case "startgame":
-                        if (OperateEvent!=null)
+                        bool condition = Convert.ToBoolean(splitString[1]);
+                        if (OperateWithConditionEvent != null)
                         {
-                            OperateEvent();
+                            OperateWithConditionEvent(condition);
                         }
                         break;
                     default:

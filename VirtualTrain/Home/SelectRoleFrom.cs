@@ -18,6 +18,7 @@ namespace VirtualTrain.Home
             InitializeComponent();
         }
 
+        LoadSceneForm lsf = new LoadSceneForm();
         TaskDAL td = new TaskDAL();
         private string roleId;
 
@@ -41,7 +42,7 @@ namespace VirtualTrain.Home
         {
             initView();
             ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.showstate));
-            ClientDAL.GetInstance().Register(new ClientDAL.OperateHandler(this.startgame));
+            ClientDAL.GetInstance().Register(new ClientDAL.OperateWithConditionHandler(this.startgame));
 
             ClientDAL.GetInstance().SendMessage("ShowState");
         }
@@ -136,24 +137,29 @@ namespace VirtualTrain.Home
             }
         }
 
-        private void startgame()
+        private void startgame(bool condition)
         {
-            InvokeStartGame();
+
+            lsf.condition = condition;
+            lsf.ShowDialog();
+            InvokeStartGame(condition);
         }
 
-        private delegate void InvokeStartGameDelegate();
-        private void InvokeStartGame()
+        private delegate void InvokeStartGameDelegate(bool condition);
+        private void InvokeStartGame(bool condition)
         {
             if (this.InvokeRequired)
             {
                 InvokeStartGameDelegate d = new InvokeStartGameDelegate(InvokeStartGame);
-                this.Invoke(d);
+                this.Invoke(d,  condition );
             }
             else
             {
+                
                 this.Opacity = 0;
                 this.Close();
-                new loadSceneForm().ShowDialog();
+               
+
             }
         }
     }

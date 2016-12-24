@@ -182,11 +182,11 @@
     <Compile Include="LabelEx.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Home\loadSceneForm.cs">
+    <Compile Include="Home\LoadSceneForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Home\loadSceneForm.Designer.cs">
-      <DependentUpon>loadSceneForm.cs</DependentUpon>
+    <Compile Include="Home\LoadSceneForm.Designer.cs">
+      <DependentUpon>LoadSceneForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -395,8 +395,8 @@
     <EmbeddedResource Include="Home\IndexLoadePag.resx">
       <DependentUpon>IndexLoadePag.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home\loadSceneForm.resx">
-      <DependentUpon>loadSceneForm.cs</DependentUpon>
+    <EmbeddedResource Include="Home\LoadSceneForm.resx">
+      <DependentUpon>LoadSceneForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\JoinTeamForm.resx">
       <DependentUpon>JoinTeamForm.cs</DependentUpon>

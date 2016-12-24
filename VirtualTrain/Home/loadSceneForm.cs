@@ -15,9 +15,10 @@ using VirtualTrain.model;
 using Common.model;
 using Common.common;
 using VirtualTrain.common;
+using System.Runtime.InteropServices;
 namespace VirtualTrain
 {
-    public partial class loadSceneForm : Form
+    public partial class LoadSceneForm : Form
     {
         TaskDAL DAL = new TaskDAL();
 
@@ -52,7 +53,7 @@ namespace VirtualTrain
             }
             set { _resModes = value; }
         }
-        public loadSceneForm()
+        public LoadSceneForm()
         {
             InitializeComponent();
 
@@ -64,6 +65,7 @@ namespace VirtualTrain
             //解决窗体闪烁
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
             this.UpdateStyles();
+
         }
 
         protected override CreateParams CreateParams
@@ -97,10 +99,19 @@ namespace VirtualTrain
             //}
         }
 
+        private bool _condition;
+        public bool condition
+        {
+            set
+            {
+                _condition = value;
+            }
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void loadSceneForm_Load(object sender, EventArgs e)
         {
+            
             if (GameHelper.mode == GameHelper.Mode.Offline)
             {
                 this.InItdata();
@@ -109,32 +120,42 @@ namespace VirtualTrain
             {
                 ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.refreshData));
                 ClientDAL.GetInstance().Register(new ClientDAL.OperateHandler(this.wait));
+                ClientDAL.GetInstance().startNewThread();
+                if (_condition)
+                {
+
+                    ClientDAL.GetInstance().SendMessage("Next");
+                }
             }
 
         }
 
         private void refreshData(string resId)
         {
-            this.panel1.Controls.Clear();
-
-            ResouresModel res = DAL.getOneResourcesWithId(Convert.ToInt32(resId));
-
-            this.creatDispaypanelWithRestype(res);
+            InvokeRefresh(resId);
         }
 
-        //private delegate void InvokeRefreshDelegate();
-        //private void InvokeRefresh()
-        //{
-        //    if (this.InvokeRequired)
-        //    {
-        //        InvokeRefreshDelegate d = new InvokeRefreshDelegate(InvokeRefresh);
-        //        this.Invoke(d);
-        //    }
-        //    else
-        //    {
+        private delegate void InvokeRefreshDelegate(string resId);
+        private void InvokeRefresh(string resId)
+        {
+            if (this.InvokeRequired)
+            {
+                //Thread th = Thread.CurrentThread;
+                //th.SetApartmentState( ApartmentState.STA);
 
-        //    }
-        //}
+
+                InvokeRefreshDelegate d = new InvokeRefreshDelegate(InvokeRefresh);
+                this.Invoke(d, resId);
+            }
+            else
+            {
+                this.panel1.Controls.Clear();
+
+                ResouresModel res = DAL.getOneResourcesWithId(Convert.ToInt32(resId));
+
+                this.creatDispaypanelWithRestype(res);
+            }
+        }
 
         private void InItdata()
         {
@@ -169,14 +190,14 @@ namespace VirtualTrain
             }
         }
 
-
+        VideoControl vc = new VideoControl();
         /// <summary>
         /// 创建视频
         /// </summary>
         /// <param name="taskmode"></param>
         public void creatVideoBy(ResouresModel resmode)
         {
-            VideoControl vc = new VideoControl(resmode);
+            vc.ResMode = resmode;
             vc.Size = this.panel1.Size;
             vc.qr += (VideoControl v, int tag) =>
             {
@@ -197,6 +218,7 @@ namespace VirtualTrain
             };
             this.panel1.Controls.Add(vc);
         }
+
 
 
         /// <summary>

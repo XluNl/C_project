@@ -30,7 +30,7 @@ namespace VirtualTrain
             GameHelper.mode = GameHelper.Mode.Offline;
             this.Opacity = 0;
             this.Close();
-            new loadSceneForm().ShowDialog();
+            new LoadSceneForm().ShowDialog();
         }
 
         private void ModeSelectForm_Load(object sender, EventArgs e)

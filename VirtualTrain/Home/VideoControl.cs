@@ -23,13 +23,18 @@ namespace VirtualTrain.Home
             InitializeComponent();
             this.ResMode = resmod;
         }
+
+        public VideoControl()
+        {
+            InitializeComponent();
+        }
         // 点击确认回调
         public event VCQueRen qr;
 
 
         private static string v_path = ConfigurationManager.AppSettings["video_path"];
         // 存储当前任务模型
-        private ResouresModel ResMode { get; set; }
+        public ResouresModel ResMode { get; set; }
 
         private void button1_Click(object sender, EventArgs e)
         {
