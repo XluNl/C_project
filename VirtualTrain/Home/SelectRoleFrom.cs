@@ -62,7 +62,28 @@ namespace VirtualTrain.Home
                 index++;
 
                 PictureBox pic = new PictureBox();
-                pic.Image = VirtualTrain.Properties.Resources.picgongdian;
+                switch (role.major)
+                {
+                    case "工务":
+                        pic.Image = VirtualTrain.Properties.Resources.工务;
+                        break;
+                    case "车务":
+                        pic.Image = VirtualTrain.Properties.Resources.车务;
+                        break;
+                    case "电务":
+                        pic.Image = VirtualTrain.Properties.Resources.电务;
+                        break;
+                    case "调度":
+                        pic.Image = VirtualTrain.Properties.Resources.调度;
+                        break;
+                    case "供电":
+                        pic.Image = VirtualTrain.Properties.Resources.供电;
+                        break;
+
+                    default:
+                        pic.Image = VirtualTrain.Properties.Resources.picgongdian;
+                        break;
+                }
                 pic.Width = 106;
                 pic.Height = 87;
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -140,8 +161,7 @@ namespace VirtualTrain.Home
         private void startgame(bool condition)
         {
 
-            lsf.condition = condition;
-            lsf.ShowDialog();
+
             InvokeStartGame(condition);
         }
 
@@ -151,14 +171,15 @@ namespace VirtualTrain.Home
             if (this.InvokeRequired)
             {
                 InvokeStartGameDelegate d = new InvokeStartGameDelegate(InvokeStartGame);
-                this.Invoke(d,  condition );
+                this.Invoke(d, condition);
             }
             else
             {
-                
+                lsf.condition = condition;
+                lsf.ShowDialog();
                 this.Opacity = 0;
                 this.Close();
-               
+
 
             }
         }

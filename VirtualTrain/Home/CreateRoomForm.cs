@@ -44,7 +44,7 @@ namespace VirtualTrain
         }
 
         int index = 0;
-        int Y_space = 100;
+        int Y_space = 30;
         private void showRoom(string roomInfo)
         {
             gb.Controls.Clear();
@@ -60,7 +60,7 @@ namespace VirtualTrain
                 Button btn = new Button();
                 btn.Width = 380;
                 btn.Height = 25;
-                btn.Text = name+","+online_num + "/" + max_num;
+                btn.Text = name + "," + online_num + "/" + max_num;
                 btn.Tag = pwd;
                 btn.Click += btn_Click;
                 AddGbControls(btn);
@@ -80,7 +80,7 @@ namespace VirtualTrain
             else
             {
                 gb.Controls.Add(btn);
-                btn.Location = new Point(30, Y_space * index);
+                btn.Location = new Point(30, 20 + (Y_space + btn.Height) * index);
             }
         }
 

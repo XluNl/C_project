@@ -37,7 +37,8 @@ namespace VirtualTrain.common
             startNewThread();
         }
 
-        public void  startNewThread(){
+        public void startNewThread()
+        {
             Thread threadReceive = new Thread(new ThreadStart(ReceiveData));
             threadReceive.IsBackground = true;
             threadReceive.Start();
@@ -125,27 +126,15 @@ namespace VirtualTrain.common
                     case "logout":  //格式： logout,用户名
                         //RemoveUserName(splitString[1]);
                         break;
-
-
-                    case "wait":
-                        if (OperateEvent != null)
-                        {
-                            OperateEvent();
-                        }
-                        break;
                     case "play":    //格式：play,资源id
                     case "showroom":     //得到某场景所有房间，格式showroom,房间名_密码_在线人数_最大人数;房间名_```
-                    //if (ShowEvent!=null)
-                    //{
-                    //    ShowEvent(splitString[1]);
-                    //}
-                    //break;
                     case "showstate":   //得到某房间在线玩家选择状态，格式showstate,角色号_角色号···
                         if (ShowEvent != null)
                         {
                             ShowEvent(splitString[1]);
                         }
                         break;
+                    case "wait":
                     case "startgame":
                         bool condition = Convert.ToBoolean(splitString[1]);
                         if (OperateWithConditionEvent != null)

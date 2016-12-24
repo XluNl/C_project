@@ -24,10 +24,6 @@ namespace VirtualTrain.Home
             this.ResMode = resmod;
         }
 
-        public VideoControl()
-        {
-            InitializeComponent();
-        }
         // 点击确认回调
         public event VCQueRen qr;
 

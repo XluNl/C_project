@@ -213,7 +213,7 @@ namespace Game_Server
                     }
                 }
             }
-            else if (command == "showstate")
+            else if (command == "showstate" || command == "wait")
             {
                 for (int i = 0; i < gamerList.Count; i++)
                 {
@@ -280,18 +280,29 @@ namespace Game_Server
             gamerList = room.gamerList;
             tasks = room.tasks;
             taskIndex = room.taskIndex;
-            foreach (Gamer g in gamerList)
+            if (taskIndex < tasks.Count)
             {
-                if (g.roleId.Equals(tasks[taskIndex].Taskroleid.ToString()))
+                foreach (Gamer g in gamerList)
                 {
-                    SendToClient(g, "play," + tasks[taskIndex].Taskid);
+                    if (g.roleId.Equals(tasks[taskIndex].Taskroleid.ToString()))
+                    {
+                        SendToClient(g, "play," + tasks[taskIndex].Taskid);
+                    }
+                    else
+                    {
+                        SendToClient(g, "wait,false");
+                    }
                 }
-                else
-                {
-                    SendToClient(g, "wait,");
-                }
+                room.taskIndex++;
             }
-            room.taskIndex++;
+            //游戏流程结束
+            else
+            {
+                SendToAllClient(null, "wait,true");
+                roomList.Remove(room);
+                
+            }
+
         }
 
 

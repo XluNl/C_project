@@ -59,7 +59,6 @@ namespace VirtualTrain
 
             this.panel1.BackColor = Color.Transparent;
             this.panel2.BackColor = Color.Transparent;
-            this.panel3.BackColor = Color.Transparent;
             this.groupBox1.BackColor = Color.Transparent;
             this.groupBox2.BackColor = Color.Transparent;
             //解决窗体闪烁
@@ -84,19 +83,30 @@ namespace VirtualTrain
 
 
 
-        private delegate void WaitDelegate();
+        private delegate void WaitDelegate(bool exit);
 
-        private void wait()
+        private void wait(bool exit)
         {
-            //if (pnlquestion.InvokeRequired)
-            //{
-            //    WaitDelegate w = new WaitDelegate(wait);
-            //    pnlquestion.Invoke(w, new object[] { });
-            //}
-            //else
-            //{
-            //    pnlquestion.Enabled = false;
-            //}
+            if (exit)
+            {
+                //游戏结束，退出
+                if (this.InvokeRequired)
+                {
+                    WaitDelegate w = new WaitDelegate(wait);
+                    this.Invoke(w, exit);
+                }
+                else
+                {
+                    MessageBox.Show("游戏结束", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.DialogResult = DialogResult.OK;
+                }
+            }
+            else
+            {
+                //游戏未结束，等待
+
+            }
+
         }
 
         private bool _condition;
@@ -111,7 +121,7 @@ namespace VirtualTrain
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void loadSceneForm_Load(object sender, EventArgs e)
         {
-            
+
             if (GameHelper.mode == GameHelper.Mode.Offline)
             {
                 this.InItdata();
@@ -119,13 +129,17 @@ namespace VirtualTrain
             else
             {
                 ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.refreshData));
-                ClientDAL.GetInstance().Register(new ClientDAL.OperateHandler(this.wait));
+                ClientDAL.GetInstance().Register(new ClientDAL.OperateWithConditionHandler(this.wait));
                 ClientDAL.GetInstance().startNewThread();
                 if (_condition)
                 {
 
                     ClientDAL.GetInstance().SendMessage("Next");
                 }
+                //界面相关展示
+                panel2.Hide();
+                lblName.Text = UserHelper.user.name;
+                lblMajor.Text = UserHelper.user.major;
             }
 
         }
@@ -140,10 +154,6 @@ namespace VirtualTrain
         {
             if (this.InvokeRequired)
             {
-                //Thread th = Thread.CurrentThread;
-                //th.SetApartmentState( ApartmentState.STA);
-
-
                 InvokeRefreshDelegate d = new InvokeRefreshDelegate(InvokeRefresh);
                 this.Invoke(d, resId);
             }
@@ -190,13 +200,14 @@ namespace VirtualTrain
             }
         }
 
-        VideoControl vc = new VideoControl();
+
         /// <summary>
         /// 创建视频
         /// </summary>
         /// <param name="taskmode"></param>
         public void creatVideoBy(ResouresModel resmode)
         {
+            VideoControl vc = new VideoControl(resmode);
             vc.ResMode = resmode;
             vc.Size = this.panel1.Size;
             vc.qr += (VideoControl v, int tag) =>
