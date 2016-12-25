@@ -158,7 +158,7 @@ namespace VirtualTrain
             btn.Tag = id;
             // 添加选项卡
             btn.ContextMenuStrip = this.contextMenuStrip1;
-            btn.MouseDown += MouseDown;
+            btn.MouseDown += tmpMouseDown;
             pan.Controls.Add(btn);
 
             PictureBox img = new PictureBox();
@@ -175,7 +175,7 @@ namespace VirtualTrain
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MouseDown(object sender, MouseEventArgs e)
+        private void tmpMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {

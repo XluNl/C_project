@@ -209,7 +209,6 @@
     <Compile Include="MyNumericUpDown.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="P2P.cs" />
     <Compile Include="PaperDialog.cs">
       <SubType>Form</SubType>
     </Compile>

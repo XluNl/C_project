@@ -41,7 +41,6 @@ namespace VirtualTrain.common
 
             VR_Role sc = new VR_Role();
             sc.Id = Convert.ToInt32(dr["id"]);
-            sc.Majorld = Convert.ToString(dr["majorId"]);//majorId
             sc.Name = Convert.ToString(dr["name"]);
             return sc;
         }

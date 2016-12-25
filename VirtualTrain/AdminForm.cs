@@ -1022,7 +1022,7 @@ namespace VirtualTrain
                     org_Y = this.panel2.Controls[count - 1].Location.Y + btn_H + org;
                 }
                 Button btn = new Button();
-                btn.MouseDown += MouseDown;
+                btn.MouseDown += tmpMouseDown;
                 btn.Width = btn_W;
                 btn.Height = btn_H;
                 btn.Location = new Point(org_X, org_Y);
@@ -1082,7 +1082,7 @@ namespace VirtualTrain
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MouseDown(object sender, MouseEventArgs e)
+        private void tmpMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {

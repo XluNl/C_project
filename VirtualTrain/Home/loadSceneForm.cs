@@ -258,7 +258,6 @@ namespace VirtualTrain
                 //1、创建一个新的元素时，将当前这个删除
                 v.Dispose();
                 //2、创建
-                MessageBox.Show("创建一个Question-------" + tag.ToString());
                 if (GameHelper.mode == GameHelper.Mode.Online)
                 {
                     ClientDAL.GetInstance().SendMessage("Next");
@@ -286,7 +285,6 @@ namespace VirtualTrain
                 //1、创建一个新的元素时，将当前这个删除
                 v.Dispose();
                 //2、创建
-                MessageBox.Show("创建一个ImageControl-------" + tag.ToString());
                 if (GameHelper.mode == GameHelper.Mode.Online)
                 {
                     ClientDAL.GetInstance().SendMessage("Next");
