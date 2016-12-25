@@ -423,7 +423,6 @@ namespace VirtualTrain
                 //判断用户是否点击确定按钮，true为点击，false为没有点击
                 if (MessageBox.Show("确认删除？", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int num = 0;
                     int count = dgvText.SelectedRows.Count;
                     //定义数组，用循环赋值
                     String[] array = new String[count];

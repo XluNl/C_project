@@ -28,7 +28,8 @@ namespace VirtualTrain.Home
         public event VCQueRen qr;
 
 
-        private static string v_path = @"\\" + ConfigurationManager.AppSettings["ip"] + ConfigurationManager.AppSettings["video_net_path"];
+        //private static string v_path = @"\\" + ConfigurationManager.AppSettings["ip"] + ConfigurationManager.AppSettings["video_net_path"];
+        private static string v_path = ConfigurationManager.AppSettings["video_net_path"];
         // 存储当前任务模型
         public ResouresModel ResMode { get; set; }
 

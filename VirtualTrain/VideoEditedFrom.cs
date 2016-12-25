@@ -57,7 +57,7 @@ namespace VirtualTrain
             }
         }
 
-        private static string v_path = ConfigurationManager.AppSettings["video_path"];
+        private static string v_path = ConfigurationManager.AppSettings["video_net_path"];
         private static int vid;
         private static string url;
 
