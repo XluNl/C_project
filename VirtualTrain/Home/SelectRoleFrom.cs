@@ -24,6 +24,11 @@ namespace VirtualTrain.Home
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(roleId))
+            {
+                MessageBox.Show("请选择角色！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             ClientDAL.GetInstance().SendMessage("Login," + roleId);
             ClientDAL.GetInstance().SendMessage("ShowState");
 

@@ -78,6 +78,7 @@ namespace VirtualTrain
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            initPanel();
             this.Close();
         }
 
@@ -125,6 +126,7 @@ namespace VirtualTrain
             if (GameHelper.mode == GameHelper.Mode.Offline)
             {
                 this.InItdata();
+                panel2.Show();
             }
             else
             {
@@ -167,10 +169,20 @@ namespace VirtualTrain
             }
         }
 
-        private void InItdata()
+        private void initPanel()
         {
             // 1、每次创建之前，先移除之前的
+            foreach (Control con in this.panel1.Controls)
+            {
+                con.Dispose();
+            }
+
             this.panel1.Controls.Clear();
+        }
+
+        private void InItdata()
+        {
+            initPanel();
 
             // 2、创建
             ResouresModel res = this.ResModes[this.curTaskId];
