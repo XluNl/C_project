@@ -123,7 +123,7 @@ namespace Common.common
 
             List<Role> list = new List<Role>();
 
-            string sql = "select orsc.role_Id,rol.name from  VR_scenc_roleId as orsc inner join VR_roleId as rol on orsc.role_Id = rol.id where scenc_Id=" + senceid;
+            string sql = "select orsc.role_Id,rol.name,rol.majorId from  VR_scenc_roleId as orsc inner join VR_roleId as rol on orsc.role_Id = rol.id where scenc_Id=" + senceid;
 
             DataTable tabel = SQLHelper.ExecuteTable(sql);
 
@@ -141,7 +141,24 @@ namespace Common.common
             Role rol = new Role();
             rol.id = Convert.ToInt32(row["role_Id"]);
             rol.name = row["name"].ToString();
+            rol.major = getMajorByMajorId(Convert.ToInt32(row["majorId"])).ToString();
             return rol;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="majorId"></param>
+        /// <returns></returns>
+        public Major getMajorByMajorId(int majorId)
+        {
+            string sql = "select name from majors where id=" + majorId;
+
+            DataTable table = SQLHelper.ExecuteTable(sql);
+
+            // 一次一个
+            Major major = new Major();
+            major.name = Convert.ToString(table.Rows[0]["name"]);
+            return major;
         }
 
         /// <summary>
@@ -161,13 +178,13 @@ namespace Common.common
             res.MajorId = Convert.ToInt32(table.Rows[0]["majorId"]);
             res.Type = Convert.ToInt32(table.Rows[0]["type"]);
 
-            res.Answer = !table.Rows[0].IsNull("answer")?table.Rows[0]["answer"].ToString():"";
-            res.OptionA = !table.Rows[0].IsNull("OptionA")?table.Rows[0]["OptionA"].ToString():"";
+            res.Answer = !table.Rows[0].IsNull("answer") ? table.Rows[0]["answer"].ToString() : "";
+            res.OptionA = !table.Rows[0].IsNull("OptionA") ? table.Rows[0]["OptionA"].ToString() : "";
             res.OptionB = !table.Rows[0].IsNull("OptionB") ? table.Rows[0]["OptionB"].ToString() : "";
             res.OptionC = !table.Rows[0].IsNull("OptionC") ? table.Rows[0]["OptionC"].ToString() : "";
             res.OptionD = !table.Rows[0].IsNull("OptionD") ? table.Rows[0]["OptionD"].ToString() : "";
-            res.FileName =!table.Rows[0].IsNull("fileName")?table.Rows[0]["fileName"].ToString():"";
-            res.StartTime =!table.Rows[0].IsNull("startTime")? Convert.ToDouble(table.Rows[0]["startTime"]):-1;
+            res.FileName = !table.Rows[0].IsNull("fileName") ? table.Rows[0]["fileName"].ToString() : "";
+            res.StartTime = !table.Rows[0].IsNull("startTime") ? Convert.ToDouble(table.Rows[0]["startTime"]) : -1;
             res.EndTime = !table.Rows[0].IsNull("endTime") ? Convert.ToDouble(table.Rows[0]["endTime"]) : -1; ;
             return res;
         }

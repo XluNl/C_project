@@ -26,7 +26,6 @@ namespace VirtualTrain
         private int curTaskId = 0;
         private List<TaskModel> _taskmodes;
 
-        private VideoControl vco;
         //根据场景ID获取场景全部task实体
         public List<TaskModel> Taskmodes
         {
@@ -79,6 +78,7 @@ namespace VirtualTrain
         }
         private void button3_Click(object sender, EventArgs e)
         {
+            initPanel();
             this.Close();
         }
 
@@ -126,6 +126,7 @@ namespace VirtualTrain
             if (GameHelper.mode == GameHelper.Mode.Offline)
             {
                 this.InItdata();
+                panel2.Show();
             }
             else
             {
@@ -168,11 +169,21 @@ namespace VirtualTrain
             }
         }
 
-        private void InItdata()
+        private void initPanel()
         {
             this.vco.Dispose();
             // 1、每次创建之前，先移除之前的
+            foreach (Control con in this.panel1.Controls)
+            {
+                con.Dispose();
+            }
+
             this.panel1.Controls.Clear();
+        }
+
+        private void InItdata()
+        {
+            initPanel();
 
             // 2、创建
             ResouresModel res = this.ResModes[this.curTaskId];
@@ -214,9 +225,10 @@ namespace VirtualTrain
             vc.Size = this.panel1.Size;
             vc.qr += (VideoControl v, int tag) =>
             {
-                this.vco = v;
                 //1、创建一个新的元素时，将当前这个删除
-                //v.Dispose();
+                v.Dispose();
+                //2、创建
+                MessageBox.Show("创建一个VideoControl-------" + tag.ToString());
 
                 if (GameHelper.mode == GameHelper.Mode.Online)
                 {
