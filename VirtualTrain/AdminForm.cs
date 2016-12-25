@@ -231,10 +231,6 @@ namespace VirtualTrain
             {
                 MessageBox.Show("存在相同名称，请更改名称！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (checkTable(role.id + "", "task", "Taskroleid") || checkTable(role.id + "", "VR_scenc_roleId", "role_Id"))
-            {
-                MessageBox.Show("角色使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             else
             {
                 DBHelper db = new DBHelper();
@@ -398,10 +394,6 @@ namespace VirtualTrain
             {
                 MessageBox.Show("存在相同题目，请更改题目！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (checkTable(question.id + "", "task", "Taskid"))
-            {
-                MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             else
             {
                 DBHelper db = new DBHelper();
@@ -564,10 +556,6 @@ namespace VirtualTrain
             if (checkTable(question.question, question.id, "game_questions", "question"))
             {
                 MessageBox.Show("存在相同题目，请更改题目！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else if (checkTable(question.id + "", "task", "Taskid"))
-            {
-                MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -734,10 +722,6 @@ namespace VirtualTrain
             if (checkTable(video.name, video.id, "game_questions", "question"))
             {
                 MessageBox.Show("存在相同项目，请更改！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else if (checkTable(video.id + "", "task", "Taskid"))
-            {
-                MessageBox.Show("资源使用中！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {

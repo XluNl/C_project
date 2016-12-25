@@ -97,6 +97,7 @@ namespace VirtualTrain
                     vid = value.id;
                     url = value.url;
                     axwmp.URL = v_path + @"\" + value.url;
+                    axwmp.Ctlcontrols.currentPosition = value.startTime ;
                     //根据Video对象的值，设置相应控件
                     txtName.Text = value.name;
                     txtStart.Text = GameHelper.secondsToStr(value.startTime * 1000);
@@ -169,6 +170,11 @@ namespace VirtualTrain
             if (string.IsNullOrEmpty(axwmp.URL))
             {
                 MessageBox.Show("请选择视频！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (float.Parse(txtStart.Tag.ToString()) >= float.Parse(txtEnd.Tag.ToString()))
+            {
+                MessageBox.Show("开始时间必须小于结束时间！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
