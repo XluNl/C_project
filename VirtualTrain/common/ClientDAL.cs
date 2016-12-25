@@ -13,36 +13,6 @@ namespace VirtualTrain.common
     {
         private static ClientDAL _instance = new ClientDAL();
 
-        private ClientDAL()
-        {
-            try
-            {
-                ServerIP = ConfigurationManager.AppSettings["ip"];
-                port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
-                client = new TcpClient();
-                client.Connect(IPAddress.Parse(ServerIP), port);
-                //MessageBox.Show("连接成功");
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show("连接失败，原因：" + ex.Message);
-                return;
-            }
-            //获取网络流
-            NetworkStream networkStream = client.GetStream();
-            //将网络流作为二进制读写对象
-            br = new BinaryReader(networkStream);
-            bw = new BinaryWriter(networkStream);
-            //SendMessage("Login," + txt_UserName.Text);
-            startNewThread();
-        }
-
-        public void startNewThread()
-        {
-            Thread threadReceive = new Thread(new ThreadStart(ReceiveData));
-            threadReceive.IsBackground = true;
-            threadReceive.Start();
-        }
         /// <summary>
         /// 获取单一实例
         /// </summary>
@@ -93,6 +63,44 @@ namespace VirtualTrain.common
         {
             //NumberChanged -= method;
         }
+
+        private ClientDAL()
+        {
+            try
+            {
+                ServerIP = ConfigurationManager.AppSettings["ip"];
+                port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]);
+                client = new TcpClient();
+                client.Connect(IPAddress.Parse(ServerIP), port);
+                //MessageBox.Show("连接成功");
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("连接失败，原因：" + ex.Message);
+                return;
+            }
+            //获取网络流
+            NetworkStream networkStream = client.GetStream();
+            //将网络流作为二进制读写对象
+            br = new BinaryReader(networkStream);
+            bw = new BinaryWriter(networkStream);
+            //SendMessage("Login," + txt_UserName.Text);
+            startThread();
+        }
+
+        Thread threadReceive;
+        public void startThread()
+        {
+             threadReceive= new Thread(new ThreadStart(ReceiveData));
+            threadReceive.IsBackground = true;
+            threadReceive.Start();
+        }
+
+        public void stopThread()
+        {
+            threadReceive.Abort();
+        }
+     
 
         /// <summary>
         /// 处理服务器信息
@@ -166,7 +174,7 @@ namespace VirtualTrain.common
             }
         }
 
-        private void close()
+        public void close()
         {
             //未与服务器连接前 client 为 null
             if (client != null)

@@ -21,6 +21,8 @@ namespace VirtualTrain.Home
         LoadSceneForm lsf = new LoadSceneForm();
         TaskDAL td = new TaskDAL();
         private string roleId;
+        //当前场景所有角色
+        List<Role> roles;
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -40,13 +42,14 @@ namespace VirtualTrain.Home
         private void button2_Click(object sender, EventArgs e)
         {
             ClientDAL.GetInstance().SendMessage("Logout");
+            ClientDAL.GetInstance().SendMessage("ShowState");
             this.Close();
         }
 
         private void SelectRoleFrom_Load(object sender, EventArgs e)
         {
             initView();
-            ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.showstate));
+            ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.InvokeShowState));
             ClientDAL.GetInstance().Register(new ClientDAL.OperateWithConditionHandler(this.startgame));
 
             ClientDAL.GetInstance().SendMessage("ShowState");
@@ -56,7 +59,7 @@ namespace VirtualTrain.Home
         {
             int space = 30;
             int index = 0;
-            List<Role> roles = td.getAllRoleWithSenceID(UserHelper.sceneId);
+            roles = td.getAllRoleWithSenceID(UserHelper.sceneId);
             foreach (Role role in roles)
             {
                 Panel pnl = new Panel();
@@ -125,21 +128,50 @@ namespace VirtualTrain.Home
             selectedBtn.BackColor = Color.Red;
         }
 
-        private void showstate(string info)
+
+        private void initButtonState()
         {
-            string[] ids = info.Split('_');
-            foreach (string id in ids)
+            foreach (Control con in pnls.Controls)
             {
-                foreach (Control con in pnls.Controls)
+                foreach (Control c in con.Controls)
                 {
-                    foreach (Control c in con.Controls)
+                    if (c is Button)
                     {
-                        if (c is Button)
+                        Button btn = c as Button;
+                        btn.Text = td.getRoleByRoleId(Convert.ToInt32(btn.Tag)).name;
+                        btn.Enabled = true;
+                    }
+                }
+            }
+
+        }
+
+        private delegate void InvokeShowStateDelegate(string info);
+        private void InvokeShowState(string info)
+        {
+            if (this.InvokeRequired)
+            {
+                InvokeShowStateDelegate d = new InvokeShowStateDelegate(InvokeShowState);
+                this.Invoke(d, info);
+            }
+            else
+            {
+                initButtonState();
+                string[] ids = info.Split('_');
+                foreach (string id in ids)
+                {
+                    foreach (Control con in pnls.Controls)
+                    {
+                        foreach (Control c in con.Controls)
                         {
-                            Button btn = c as Button;
-                            if (btn.Tag.ToString().Equals(id))
+                            if (c is Button)
                             {
-                                InvokeShowState(btn);
+                                Button btn = c as Button;
+                                if (btn.Tag.ToString().Equals(id))
+                                {
+                                    btn.Text = "准备";
+                                    btn.Enabled = false;
+                                }
                                 break;
                             }
                         }
@@ -148,26 +180,10 @@ namespace VirtualTrain.Home
             }
         }
 
-        private delegate void InvokeShowStateDelegate(Button btn);
-        private void InvokeShowState(Button btn)
-        {
-            if (btn.InvokeRequired)
-            {
-                InvokeShowStateDelegate d = new InvokeShowStateDelegate(InvokeShowState);
-                btn.Invoke(d, btn);
-            }
-            else
-            {
-                btn.Text = "准备";
-                btn.Enabled = false;
-            }
-        }
-
         private void startgame(bool condition)
         {
-
-
             InvokeStartGame(condition);
+
         }
 
         private delegate void InvokeStartGameDelegate(bool condition);

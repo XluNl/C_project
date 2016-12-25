@@ -130,16 +130,16 @@ namespace Common.common
             foreach (DataRow row in tabel.Rows)
             {
 
-                list.Add(roleWitnRow(row));
+                list.Add(roleWitnRow(row, "role_Id"));
             }
 
             return list;
         }
 
-        private Role roleWitnRow(DataRow row)
+        private Role roleWitnRow(DataRow row,string colName)
         {
             Role rol = new Role();
-            rol.id = Convert.ToInt32(row["role_Id"]);
+            rol.id = Convert.ToInt32(row[colName]);
             rol.name = row["name"].ToString();
             rol.major = getMajorByMajorId(Convert.ToInt32(row["majorId"])).ToString();
             return rol;
@@ -159,6 +159,14 @@ namespace Common.common
             Major major = new Major();
             major.name = Convert.ToString(table.Rows[0]["name"]);
             return major;
+        }
+
+        public Role getRoleByRoleId(int roleId)
+        {
+            string sql = "select * from VR_roleId where id=" + roleId;
+
+            DataTable table = SQLHelper.ExecuteTable(sql);
+            return roleWitnRow(table.Rows[0],"id");
         }
 
         /// <summary>
