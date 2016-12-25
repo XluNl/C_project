@@ -33,7 +33,6 @@
             this.txtLoginId = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.chkPwd = new System.Windows.Forms.CheckBox();
             this.txtLoginPwd = new System.Windows.Forms.TextBox();
             this.viewTime = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -86,19 +85,6 @@
             this.btnCancel.MouseEnter += new System.EventHandler(this.btn_MouseEnter);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btn_MouseLeave);
             // 
-            // chkPwd
-            // 
-            this.chkPwd.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.chkPwd.AutoSize = true;
-            this.chkPwd.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chkPwd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.chkPwd.Location = new System.Drawing.Point(517, 340);
-            this.chkPwd.MaximumSize = new System.Drawing.Size(15, 15);
-            this.chkPwd.Name = "chkPwd";
-            this.chkPwd.Size = new System.Drawing.Size(15, 14);
-            this.chkPwd.TabIndex = 3;
-            this.chkPwd.UseVisualStyleBackColor = false;
-            // 
             // txtLoginPwd
             // 
             this.txtLoginPwd.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -110,7 +96,6 @@
             this.txtLoginPwd.PasswordChar = '*';
             this.txtLoginPwd.Size = new System.Drawing.Size(101, 14);
             this.txtLoginPwd.TabIndex = 2;
-            this.txtLoginPwd.Enter += new System.EventHandler(this.txtLoginPwd_Enter);
             // 
             // viewTime
             // 
@@ -124,7 +109,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(991, 581);
-            this.Controls.Add(this.chkPwd);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtLoginPwd);
@@ -146,7 +130,6 @@
         private System.Windows.Forms.TextBox txtLoginId;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.CheckBox chkPwd;
         private System.Windows.Forms.TextBox txtLoginPwd;
         private System.Windows.Forms.Timer viewTime;
     }

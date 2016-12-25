@@ -99,6 +99,7 @@ namespace VirtualTrain
                 else
                 {
                     MessageBox.Show("游戏结束", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ClientDAL.GetInstance().stopThread();
                     this.DialogResult = DialogResult.OK;
                 }
             }
@@ -132,7 +133,7 @@ namespace VirtualTrain
             {
                 ClientDAL.GetInstance().Register(new ClientDAL.ShowHandler(this.refreshData));
                 ClientDAL.GetInstance().Register(new ClientDAL.OperateWithConditionHandler(this.wait));
-                ClientDAL.GetInstance().startNewThread();
+                ClientDAL.GetInstance().startThread();
                 if (_condition)
                 {
 

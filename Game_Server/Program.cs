@@ -110,7 +110,7 @@ namespace Game_Server
                     if (isNormalExit == false)
                     {
                         statusInfo(string.Format("与[{0}]失去联系，已终止接收该用户信息", client.Client.RemoteEndPoint));
-                        RemoveGamer(gamer);
+                        //RemoveGamer(gamer);
                     }
                     break;
                 }
@@ -125,9 +125,10 @@ namespace Game_Server
 
                         break;
                     case "Logout":  //玩家退出房间接口，格式Logout
+                        room = dal.getRoomByGamer(roomList, gamer);
                         RemoveGamer(gamer);
 
-                        return;
+                        break;
                     case "Next":
                         NextMission(gamer);
                         break;
@@ -157,7 +158,11 @@ namespace Game_Server
                         statusInfo(string.Format(client.Client.RemoteEndPoint + "进入{0}房间", roomName));
                         break;
                     case "ShowState":    //返回某房间在线玩家选择状态，格式ShowState
-                        room = dal.getRoomByGamer(roomList, gamer);
+                        if (dal.getRoomByGamer(roomList, gamer)!=null)
+                        {
+                            room = dal.getRoomByGamer(roomList, gamer);
+                        }
+                       
                         gamerList = room.gamerList;
                         string gamerInfo = dal.getGamerStateByRoom(room);
                         if (!string.IsNullOrEmpty(gamerInfo))
@@ -170,6 +175,10 @@ namespace Game_Server
                             {
                                 SendToAllClient(null, "showstate," + gamerInfo);
                             }
+                        }
+                        else
+                        {
+                            SendToAllClient(null, "showstate,-1" );
                         }
                         break;
                     default:
@@ -262,10 +271,12 @@ namespace Game_Server
         /// <param name="gamer">指定要移除的用户</param>
         private static void RemoveGamer(Gamer gamer)
         {
+            gamer.roleId = null;
             room = dal.getRoomByGamer(roomList, gamer);
             gamerList = room.gamerList;
             gamerList.Remove(gamer);
-            gamer.Close();
+            //gamer.Close();
+            statusInfo(string.Format("{0}退出房间{1}", gamer.client.Client.RemoteEndPoint, room.name));
             statusInfo(string.Format("房间{0}当前连接用户数：{1}", room.name, gamerList.Count));
             if (gamerList.Count <= 0)
             {
@@ -299,8 +310,11 @@ namespace Game_Server
             else
             {
                 SendToAllClient(null, "wait,true");
-                roomList.Remove(room);
-                
+                for (int i = gamerList.Count - 1; i >= 0; i--)
+                {
+                    RemoveGamer(gamerList[i]);
+                }
+
             }
 
         }

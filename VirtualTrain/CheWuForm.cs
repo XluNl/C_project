@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using VirtualTrain.common;
+using System.Configuration;
 
 namespace VirtualTrain
 {
@@ -22,8 +23,8 @@ namespace VirtualTrain
             this.DialogResult = DialogResult.OK;
             axWindowsMediaPlayer1.Ctlcontrols.stop();
         }
-
-        private static string path = Application.StartupPath + @"\基础知识视频\";
+        private static string path = @"\\" + ConfigurationManager.AppSettings["ip"] + ConfigurationManager.AppSettings["jczs_net_path"];
+        //private static string path = Application.StartupPath + @"\基础知识视频\";
         DirectoryInfo dir = new DirectoryInfo(path);
         private void CheWuForm_Load(object sender, EventArgs e)
         {

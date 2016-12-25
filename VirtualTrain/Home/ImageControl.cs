@@ -33,7 +33,7 @@ namespace VirtualTrain.Home
         private ResouresModel ResMode { get; set; }
 
         //动态图片相关参数
-        private static string i_path = ConfigurationManager.AppSettings["img_path"];
+        private static string i_path = @"\\" + ConfigurationManager.AppSettings["ip"] + ConfigurationManager.AppSettings["img_net_path"];
         private static List<string> optionList = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
         int currentOption = 0;
         private static int space = 30;

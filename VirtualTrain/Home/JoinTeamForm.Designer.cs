@@ -76,9 +76,8 @@
             this.lbl.AutoSize = true;
             this.lbl.Location = new System.Drawing.Point(106, 95);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(41, 12);
+            this.lbl.Size = new System.Drawing.Size(0, 12);
             this.lbl.TabIndex = 4;
-            this.lbl.Text = "label2";
             // 
             // JoinTeamForm
             // 

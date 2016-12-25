@@ -91,6 +91,7 @@ namespace VirtualTrain
             jtf.pwd = btn.Tag.ToString();
             jtf.name = btn.Text;
             jtf.ShowDialog();
+            this.Close();
         }
 
     }

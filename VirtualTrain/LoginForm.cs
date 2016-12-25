@@ -10,7 +10,6 @@ using System.Data.Common;
 using VirtualTrain.common;
 using Common.common;
 
-//check 
 namespace VirtualTrain
 {
     /// <summary>
@@ -53,7 +52,6 @@ namespace VirtualTrain
                             MessageBox.Show("该用户已被锁定，详细情况请联系管理员！", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             return;
                         }
-                        rememberPwd();
                         loginResult = true;
                         int roleId = (int)reader["roleId"];
                         UserHelper.loginId = txtLoginId.Text.Trim();
@@ -91,55 +89,6 @@ namespace VirtualTrain
         }
 
    
-             //记住密码
-        private void rememberPwd()
-        {
-           
-            if (chkPwd.Checked)
-            {
-                string str = "";
-                string line;
-                System.IO.StreamReader sr = new System.IO.StreamReader(txtFileName, Encoding.GetEncoding("gb2312"));
-                while ((line = sr.ReadLine()) != null)
-                {
-                    if (line.Trim().Contains(txtLoginId.Text.Trim()))
-                    {
-                        break;
-                    }
-                    str += (line.Trim() + "\n");
-                }
-                sr.Close();
-                if (line == null)
-                {
-                    str += (txtLoginId.Text.Trim() + "@" + txtLoginPwd.Text.Trim() + "\n");
-                    System.IO.StreamWriter sw = new System.IO.StreamWriter(txtFileName, false, Encoding.GetEncoding("gb2312"));
-                    sw.Flush();
-                    sw.Write(str);
-                    sw.Flush();
-                    sw.Close();
-                }
-            }
-            else
-            {
-                string str = "";
-                string line;
-                System.IO.StreamReader sr = new System.IO.StreamReader(txtFileName, Encoding.GetEncoding("gb2312"));
-                while ((line = sr.ReadLine()) != null)
-                {
-                    if (line.Trim().Contains(txtLoginId.Text.Trim()))
-                    {
-                        continue;
-                    }
-                    str += (line.Trim() + "\n");
-                }
-                sr.Close();
-                System.IO.StreamWriter sw = new System.IO.StreamWriter(txtFileName, false, Encoding.GetEncoding("gb2312"));
-                sw.Flush();
-                sw.Write(str);
-                sw.Flush();
-                sw.Close();
-            }
-        }
 
         /// <summary>
         /// 主要用于校验客户端的输入的合法性
@@ -179,26 +128,6 @@ namespace VirtualTrain
             this.Opacity = 100D;
             //解决窗体闪烁
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw | ControlStyles.AllPaintingInWmPaint, true);
-        }
-
-        string txtFileName = Application.StartupPath + @"\data\pwd.txt";
-        private void txtLoginPwd_Enter(object sender, EventArgs e)
-        {
-            string line;    //文件内容的一行
-            System.IO.StreamReader sr = new System.IO.StreamReader(txtFileName, Encoding.GetEncoding("gb2312"));
-            while ((line = sr.ReadLine()) != null)
-            {
-                if (line.Trim().Contains(txtLoginId.Text.Trim()) && txtLoginId.Text.Trim() != "")
-                {
-                    txtLoginPwd.Text = line.Trim().Substring(line.Trim().IndexOf('@') + 1);
-                    break;
-                }
-            }
-            if (line == null)
-            {
-                txtLoginPwd.Text = "";
-            }
-            sr.Close();
         }
 
         private int i = 0;

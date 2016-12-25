@@ -137,7 +137,7 @@ namespace VirtualTrain
             }
             else
             { //直接进入教学模式
-
+                GameHelper.mode = GameHelper.Mode.Offline;
                 new LoadSceneForm().ShowDialog();
             }
 
