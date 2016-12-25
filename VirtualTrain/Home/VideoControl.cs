@@ -42,6 +42,7 @@ namespace VirtualTrain.Home
         {
             this.lbl.Text = this.ResMode.Question;
             wmp.URL = v_path + @"\" + ResMode.FileName;
+            wmp.Ctlcontrols.currentPosition = this.ResMode.StartTime;
         }
     }
 }
