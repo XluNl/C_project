@@ -50,7 +50,7 @@ namespace VirtualTrain
         }
 
 
-        private static string i_path = ConfigurationManager.AppSettings["img_path"];
+        private static string i_path = ConfigurationManager.AppSettings["img_net_path"];
         private static int questionId;
         private static List<string> optionList = new List<string> { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
         private static int currentOption = 0;
