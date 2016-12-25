@@ -98,7 +98,7 @@ namespace VirtualTrain
                 }
                 else
                 {
-                    MessageBox.Show("游戏结束", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("演练流程结束", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     ClientDAL.GetInstance().stopThread();
                     this.DialogResult = DialogResult.OK;
                 }
@@ -228,8 +228,6 @@ namespace VirtualTrain
                 //1、创建一个新的元素时，将当前这个删除
                 v.Dispose();
                 //2、创建
-                MessageBox.Show("创建一个VideoControl-------" + tag.ToString());
-
                 if (GameHelper.mode == GameHelper.Mode.Online)
                 {
                     ClientDAL.GetInstance().SendMessage("Next");
@@ -309,6 +307,7 @@ namespace VirtualTrain
             if (this.curTaskId <= 0)
             {
                 this.curTaskId = 0;
+                MessageBox.Show( "已经是第一题！","提示：");
                 return;
             }
             this.curTaskId--;
@@ -324,6 +323,7 @@ namespace VirtualTrain
             if (this.curTaskId >= this.ResModes.Count - 1)
             {
                 this.curTaskId = this.ResModes.Count - 1;
+                MessageBox.Show("已经是最后一题！","提示：");
                 return;
             }
             this.curTaskId++;

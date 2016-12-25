@@ -1026,7 +1026,8 @@ namespace VirtualTrain
                 btn.Height = btn_H;
                 btn.Location = new Point(org_X, org_Y);
                 btn.Tag = scp;//直接将模型给tag
-                btn.Text = "scencID=" + scp.Id + "    " + scp.Scencname;
+               // btn.Text = "scencID=" + scp.Id + "    " + scp.Scencname;
+                btn.Text =scp.Scencname;
                 btn.ContextMenuStrip = this.contextMenuStrip1;
                 this.panel2.Controls.Add(btn);
                 this.panel2.AutoScroll = true;

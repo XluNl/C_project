@@ -152,7 +152,8 @@ namespace VirtualTrain
             int btn_org = (int)(org * 0.5);
             int btn_Y = (int)(org * 1.1);
             Button btn = new Button();
-            btn.Text = "任务ID="+tast.Taskid+"  任务name = "+tast.Taskname+" 任务序号 = "+id+"   sort = "+tast.Sortindex+"";
+            //btn.Text = "任务ID="+tast.Taskid+"  任务name = "+tast.Taskname+" 任务序号 = "+id+"   sort = "+tast.Sortindex+"";
+            btn.Text = tast.Taskname;
             btn.Size = new Size(btn_W, btn_H);
             btn.Location = new Point(btn_org, btn_Y);
             btn.Tag = id;

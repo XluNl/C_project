@@ -157,8 +157,8 @@
             this.toolStripButton4.Image = global::VirtualTrain.Properties.Resources.lc;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(100, 22);
-            this.toolStripButton4.Text = "训练场景管理";
+            this.toolStripButton4.Size = new System.Drawing.Size(116, 22);
+            this.toolStripButton4.Text = "VR训练场景管理";
             this.toolStripButton4.Click += new System.EventHandler(this.脚本配置_Click);
             // 
             // toolStripButton5
