@@ -171,7 +171,6 @@ namespace VirtualTrain
 
         private void initPanel()
         {
-            this.vco.Dispose();
             // 1、每次创建之前，先移除之前的
             foreach (Control con in this.panel1.Controls)
             {
