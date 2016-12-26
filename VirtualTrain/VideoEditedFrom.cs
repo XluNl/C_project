@@ -24,6 +24,7 @@ namespace VirtualTrain
         private void VideoEditedFrom_Load(object sender, EventArgs e)
         {
             cboMajorsInit(cboMajors);
+            timer.Start();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,7 +58,8 @@ namespace VirtualTrain
             }
         }
 
-        private static string v_path = ConfigurationManager.AppSettings["video_net_path"];
+        //private static string v_path = ConfigurationManager.AppSettings["video_net_path"];
+        private static string v_path = @"C:\VR\Video\";
         private static int vid;
         private static string url;
 
@@ -97,7 +99,7 @@ namespace VirtualTrain
                     vid = value.id;
                     url = value.url;
                     axwmp.URL = v_path + @"\" + value.url;
-                    axwmp.Ctlcontrols.currentPosition = value.startTime ;
+                    axwmp.Ctlcontrols.currentPosition = value.startTime;
                     //根据Video对象的值，设置相应控件
                     txtName.Text = value.name;
                     txtStart.Text = GameHelper.secondsToStr(value.startTime * 1000);
@@ -198,14 +200,13 @@ namespace VirtualTrain
             txtEnd.Tag = axwmp.Ctlcontrols.currentPosition;
         }
 
-
-        //private void axwmp_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
-        //{
-        //    AxWMPLib.AxWindowsMediaPlayer axwmp = (AxWMPLib.AxWindowsMediaPlayer)sender;
-        //    if (e.newState==3)
-        //    {
-        //        axwmp.Ctlcontrols.pause();
-        //    }
-        //}
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (GameHelper.secondsToStr(axwmp.Ctlcontrols.currentPosition * 1000).Equals(txtEnd.Text))
+            {
+                axwmp.Ctlcontrols.stop();
+                timer.Stop();
+            }
+        }
     }
 }

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoControl));
             this.gb = new System.Windows.Forms.GroupBox();
             this.wmp = new AxWMPLib.AxWindowsMediaPlayer();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.gb.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.wmp)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +93,11 @@
             this.lbl.TabIndex = 15;
             this.lbl.Text = "label2";
             // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // VideoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -118,5 +125,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl;
         private AxWMPLib.AxWindowsMediaPlayer wmp;
+        private System.Windows.Forms.Timer timer;
     }
 }
