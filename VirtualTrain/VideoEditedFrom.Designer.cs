@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoEditedFrom));
             this.label1 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnEnd = new System.Windows.Forms.Button();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axwmp)).BeginInit();
@@ -186,6 +188,11 @@
             this.btnEnd.UseVisualStyleBackColor = true;
             this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // VideoEditedFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -234,5 +241,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnEnd;
+        private System.Windows.Forms.Timer timer;
     }
 }

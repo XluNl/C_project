@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common.model;
 using System.Configuration;
+using VirtualTrain.common;
 namespace VirtualTrain.Home
 {
     // 点击确认
@@ -43,6 +44,16 @@ namespace VirtualTrain.Home
             this.lbl.Text = this.ResMode.Question;
             wmp.URL = v_path + @"\" + ResMode.FileName;
             wmp.Ctlcontrols.currentPosition = this.ResMode.StartTime;
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (GameHelper.secondsToStr(wmp.Ctlcontrols.currentPosition * 1000).Equals(GameHelper.secondsToStr(ResMode.EndTime * 1000)))
+            {
+                wmp.Ctlcontrols.stop();
+                timer.Stop();
+            }
         }
     }
 }
