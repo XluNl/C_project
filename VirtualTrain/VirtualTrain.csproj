@@ -737,6 +737,7 @@
     <None Include="Resources\02.bmp" />
     <None Include="Resources\14.bmp" />
     <Content Include="Resources\bac.jpg" />
+    <None Include="Resources\error.png" />
     <Content Include="Resources\g01.jpg" />
     <None Include="Resources\g05.jpg" />
     <None Include="Resources\g04.jpg" />
