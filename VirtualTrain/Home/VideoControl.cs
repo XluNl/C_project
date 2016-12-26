@@ -30,7 +30,8 @@ namespace VirtualTrain.Home
 
 
         //private static string v_path = @"\\" + ConfigurationManager.AppSettings["ip"] + ConfigurationManager.AppSettings["video_net_path"];
-        private static string v_path = ConfigurationManager.AppSettings["video_net_path"];
+        //private static string v_path = ConfigurationManager.AppSettings["video_net_path"];
+        private static string v_path = @"C:\VR\Video\";
         // 存储当前任务模型
         public ResouresModel ResMode { get; set; }
 
@@ -53,6 +54,7 @@ namespace VirtualTrain.Home
             {
                 wmp.Ctlcontrols.stop();
                 timer.Stop();
+                this.button1_Click(this, new EventArgs());
             }
         }
     }

@@ -38,8 +38,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblWait = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -144,6 +146,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.lblWait);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 17);
             this.panel1.Name = "panel1";
@@ -162,6 +165,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(185, 189);
             this.panel2.TabIndex = 5;
+            // 
+            // lblWait
+            // 
+            this.lblWait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWait.Font = new System.Drawing.Font("宋体", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWait.Location = new System.Drawing.Point(0, 0);
+            this.lblWait.Name = "lblWait";
+            this.lblWait.Size = new System.Drawing.Size(550, 324);
+            this.lblWait.TabIndex = 0;
+            this.lblWait.Text = "等待新任务";
+            this.lblWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoadSceneForm
             // 
@@ -183,6 +197,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -199,5 +214,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblWait;
     }
 }

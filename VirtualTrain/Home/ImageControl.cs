@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Common.model;
 using System.Configuration;
+using System.IO;
 namespace VirtualTrain.Home
 {
 
@@ -97,8 +98,15 @@ namespace VirtualTrain.Home
         {
             PictureBox pic = new PictureBox();
             pic.Tag = optionList[currentOption];
+            if (File.Exists(i_path + @"\" + fileName))
+            {
+                pic.Load(i_path + @"\" + fileName);
+            }
+            else
+            {
+                pic.Image = VirtualTrain.Properties.Resources.error;
+            }
 
-            pic.Load(i_path + @"\" + fileName);
             pic.Width = 100;
             pic.Height = 100;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;

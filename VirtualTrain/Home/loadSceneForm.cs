@@ -88,27 +88,28 @@ namespace VirtualTrain
 
         private void wait(bool exit)
         {
-            if (exit)
+
+
+            if (this.InvokeRequired)
             {
-                //游戏结束，退出
-                if (this.InvokeRequired)
+                WaitDelegate w = new WaitDelegate(wait);
+                this.Invoke(w, exit);
+            }
+            else
+            {
+                if (exit)
                 {
-                    WaitDelegate w = new WaitDelegate(wait);
-                    this.Invoke(w, exit);
-                }
-                else
-                {
+                    //游戏结束，退出
                     MessageBox.Show("演练流程结束", "基于虚拟现实的铁路综合运输训练系统", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     ClientDAL.GetInstance().stopThread();
                     this.DialogResult = DialogResult.OK;
                 }
+                else
+                {
+                    //游戏未结束，等待
+                    this.panel1.Controls.Add(lblWait);
+                }
             }
-            else
-            {
-                //游戏未结束，等待
-
-            }
-
         }
 
         private bool _condition;
@@ -128,6 +129,7 @@ namespace VirtualTrain
             {
                 this.InItdata();
                 panel2.Show();
+                lblWait.Hide();
             }
             else
             {
@@ -141,6 +143,7 @@ namespace VirtualTrain
                 }
                 //界面相关展示
                 panel2.Hide();
+                lblWait.Show();
                 lblName.Text = UserHelper.user.name;
                 lblMajor.Text = UserHelper.user.major;
             }
@@ -307,7 +310,7 @@ namespace VirtualTrain
             if (this.curTaskId <= 0)
             {
                 this.curTaskId = 0;
-                MessageBox.Show( "已经是第一题！","提示：");
+                MessageBox.Show("已经是第一题！", "提示：");
                 return;
             }
             this.curTaskId--;
@@ -323,7 +326,7 @@ namespace VirtualTrain
             if (this.curTaskId >= this.ResModes.Count - 1)
             {
                 this.curTaskId = this.ResModes.Count - 1;
-                MessageBox.Show("已经是最后一题！","提示：");
+                MessageBox.Show("已经是最后一题！", "提示：");
                 return;
             }
             this.curTaskId++;
