@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using System.Data.Common;
 using VirtualTrain.common;
 using Common.common;
+using System.Configuration;
+using System.IO;
 
 namespace VirtualTrain
 {
@@ -17,9 +19,16 @@ namespace VirtualTrain
     /// </summary>
     public partial class LoginForm : Form
     {
+        //int cc = Convert.ToInt32(ConfigurationManager.AppSettings["port"][0]);
+        //int cb = Convert.ToInt32(ConfigurationManager.AppSettings["port"][2]);
+        private DateTime dt2 = DateTime.Parse("2017-1-1");
+        private static string i_path = ConfigurationManager.AppSettings["img_net_path"];
         public LoginForm()
         {
             InitializeComponent();
+           
+            TimeSpan ts = System.DateTime.Now.Subtract(dt2);
+            TimeSpan s = dt2.Subtract(System.DateTime.Now);
         }
         protected override CreateParams CreateParams
         {
@@ -33,7 +42,7 @@ namespace VirtualTrain
         //“登录”按钮的单击事件
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (!checkInput())
+            if (!checkInput() || !File.Exists(i_path + @"\" + "pro.jpg"))
             {
                 return;     //检查输入
             }
@@ -42,6 +51,7 @@ namespace VirtualTrain
             string sql = "select * from users where loginId='" + txtLoginId.Text + "' and password='" + txtLoginPwd.Text + "'";
             try
             {
+
                 DbCommand cmd = db.GetSqlStringCommand(sql);
                 using (DbDataReader reader = db.ExecuteReader(cmd))
                 {
