@@ -23,6 +23,7 @@ namespace VirtualTrain
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
 
             this.UpdateStyles();
+
         }
 
         protected override CreateParams CreateParams
@@ -57,6 +58,21 @@ namespace VirtualTrain
 
         private void StudentWelcomeForm_Load(object sender, EventArgs e)
         {
+            int top = 45;
+            int toop = 30;
+            int sen = this.Height - (top + toop);
+            int heit = this.Size.Height;
+            int with = this.Size.Width;
+
+            this.panel2.Location = new Point(0, 0);
+            this.panel2.Size = new Size(this.Width, top);
+
+            this.panel1.Location = new Point(0, this.panel2.Height);
+            this.panel1.Size = new Size(this.Width, sen);
+
+            this.panel3.Location = new Point(0, this.panel1.Location.Y + this.panel1.Height);
+            this.panel3.Size = new Size(this.Width, toop);
+
             ViewHelper.MdiChildrenAutoSize(this);
             this.Dock = DockStyle.Fill;
             cboMajorsInit();
@@ -149,7 +165,7 @@ namespace VirtualTrain
 
         private void btnElectronicSandTable_Click(object sender, EventArgs e)
         {
-            Process process = new Process();
+             Process process = new Process();
             try
             {
                 process.StartInfo.UseShellExecute = false;

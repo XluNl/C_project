@@ -47,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>1~5.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -723,6 +726,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\uesr.jpg" />
     <None Include="Resources\调度.png" />
     <None Include="Resources\供电.png" />
     <None Include="Resources\工务.png" />
@@ -736,6 +740,7 @@
     <None Include="Resources\add_rw_J.png" />
     <None Include="Resources\02.bmp" />
     <None Include="Resources\14.bmp" />
+    <Content Include="1~5.ico" />
     <Content Include="Resources\bac.jpg" />
     <None Include="Resources\error.png" />
     <Content Include="Resources\g01.jpg" />

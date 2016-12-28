@@ -57,10 +57,11 @@ namespace VirtualTrain
         {
             InitializeComponent();
 
-            this.panel1.BackColor = Color.Transparent;
-            this.panel2.BackColor = Color.Transparent;
-            this.groupBox1.BackColor = Color.Transparent;
-            this.groupBox2.BackColor = Color.Transparent;
+            //this.panel1.BackColor = Color.Transparent;
+            //this.panel2.BackColor = Color.Transparent;
+            //this.groupBox1.BackColor = Color.Transparent;
+            //this.groupBox2.BackColor = Color.Transparent;
+            //this.lblWait.BackColor = Color.Transparent;
             //解决窗体闪烁
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
             this.UpdateStyles();

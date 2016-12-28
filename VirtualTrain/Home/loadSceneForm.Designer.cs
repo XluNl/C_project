@@ -37,8 +37,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.lblWait = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -153,6 +153,17 @@
             this.panel1.Size = new System.Drawing.Size(550, 324);
             this.panel1.TabIndex = 0;
             // 
+            // lblWait
+            // 
+            this.lblWait.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblWait.Font = new System.Drawing.Font("宋体", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblWait.Location = new System.Drawing.Point(0, 0);
+            this.lblWait.Name = "lblWait";
+            this.lblWait.Size = new System.Drawing.Size(550, 324);
+            this.lblWait.TabIndex = 0;
+            this.lblWait.Text = "等待新任务";
+            this.lblWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -166,22 +177,11 @@
             this.panel2.Size = new System.Drawing.Size(185, 189);
             this.panel2.TabIndex = 5;
             // 
-            // lblWait
-            // 
-            this.lblWait.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblWait.Font = new System.Drawing.Font("宋体", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblWait.Location = new System.Drawing.Point(0, 0);
-            this.lblWait.Name = "lblWait";
-            this.lblWait.Size = new System.Drawing.Size(550, 324);
-            this.lblWait.TabIndex = 0;
-            this.lblWait.Text = "等待新任务";
-            this.lblWait.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // LoadSceneForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1006, 519);
