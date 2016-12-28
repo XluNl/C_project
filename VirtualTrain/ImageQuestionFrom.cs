@@ -178,8 +178,14 @@ namespace VirtualTrain
         {
             PictureBox pic = new PictureBox();
             pic.Tag = optionList[currentOption];
-          
-            pic.Load(i_path + @"\" + fileName);
+            if (File.Exists(i_path + @"\" + fileName))
+            {
+                pic.Load(i_path + @"\" + fileName);
+            }
+            else
+            {
+                pic.Image = VirtualTrain.Properties.Resources.error;
+            }
             pic.Width = 100;
             pic.Height = 100;
             pic.SizeMode = PictureBoxSizeMode.StretchImage;
